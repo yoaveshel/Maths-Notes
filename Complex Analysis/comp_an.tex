@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage{csquotes}
 \usepackage[english]{babel}
 \usepackage{amsmath,amssymb,amsthm,textcomp}
 \usepackage{mathtools}
@@ -59,8 +60,58 @@
     \tableofcontents
     \newpage
 
-    This notes are based on Complex Variables and Applications by James Ward Brown.
-    \section{Complex Numbers}
+    This notes are based on Complex Variables and Applications by James Ward Brown (9th edition).
+    \section{Regions in the Complex Plane}
+    For $z_0\in\C$, its \textit{neighborhood} is the set
+    $$
+        \abs{z-z_0}\leq\varepsilon,\quad\varepsilon>0.
+    $$
+    It consists of all the point that lie inside (but not on!) the circle of radius $\varepsilon$ centered at $z_0$.
+    A \textit{deleted neighborhood} is the same set as the neighborhood minus the origin, i.e
+    $$
+        0<\abs{z-z_0}<\varepsilon.
+    $$
+    A point $z_0$ is an \textit{interior point} of some set $S$, if there exists a $z_0$-neighborhood that contains only points in $S$.
+    It is an \textit{exterior point} if there exists a neighborhood containing no points in $S$.
+    If $z_0$ is neither, then it is a \textit{boundary point}.
+
+    A set is \textit{open} if it does not contain any of its boundary points ($\iff$ every point is an interior point) and \textit{closed} if it contains all of them.
+    A set can be neither or both. The disk $0<\abs{z}\leq 1$ is neither while the entire complex plane is both.
+
+    An open set $S$ is \textit{connected} if there for any two points in the set there is a finite number of straight lines (polygonal line), all in $S$, that connect them.
+    A nonempty open set that is connected is called a \textit{domain} (e.g. every neighborhood is a domain). A connected set that is not open is called a \textit{region}. 
+
+    A set is \textit{bounded} if it can be contained in some circle, otherwise it is \textit{unbounded}.
+    
+    A point $z_0$ is an \textit{accumulation point} of a set $S$ if every deleted neighborhood of $z_0$ contains at least one point of $S$.
+    For example, the point $0$ is an accumulation point of the set $S=\left\{\frac{1}{n}\mid n\in\N\right\}$.
+    
     \section{Analytic Functions}
+    We say that $f(z)\to w_0$ as $z\to z_0=(x_0,y_0)$ if for every $\varepsilon>0$ there exists $\delta>0$ s.t.
+    $$
+        0<\abs{z-z_0}<\delta\implies\abs{f(z)-w_0}<\varepsilon\vspace{0.5em}
+    $$
+    where $\abs{z-z_0}=\abs{x-x_0+(y-y_0)i}=\sqrt{(x-x_0)^2+(y-y_0)^2}$. If such $w_0$ exists then it is unique.
+
+    If $f:\C\to\C$ is given by
+    $$
+        f(z)=f(x+yi)=u(x,y)+iv(x,y)
+    $$
+    for $u,v$ real valued and
+    $$
+        \lim_{(x,y)\to(x_0,y_0)} u(x,y)=u_0,\quad \lim_{(x,y)\to(x_0,y_0)} v(x,y)=v_0
+    $$
+    exist, then
+    $$
+        \lim_{(x,y)\to(x_0,y_0)} f(x+yi) = u_0+v_0i.
+    $$
+    Therefore the limit rules for real valued functions are easily applied to complex functions.
+
+    
+
+
+
+
+
 
 \end{document}
