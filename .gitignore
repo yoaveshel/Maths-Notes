@@ -7,8 +7,11 @@
 *.ind
 *.log
 *.out
-*.pdf
 *.synctex.gz
 *.synctex(busy)
 *.toc
 *.xdv
+*.bbl
+*.bcf
+*.blg
+*.xml
