@@ -1,0 +1,88 @@
+\subsection{Symmetric Polynomial}
+    \begin{ex}{14.10}
+        Express the symmetric polynomials $\sum_n T_1^2T_2$ and $\sum_{n} T_1^3T_2$ in the elementary symmetric polynomials.
+    \end{ex}
+    \begin{sol}
+        To get the polynomial $\sum_n T_1^2T_2$ we start with
+        $$
+            s_1s_2=\sum_n T_1\sum_n T_1T_2 = \sum_n T_1^2T_2+3\sum_n T_1T_2T_3 = \sum_n T_1^2T_2+3s_3
+        $$
+        Thus 
+        $$
+            \sum_n T_1^2T_2 = s_1s_2-3s_3
+        $$
+
+        Similarly, to transform the polynomial $\sum_{n} T_1^3T_2$ we start with
+        \begin{align*}
+            s_1^2s_2&=\left(\sum_nT_1\right)^2\sum_nT_1T_2\\
+            &=\left(\sum_n T_1^2+2\sum_n T_1T_2\right)\sum_nT_1T_2\\
+            &=\sum_nT_1^2\sum_n T_1T_2+2s_2^2\\
+            &=\sum_nT_1^3T_2+\sum_n T_1^2T_2T_3+2s_2^2.
+        \end{align*}
+        And since
+        $$
+            s_1s_3=\sum_nT_1\sum_nT_1T_2T_3=\sum_nT_1^2T_2T_3+4\sum_n T_1T_2T_3T_4
+        $$
+        it follows that $\sum_n T_1^2T_2T_3=s_1s_3-4s_4$ and so
+        $$
+            \sum_{n} T_1^3T_2=s_1^2s_2-s_1s_3+4s_4-2s_2^2
+        $$
+    \end{sol}
+        
+    \begin{ex}{14.21}
+        Express $p_4=\sum_nT_1^4$ in elementary symmetric polynomials
+    \end{ex}
+    \begin{sol}
+        Let $n\geq 4$. Starting with
+        \begin{align*}
+            s_1^4 &= \left(\sum_nT_1\right)^4\\& = \sum_n T_1^4+4\sum_n T_1^3T_2+12\sum_n T_1^2T_2T_3+6\sum_nT_1^2T_2^2+24\sum_nT_1T_2T_3T_4.
+        \end{align*}
+        To understand how to coefficients of the sum are obtained, consider the number of ways the $T_i$ can be arranged. 
+        For example, $T_1^4=T_1T_1T_1T_1$ can only be arranged in 1 way but $T_1^2T_2T_3=T_1T_1T_2T_3$ can be arrange in $\frac{4!}{2}=12$ ways (where we divided by 2 since the two $T_1$ can be swapped in any given arrangement).
+        Then
+        $$
+            s_1^2s_2=\left(\sum_n T_1\right)^2s_2=\left(\sum_nT_1^2+2\sum_n T_1T_2\right)s_2 = \sum_n T_1^3T_2+\sum_nT_1^2T_2T_3+2s_2^2.
+        $$
+        So far we have
+        \begin{align*}
+            p_4 &= s_1^4-4\left(s_1^2s_2-2s_2^2-\sum_nT_1^2T_2T_3\right)-12\sum_n T_1^2T_2T_3-6\sum_nT_1^2T_2^2-24\sum_nT_1T_2T_3T_4\\
+            &=s_1^4-4s_1^2s_2+8s_2^2-24s_4-6\sum_nT_1^2T_2^2-8\sum_n T_1^2T_2T_3.
+        \end{align*}
+        So continuing with $\sum_nT_1^2T_2^2$ we get
+        $$
+            s_2^2 = \left(\sum_n T_1T_2\right)^2=\sum_n T_1^2T_2^2+2\sum_n T_1^2 T_2T_3+6\sum_n T_1T_2T_3T_4.
+        $$
+        Finding the coefficients here is slightly trickier since $s_2$ contains pairs not all arrangements are allowed. 
+        For example, $T_1^2T_2^2$ can only come from the pair $T_1T_2$. On the other hand $T_1T_2T_3T_4$ can come from $T_1T_2$ and $T_3T_4$ or $T_1T_4$ and $T_2T_3$ and so on.
+        We choose the first pair (${4\choose 2}=6$ ways) which also fixes the second pair and so there are 6 ways to get $T_1T_2T_3T_4$.
+        Hence
+        \begin{align*}
+            p_4 &= s_1^4-4s_1^2s_2+8s_2^2-24s_4-6\left(s_2^2-2\sum_nT_1^2T_2T_3-6s_4\right)-8\sum_n T_1^2T_2T_3\\
+            &=s_1^4-4s_1^2s_2+2s_2^2+12s_4+4\sum_n T_1^2T_2T_3.
+        \end{align*}
+        Using Exercise 14.10 we get
+        \begin{align*}
+            p_4 &=s_1^4-4s_1^2s_2+2s_2^2+12s_4+4(s_1s_3-4s_4)\\
+            &=s_1^4-4s_1^2s_2+2s_2^2-4s_4+4s_1s_3
+        \end{align*}
+    \end{sol}
+
+    \begin{ex}{14.22}
+        A rational function $f\in\Q[T_1,\dots,T_n]$ is called symmetric if it is invariant under all permutations of the variables $T_i$. Prove that every symmetric rational function is a rational function in the elementary symmetric functions.
+    \end{ex}
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{ex}{14.23}
+        Write $\sum_{n}T_1^{-1}$ and $\sum_n T_1^{-2}$ as rational functions in $\Q[s_1,\dots,s_n]$
+    \end{ex}
+    \begin{sol}
+        
+    \end{sol}
+
+\subsection{Field Extensions}
+
+\subsection{Finite Fields}
+
+\subsection{Separable and Normal Extensions}

@@ -59,5 +59,148 @@
     \maketitle
     \tableofcontents
     \newpage
+    These notes are based on Differential Equations and Dynamical Systems (third edition) by Lawrence Perko.
+    \section{Linear Systems}
+    A linear system of ordinary differential equations is written as
+    $$
+    \dot{\mathbf{x}}=A\mathbf{x}
+    $$
+    with $x\in\R^n$, $A$ an $n\times n$ matrix and
+    $$
+        \dot{\mathbf{x}}=\begin{pmatrix}
+            \frac{d x_1}{dt}\\
+            \vdots\\
+            \frac{dx_n}{d_t}\\
+        \end{pmatrix}
+    $$.
+    If $A$ is a diagonal matrix with $n$ real and distinct eigenvalues and $\{\mathbf{v}_1,\dots,\mathbf{v}_n\}$ is any set of corresponding eigenvectors then
+    $$
+    PAP^{-1}=\text{diag}[\lambda_1,\dots,\lambda_n]
+    $$
+    with $P=(\mathbf{v}_1,\dots,\mathbf{v}_n)$.
 
-\end{document}
+    Hence any linear systems with diagonal matrix can be transformed to an uncoupled system by substituting $\mathbf{y}=P\mathbf{x}$. Then the solution is
+    $$
+    \mathbf{x}(t)=P\,\text{diag}\left[e^{\lambda_1 t},\dots, e^{\lambda_n t}\right] P^{-1}\mathbf{x}(0).
+    $$
+
+    Let $L(\R^n)$ denote the space of linear operators on $\R^n$. For a linear transformation $L(\R^n)\ni T:\R^n\to\R^n$ the \textit{operator norm} is defined as
+    $$
+        \norm{T}=\max_{\abs{\mathbf{x}}\leq 1}\abs{T(\mathbf{x})}
+    $$
+    with $\abs{\mathbf{x}}$ denoting the Euclidean norm. The operator norm has all the usual properties one might expect of a norm.
+    
+    A sequence of linear operators $T_k\in L(\R^n)$ converges to an operator $T\in L(\R^n)$ if
+    $$
+    \forall\varepsilon>0\,\exists N\in\N:k\geq N\implies\norm{T_k-T}<\varepsilon.
+    $$
+    Then we write
+    $$
+    \lim_{k\to\infty} T_k=T.
+    $$
+
+    \begin{lemma}
+        For $S,T\in L(\R^n)$ and $x\in\R^n$ it holds that
+        \begin{enumerate}
+            \item $\abs{T(\mathbf{x})}\leq\norm{T}\abs{\mathbf{x}}$
+            \item $\norm{TS}\leq\norm{T}\norm{S}$
+            \item $\norm{T^k}\leq\norm{T}^k, k\in\N_0$
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{theorem}
+        Givne $T\in L(\R^n)$ and $t_0>0$ the series
+        $$
+        \sum_{k=0}^{\infty}\frac{T^kt^k}{k!}
+        $$
+        converges uniformly and absolutely for all $\abs{t}\leq t_0$. 
+    \end{theorem}
+    The theorem is easily proved using the observation that
+    $$
+        \norm{\frac{T^kt^k}{k!}}\leq\frac{a^kt_0^k}{k!}
+    $$
+    where $a=\norm{T}$. Thus
+    $$
+        \norm{\sum_{k=0}^{\infty}\frac{T^kt^k}{k!}}\leq\sum_{k=0}^{\infty}\norm{\frac{T^kt^k}{k!}}\leq\sum_{k=0}^{\infty}\frac{a^kt_0^k}{k!}=e^{at_o}
+    $$
+    And so we can define 
+    $$
+    e^T=\sum_{k=0}^{\infty}\frac{T^k}{k!}
+    $$
+    without any problems. It then follows that $e^T\in L(\R^n)$ and $\norm{e^T}\leq e^{\norm{T}}$ (why? explain).
+    $$
+        e^{PTP^{-1}}=\lim_{n\to\infty}\sum_{k=0}^n \frac{(PTP^{-1})^k}{k!}=P\lim_{n\to\infty}\sum_{k=0}\frac{T^k}{k!}P^{-1}=P e^TP^{-1}
+    $$
+
+    If $PAP^{-1}=\text{diag}[\lambda_1,\dots,\lambda_n]$ then
+    $$
+        e^{At}=P\,\text{diag}[e^{\lambda_1 t},\dots,e^{\lambda_n t}]P                                    ^{-1}
+    $$
+
+    If $S,T\in L(\R ^n)$ with $ST=TS$ then $e^{S+T}=e^Se^T$. The the inverse of transformation $e^T$ is $\left(e^T\right)^{-1}=e^{-T}$.
+
+    $$
+        A = \begin{pmatrix}
+            a&&-b\\
+            b&&a\\
+        \end{pmatrix}
+    $$
+
+    \begin{align*}
+        e^A&=\sum_{k=0}^\infty\begin{pmatrix}
+            \Re(\lambda^k)&&-\Im(\lambda^k)\\
+            \Im(\lambda^k)&&\Re(\lambda^k)\\
+        \end{pmatrix}\\
+        &=\begin{pmatrix}
+            \Re(e^{\lambda})&&-\Im(e^{\lambda})\\
+            \Im(e^{\lambda})&&\Re(e^{\lambda})\\
+        \end{pmatrix}\\
+        &=e^a\begin{pmatrix}
+            \cos b&&-\sin b\\
+            \sin b&&\cos b\\
+        \end{pmatrix}
+    \end{align*}
+    and If $a=0$ then $e^A$ is a rotation of $b$ radians.
+
+    If the eigenvalues of a matrix $A$ are real and distinct then we can solve the equation $\dot{\mathbf{x}}=A\mathbf{x}$ using the following algorithm:
+    \begin{enumerate}
+        \item Compute eigenvalues $\lambda_1,\dots,\lambda_n$
+        \item Compute eigenvectors $\mathbf{v}_1,\dots,\mathbf{v}_n$
+        \item Define $E=(\mathbf{v}_1,\dots,\mathbf{v}_n)$ which is invertible since the eigenvalues are distinct. Let $D=\text{diag}\left[\lambda_1,\dots,\lambda_n\right]$
+        \item Then $AE=ED$ or $A=EDE^{-1}$
+        \item Let $\mathbf{y}=E^[-1]\mathbf{x}$. Then
+            $$
+            \dot{\mathbf{y}}=E^{=1}\dot{\mathbf{x}}=E^{-1}A\mathbf{x}=E^{-1}AE\mathbf{y}=D\mathbf{y}
+            $$
+            is decoupled.
+        \item Then a solution is
+            $$
+                \mathbf{y}(t)=\text{diag}\left[e^{-\lambda_1 t},\dots, e^{-\lambda_n t}\right]\mathbf{y}_0.
+            $$
+        \item Going back to $\mathbf{x}$ we get
+            $$
+                \mathbf{x}(t)=E\,{diag}\left[e^{-\lambda_1 t},\dots, e^{-\lambda_n t}\right]E^{-1}\mathbf{x}_0
+            $$
+    \end{enumerate}
+    
+    
+    An algorithm for calculating $e^{tA}$ for any square matrix $A$:
+    \begin{enumerate}
+        \item Compute eigenvalues $\lambda_1,\dots,\lambda_n\in\C$
+        \item Compute $a_1(t),\dots,a_n(t)$ given by the recursive definition
+            \begin{align*}
+                a_1(t)&=e^{\lambda_1 t}\\ 
+                a_k(t)&=\int_0^t e^{\lambda_k(t-s)}a_{k-1}(s)\, ds.          
+            \end{align*}
+        \item Compute $A_1,\dots,A_n$ given by
+        \begin{align*}
+            A_1&=I\\
+            A_k = (A-\lambda_{k-1}I)A_{k-1}
+        \end{align*}
+        \item Then 
+            $$
+                e^{tA} = a_1(t)A_1+\cdots+a_n(t)A_n
+            $$
+    \end{enumerate}
+
+    \end{document}

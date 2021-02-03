@@ -60,7 +60,37 @@
 \tableofcontents
 \newpage
 These notes are based on Topology ($2^\text{nd}$ edition) by James R. Munkres. 
+\section{Topological Spaces and Continuous Functions}
+A metric on a set $X$ is a map $d:X\times X \to [0,\infty)$ that satisfies
+\begin{enumerate}
+    \item $d(x,y)=d(y,x)$
+    \item $d(x,x)=0$
+    \item $d(x,y)>0, x\not=y$
+    \item $d(x,y)\leq d(x,z)+d(z,y)$
+\end{enumerate}
+A set $U\subset X$ is open if for all $x\in U$ and some $r>0$ 
+$$
+    B(x,r) = \{y\in X\mid d(x,y)<r\}
+$$
+s.t. $B(x,r)\subset U$.
+Union (finite, countable or uncountable) of open sets is open and finite intersections of open sets is open (infinite intersections need not be open)
 
+A function between metric spaces is continuous if and only if a preimage of an open set is open. 
 
+\begin{definition}
+    Let $X$ be a set. Then a topology on $X$ is a set $\mathcal{T}\subset\mathcal{P}(x)$ s.t.
+    \begin{enumerate}
+        \item $\varnothing\in\mathcal{J}, X\in\mathcal{J}$
+        \item For $U_{\alpha}\in\mathcal{J}, \bigcup_{\alpha}U_{\alpha}\in\mathcal{J}$
+        \item For $(U_i)_{0\leq i\leq n}\subset\mathcal{J}, \bigcap_{i=0}^n U_i\in\mathcal{J}$
+    \end{enumerate}
+    A topological space is the pair $(X,\mathcal{J})$
+\end{definition}
+
+If $X$ is a set, the a \textit{basis} of a topology is a collection $\mathcal{B}$ of subsets of $X$ s.t.
+\begin{enumerate}
+    \item $\forall x\in X, \exists B\in\mathcal{B}$ s.t. $x\in B$
+    \item If $x\in B_1\cap B_2$ with $B_1,B_2\in\mathcal{B}$ then there exists $B_3\in\mathcal{B}$ with $x\in B_3\subset B_1\cap B_2$.
+\end{enumerate}
     
 \end{document}

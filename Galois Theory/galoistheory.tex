@@ -10,6 +10,7 @@
 \usepackage{graphics, setspace}
 \usepackage{listings}
 \usepackage{lipsum}
+\usepackage{bookmark}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -28,6 +29,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\p}{\mathbb{P}}
 \newcommand{\Ss}{\mathcal{S}} % Schwartz space
 \newcommand{\F}{\mathcal{F}} % Fourier Transform
@@ -50,6 +52,15 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+\newenvironment{ex}[1]
+    {\noindent\large\textbf{Exercise #1}\normalsize\newline}
+    {\vspace{0.5 em}}
 
 \title{Galois Theory - 5122GALO6Y}
 \author{Yoav Eshel}
@@ -59,4 +70,68 @@
     \maketitle
     \tableofcontents
     \newpage
+    \section{Introduction}
+    Galois theory is about studying Polynomials with coefficients in a field ($\Q,\R,\C$ etc.).
+    Let
+    $$
+        f(T) = T^n+\cdots+a_1T+a_0\in\Q[T].
+    $$
+    Then $f(T)$ splits completely in $\C[T]$ as
+    $$
+        f(T)=(T-\alpha_1)\cdots(T-\alpha_n)
+    $$
+    with $\alpha_1,\dots \alpha_n\in\C$ are the roots of $f$. Galois theory studies permutation of the the roots that preserve algebraic relations between these roots.
+    The allowed permutation of the roots give rise to a group denoted $\text{Gal}(f)$.
+    Not a very useful definition:
+
+    \begin{definition}
+        Let $\sigma:\C\to\C$ be a field automorphism and $\alpha\in\C$ a root of $F(T)\in\Q[T]$. Since $\sigma(1)=1$ it follows that $sigma(n)=n$ for all integers and so $\sigma(a/b)=\sigma(a)/\sigma(b)=a/b$ is the identity on $\Q$.
+        Then
+        \begin{align*}
+            f(\sigma(\alpha))&=\sigma(\alpha)^n+\cdots+a_1\sigma(\alpha)+a_0\\
+            &=\sigma(f(\alpha))\\
+            &=0.
+        \end{align*}
+        Then each automorphism $\sigma$ is a permutation of the roots which is precisely the Galois group of the polynomial $\text{Gal}(f)\subset S_n$.
+        In other words we have a group action 
+        $$
+        \text{Aut}(\C)\times\{\alpha_1,\dots,\alpha_n\}\to\{\alpha_1,\dots,\alpha_n\}
+        $$
+        Then $\text{Gal}(f):=\text{Im}(\phi)$ where $\phi:\text{Aut}(\C)\to S_n$ mapping $\sigma\mapsto(\alpha_i\mapsto \sigma(alpha_i))$
+    \end{definition}
+
+    $\text{Gal}(f)\subset S_n$ is transitive subgroup if and only if $f$ is irreducible (what is a transitive subgroup?).
+    Review group actions
+    \section{Symmetric Polynomials}
+    Let $f=(T-\alpha_1)\cdots(T-\alpha_n)\in\C[T]$. Then its discriminant
+    $$
+        \Delta_f = \prod_{i<j}(\alpha_i-\alpha_j)^2.
+    $$
+    When $f$ is quadratic this definition coincides with the high-school definition of the discriminant. 
+    However in high school the discriminant is usually written in terms of the coefficients rather than the roots. This is the main point of Symmetric polynomials.
+    Fact: $\sqrt{\Delta_f}\in\Q\iff \text{Gal}(f)\subset A_n$. We will prove this later on.
+
+    Consider the ring $R = \Z[X_1,\dots,X_n]$. If $\sigma\in S_n$ is a permutation then
+    $$
+        \sigma(X_i):= X_{\sigma(i)}
+    $$
+    which extends to a group action of $S_n$ on $R$. Then a polynomial is said to be \textit{symmetric} if $\sigma(f)=f$ for all $\sigma\in S_n$. We denote the the subset of symmetric polynomials by $R^{S_n}\subset R$ which is a subring.
+    
+    Define the \textit{universal polynomial} $f^{\text{univ}}\in R[T]$ with roots $X_1,\dots, X_n$ as
+    \begin{align*}
+        f^{\text{univ}}(T):&=(T-X_1)\cdots(T-X_n)\\&=T^n-(X_1+\cdots+X_2)T^{n-1}+(X_1X_2+X_1X_3+\cdots)T^{n-1}+\\&\qquad\cdots+(-1)^n(X_1\cdots X_n).
+    \end{align*}
+    Then \textit{elementary symmetric polynomials} $s_1,\dots,s_n$ are the coefficients of $f^{\text{univ}}$. Every element in $R^{S_n}$ is a combination of the elementary symmetric polynomials
+    \begin{theorem}
+        The map
+        \begin{align*}
+            \Phi:\Z[Y_1,\dots,Y_n]&\to R^{S^n}\\
+            Y_i&\mapsto s_i
+        \end{align*}
+        is an isomorphism of rings.
+    \end{theorem}
+
+    \newpage
+    \section{Exercises}
+    \input{exercises.tex}
 \end{document}
