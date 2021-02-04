@@ -10,6 +10,7 @@
 \usepackage{graphics, setspace}
 \usepackage{listings}
 \usepackage{lipsum}
+\usepackage{bookmark}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -28,6 +29,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\p}{\mathbb{P}}
 \newcommand{\Ss}{\mathcal{S}} % Schwartz space
 \newcommand{\F}{\mathcal{F}} % Fourier Transform
@@ -50,6 +52,15 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+\newenvironment{ex}[1]
+    {\noindent\large\textbf{Exercise #1}\normalsize\newline}
+    {\vspace{0.5 em}}
 
 \title{Complex Analysis - X400386}
 \author{Yoav Eshel}
@@ -111,5 +122,9 @@
     Note that points outside the unit circle are mapped to the northern hemisphere while points inside the unit circle are mapped to the southern hemisphere. Then the unit circle is mapped to the equator and the origin is mapped to the south pole.
     The \textit{point of infinity} is defined as the point that is mapped to the north pole. Then for small $\varepsilon$ the set $\abs{z}>\frac{1}{\varepsilon}$ is called a \textit{neighborhood of $\infty$}.
     Thus we can simply replace the neighborhoods in the definition of a limit by neighborhoods of $\infty$.
+
+    \newpage
+    \section{Exercises}
+    \input{exercises.tex}
 
 \end{document}

@@ -131,6 +131,20 @@
         is an isomorphism of rings.
     \end{theorem}
 
+    Algorithm for writing symmetric polynomials in term of elementary symmetric polynomials:
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+
+    The following theorem is useful when applying the algorithm above.
+    \begin{theorem}[Orbit Stabilizer Theorem]\label{th:orbit_stabilizer}
+        Let $G$ be a group acting on set $S$. For any $x\in S$ let $G_x=\{g\in G\mid g\cdot x= x\}$ denote the stabilizer of $x$, and let $G\cdot x=\{g\cdot x\mid g\in G\}$ denote the orbit of $x$. Then
+        $$
+            \abs{G}=\abs{G\cdot x}\abs{G_x}
+        $$
+    \end{theorem}
+    Since $S_n$ is acting on the set $\{T_1,\dots,T_2\}$ we can find the number of elements in a given sum. Since $\abs{S_n}=n!$ the orbit of an elementary is given by
+    $$\frac{n!}{\text{size of stabilizer}}$$
     \newpage
     \section{Exercises}
     \input{exercises.tex}

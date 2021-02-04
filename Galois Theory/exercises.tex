@@ -71,14 +71,62 @@
         A rational function $f\in\Q[T_1,\dots,T_n]$ is called symmetric if it is invariant under all permutations of the variables $T_i$. Prove that every symmetric rational function is a rational function in the elementary symmetric functions.
     \end{ex}
     \begin{proof}
-        
+        Let $f\in\Q[T_1,\dots,T_n]$ be a symmetric rational function. 
+        Then $f=g/h$ for $g,h$ polynomials. If $h$ is a symmetric polynomial then $g=fh$ is symmetric as well.
+        By the fundamental theorem of symmetric polynomial both $g$ and $h$ can be written in terms of elementary symmetric polynomials and we're done.
+        If $h$ is not symmetric, then let 
+        $$\tilde{h}=\prod_{\sigma\in S_n\setminus\{e\}}\sigma(h)$$
+        and then $h\tilde{h}$ is symmetric so $f=\frac{g\tilde{h}}{h\tilde{h}}$ which is again the case above.
     \end{proof}
 
     \begin{ex}{14.23}
         Write $\sum_{n}T_1^{-1}$ and $\sum_n T_1^{-2}$ as rational functions in $\Q[s_1,\dots,s_n]$
     \end{ex}
     \begin{sol}
-        
+        Starting with
+        $$
+            \sum_{n}T_1^{-1}=\frac{1}{T_1}+\cdots+\frac{1}{T_n}.
+        $$
+        We multiply by $1=\frac{s_n}{s_n}$ and simplify
+        \begin{align*}
+            \frac{s_n}{s_n}\sum_{n}T_1^{-1}&=\frac{T_1T_2\cdots T_n}{T_1T_2\cdots T_n}\left(\frac{1}{T_1}+\cdots+\frac{1}{T_n}\right)\\
+            &=\frac{s_{n-1}}{s_n}
+        \end{align*}
+
+        For the second expression we present to approaches.
+        \begin{enumerate}
+            \item Observing that 
+                $$\left(\sum_n T_1^{-1}\right)^2=\sum_{n} T_1^{-2}+2\sum_{n}T_1^{-1}T_2^{-1}$$
+            we can write using the previous part
+                $$ \sum_n T_1^{-2} = \frac{s_{n-1}^2}{s_n^2}-2\sum_{n}T_1^{-1}T_2^{-1}$$
+            and multiplying by the second term by $\frac{s_{n}}{s_{n}}$ we get
+                $$ \sum_n T_1^{-2} = \frac{s_{n-1}^2}{s_n^2} - 2\left(\frac{1}{T_1T_2}+\cdots+\frac{1}{T_{n-1}T_n}\right)\frac{T_1\cdots T_n}{T_1\cdots T_n}=\frac{s_{n-1}^2}{s_n^2} - 2\frac{s_{n-2}}{s_n}.$$
+            Hence $\sum_n T_1^{-2}=\frac{s_{n-1}^2-2s_{n-2}s_n}{s_n^2}$.
+            \item The second approach is slightly more involved. We start by multiplying by 1 in a clever (but different) way
+                $$\left(\sum_n T_1^{-2}\right)\frac{s_n^2}{s_n^2}=\left(\frac{1}{T_1^2}+\cdots+\frac{1}{T_n^2}\right)\frac{T_1^2\cdots T_n^2}{T_1^2\cdots T_n^2}=\frac{\sum_n T_1^2\cdots T_{n-1}^2}{s_n^2}.$$
+            Then $\sum_n T_1^2\cdots T_{n-1}^2$ is obviously (condescending much?) a symmetric polynomial and so we can use our trusty algorithm. Starting with
+            \begin{align*}
+                s_1^{2-2}s_2^{2-2}\cdots s_{n-1}^{2-0}&=s_{n-1}^2\\
+                &=\left(\sum_n T_1\cdots T_{n-1}\right)^2\\
+                &=\sum_n T_1^2\cdots T_{n-1}^2 + 2\sum_n T_1^2\cdots T_{n-2}^2T_{n-1}T_n.
+            \end{align*}
+            Moving to the second term
+            \begin{align*}
+                s_1^{2-2}\cdots s_{n-2}^{2-1}s_{n-1}^{1-1}s_n^1&=s_{n-2}s_n\\
+                &=\left(\sum_n T_1\cdots T_{n-2}\right)T_1\cdots T_n\\
+                &=\sum_n T_1^2\cdots T_{n-2}^2 T_{n-1}T_n
+            \end{align*}
+            and it follows that
+            $$\sum_n T_1^2\cdots T_{n-1}^2 = s_{n-1}^2-2s_{n-2}s_n.$$
+            So we conclude that
+            $$ \sum_n T_1^{-2} = \frac{s_{n-1}^2-2s_{n-2}s_n}{s_n^2}$$
+            which is reassuring.
+        \end{enumerate}
+        Note that in the first approach we stumbled upon something rather interesting:
+        $$
+            \sum_n T_1^{-1}\cdots T_k^{-1} = \frac{s_{n-k}}{s_n}
+        $$
+        the proof of which is left as an exercise to the reader.
     \end{sol}
 
 \subsection{Field Extensions}

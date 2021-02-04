@@ -1,0 +1,18 @@
+\begin{ex}{18.1c}
+    Prove that
+    $$
+        \lim_{z\to 0}\frac{\overline{z}^2}{z}=0
+    $$
+\end{ex}
+\begin{proof}
+    Let $\varepsilon, \delta>0$ and suppose that
+    $$
+        \abs{z}=\abs{\overline{z}}<\delta.
+    $$
+    Let $z=re^{i\theta}$ and so
+    $$
+        \abs{\frac{\overline{z}^2}{z}}=\abs{\frac{r^2e^{-2i\theta}}{re^{i\theta}}}=\abs{re^{-i\theta}e^{-2i\theta}}=\abs{\overline{z}e^{-2i\theta}}<\delta\abs{e^{-2i\theta}}\leq\delta
+    $$
+    so $\delta =\varepsilon$ would do.
+
+\end{proof}
