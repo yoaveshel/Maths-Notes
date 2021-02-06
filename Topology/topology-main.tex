@@ -27,6 +27,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\p}{\mathbb{P}}
 \newcommand{\Ss}{\mathcal{S}} % Schwartz space
@@ -50,6 +51,15 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+\newenvironment{ex}[1]
+    {\noindent\large\textbf{Exercise #1}\normalsize\newline}
+    {\vspace{0.5 em}}
 
 \title{Topology - X400416}
 \author{Yoav Eshel}
@@ -92,5 +102,9 @@ If $X$ is a set, the a \textit{basis} of a topology is a collection $\mathcal{B}
     \item $\forall x\in X, \exists B\in\mathcal{B}$ s.t. $x\in B$
     \item If $x\in B_1\cap B_2$ with $B_1,B_2\in\mathcal{B}$ then there exists $B_3\in\mathcal{B}$ with $x\in B_3\subset B_1\cap B_2$.
 \end{enumerate}
+
+\newpage
+\section{Exercises}
+\input{exercises.tex}
     
 \end{document}
