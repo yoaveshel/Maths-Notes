@@ -123,6 +123,41 @@
     The \textit{point of infinity} is defined as the point that is mapped to the north pole. Then for small $\varepsilon$ the set $\abs{z}>\frac{1}{\varepsilon}$ is called a \textit{neighborhood of $\infty$}.
     Thus we can simply replace the neighborhoods in the definition of a limit by neighborhoods of $\infty$.
 
+    The derivative in complex analysis is defined in the same manner as in usual calculus. In other words, if
+    $$
+    f'(z):=\lim_{h\to0}\frac{f(z+h)-f(z)}{h}
+    $$
+    exists then $f$ is differentiable at $z$.
+
+    \subsection{Cauchy-Riemann Equations}
+    Let $f:\C\to\C$ given by $f(x+yi)=u(x,y)+v(x,y)i$. Suppose $f$ is differentiable at some $z_0$ and $'f(z_0)=a+bi$.
+    Then we can approximate $f$ using
+    \begin{align*}
+        f(z_0+h)&=f(z_0)+f'(z_0)\cdot h+\mathcal{O}(h)
+    \end{align*}
+    Let $h=x+yi$. Then
+    \begin{align*}
+        (a+bi)(x+yi)&=\begin{pmatrix}
+            ax-by\\
+            ay+bx\\
+        \end{pmatrix}\\
+        &=\begin{pmatrix}
+            a&-b\\
+            b&a\\
+        \end{pmatrix}
+        \begin{pmatrix}
+            x\\ y \\
+        \end{pmatrix}
+    \end{align*}
+    and it follows that the matrix $\begin{pmatrix}a&-b\\b&a   \end{pmatrix}$ is the Jacobian of $f$ viewed as a function from $\R^2$ to $\R^2$!
+    Hence $\partial_x u = \partial_y v$ and $\partial_y u = -\partial_x v$. This is a necessary condition for a complex function to be differentiable.
+    If the partial derivatives exist and are continuous around $z_0$ and  satisfy the relation above then $f'(z_0)$ exists.
+    In other words, it means that a complex differentiable function is locally a rotation and a scaling.
+    It follows that if $f$ is differentiable then
+    $$
+        f'(x+yi)=\partial_x u(x,y)+i\partial_x v(x,y)
+    $$
+
     \newpage
     \section{Exercises}
     \input{exercises.tex}
