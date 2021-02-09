@@ -178,7 +178,7 @@ Closed sets have similar properties to open sets:
     Let $X$ be a topological space. Then
     \begin{enumerate}
         \item $X$ and $\varnothing$ are closed
-        \item Arbitrary intersections of closed sets are closed
+        \item Arbitrary intersections of closed sets are close
         \item Finite unions of closed sets are closed.
     \end{enumerate}
 \end{theorem}
@@ -191,7 +191,31 @@ A set $A$ is closed in $Y$ if and only if it equals the intersection of a closed
 This is easy to verify since if $A$ is closed in $Y$ then $Y-A$ is open in $Y$ and so it equals $U\cap Y$ for some open set $U$ in $X$. 
 Then $X-U$ is closed and $A=Y\cap(X-U)$. The other direction is similarly proved.
 
+Let $A\subset X$. THen the smallest closed set that contain $A$ is called the closure of $A$ and is denoted $\bar{A}=\bigcap_{C\text{ closed}, A\subset C} C$.
+The smallest open set containing $A$ is called the interior of $A$ and is denoted $\text{Int} A = \bigcup_{U\text{ open}, U\subset A}$. Then clearly
+$$
+    \text{Int}A\subset A\subset\bar{A}.
+$$
+A point $x\in X$ is in the closure of $A$ if and only if for any basis element $B$ containing $x$ the intersection $A\cap B$ is non empty.
 
+To add to the soup of metaphors, we define the \textit{neighborhood} of $x\in X$ is an open set $U$ containing $x$. Then a \textit{limit point} of $A\subset X$ is defined as
+\begin{definition}
+    A limit point of $A\subset X$ is a point $x\in A$ such that every neighborhood of $x$ intersects $A$ in a point different than $x$
+\end{definition}
+In other words, $x$ is a limit point of $A$ if for every open set $U$ containing $x$ the intersection $U\cap(A-{x})$ is non empty. Now denote the set of limit points of $A$ by $A'$.
+Then $\bar{A}=A'\cup A$. This gives us an alternative condition for a set being closed. Namely, if $A'\subset A$ then $\bar{A}=A$ and so $A$ is closed.
+Alternatively, if $A$ is closed, then $\bar{A}=A$ and so $A'\subset A$.
+Hence a set is closed if and only if it contains all of its limit points.
+
+We conclude this section with a definition of convergence in a topological space.
+\begin{definition}
+    Let $(X,\Ta)$ be a topological space. If $x_n$ is a sequence in $X$ then $x_n\to x$ as $n\to\infty$ if
+    $$
+        \forall U\in\Ta, x\in U\,\exists N\in\N: \{x_n\}_{n\geq N}\subset U
+    $$
+\end{definition}
+Note that this definition does not require any metric. The downside is that limit are not necessarily unique and sequences can converge to any number of points.
+To avoid this horrific phenomenon, we add an extra condition to rid our definition of topological spaces of such situations. Topological spaces in which limits are unique are called Hausdorff spaces.
 
 
 \newpage
