@@ -1,3 +1,4 @@
+\subsection{Continuity}
 \begin{ex}{18.1c}
     Prove that
     $$
@@ -15,4 +16,15 @@
     $$
     so $\delta =\varepsilon$ would do.
 
+\end{proof}
+
+\begin{ex}{18.2b}
+    Show that $\lim_{z\to z_0} z^2+c=z_0^2+c$.
+\end{ex}
+\begin{proof}
+    Let $\varepsilon>0$, $0<\delta<1$ and suppose that $\abs{z-z_0}<\delta$. Then
+    $$
+        \abs{z^2+c-z_0^2-c}=\abs{z^2-z_0^2}=\abs{z-z_0}\abs{z+z_0}\leq\abs{z-z_0}(2\abs{z_0}+\abs{z-z_0})\leq\delta(2\abs{z_0}+1)
+    $$
+    Hence $\delta<\min\left(\frac{\varepsilon}{2\abs{z_0}+1}, 1\right)$ would do.
 \end{proof}
