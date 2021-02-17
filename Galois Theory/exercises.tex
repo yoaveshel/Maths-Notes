@@ -267,12 +267,79 @@
         
     \end{ex}
 
-
-
-
-
 \subsection{Field Extensions}
+    \begin{ex}{21.18}
+        Let $K\subset L$ be an algebraic extension. For $\alpha, \beta\in L$ prove that we have
+        $$ \left[K(\alpha,\beta):K\right]\leq\left[K(\alpha):K\right]\cdot\left[K(\beta):K\right]$$.
+    \end{ex}
+    \begin{proof}
+        Let $f$ and $g$ be the minimal polynomials of $\al$ and $\be$ (respectively) in $K[x]$ and $f'$ be the minimal polynomial of $\alpha$ in $K(\beta)[x]$.
+        If $\deg f'> \deg f$ then $f$ is a lower degree polynomial in $K(\beta)[x]$ with $f(\alpha)=0$ which is a contradiction. Hence $\deg f'\leq \deg f$ and so
+        \begin{align*}
+            \left[K(\alpha,\beta):K\right]&=\left[K(\al, \be):K(\be)\right]\cdot\left[K(\be):K\right]\\
+            &=\deg f'\cdot \deg g\\
+            &\leq\deg f\cdot \deg g\\
+            &=\left[K(\al):K\right]\cdot \left[K(\be):K\right],   
+        \end{align*}
+        as desired.
+    \end{proof}
 
+    \begin{ex}{21.19}
+        Let $K\subset K(\al)$ be an extension of odd degree. Prove that $K(\al^2)=K(\al)$.
+    \end{ex}
+    \begin{proof}
+        Let $f$ be the minimal polynomial of $\al$ in $K[x]$. Then $\deg f=2n+1$ for some $n\in\Z_+$. 
+        Since $\al^2\in K(\al)$ we get the tower $K(\al)/K\left(\al^2\right)/K$ and so\
+        $$ \left[K(\al):K\right]=\left[K(\al):K\left(\al^2\right)\right]\cdot\left[K\left(\al^2\right):K\right].$$
+        Let $g$ be the minimal polynomial of $\al$ in $K\left(\alpha^2\right)$. Then $\deg g\leq 2$ since $x^2-\al^2\in K\left(\alpha^2\right)$ is a polynomial with a root $\al$.
+        Since $\left[K(\al):K\right]$ is odd, it is not divisible by two and so $\deg g = 1$. Hence $\left[K(\al):K\left(\al^2\right)\right]=1$ and it follows that $K(\al)=K\left(\al^2\right)$.
+    \end{proof}
+
+    \begin{ex}{21.23}
+        Show that every quadratic extension of $\Q$ is of the form $\Q\left(\sqrt{d}\right)$ with $d\in\Z$.
+        For what $d$ do we obtain the cyclotomic field $\Q(\zeta_3)$?
+    \end{ex}
+    \begin{proof}
+        Let $K/\Q$ be a quadratic extension. Take $\al\in K\setminus\Q$. Then 
+        $$ \Q\subset\Q(\al)\subset K $$
+        and so
+        $$2=\left[K:\Q\right]=\left[K:\Q(\al)\right]\left[\Q(\al):\Q\right].$$
+        If $\left[\Q(\al):\Q\right]=1$ then $\Q(\al)=\Q$ and so $\al\in\Q$, which contradicts our assumption. 
+        It follows that $\left[K:\Q(\al)\right]=1$ and so $K=\Q(\al)$. 
+        Let 
+        $$f(x)=x^2+a_1 x+a_0\in\Q[x]$$
+        be the minimal polynomial of $\al$ and take $d=\frac{a_1^2}{4}-a_0$.
+        We will now show that $K=\Q(a)=\Q(\sqrt{d})$.
+    \end{proof}
+
+    \begin{ex}{21.24}
+        Is every cubic extension of $\Q$ of the form $\Q\left(\sqrt[3]{d}\right)$ for some $d\in\Q$?
+    \end{ex}
+
+    \begin{ex}{21.26}
+        Let $M=\Q(\al)=\Q(1+\sqrt{2}+\sqrt{3})$. Show that $M$ is of degree 4 over $\Q$, determine the minimal polynomial and write $\sqrt{2}$ and $\sqrt{3}$ in the basis $\{1,\al, \al^2,\al^3\}$.
+        Also prove that the group $G=\text{Aut}_\Q(M)$ is isomorphic to $V_4$ and that $f^\al_\Q=\prod_{\sigma\in G}X-\sigma(\al)\in\Q[X]$.
+    \end{ex}
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{ex}{21.29}
+        Take $K=\Q(\al)$ with $f^\al_\Q=x^3+2x^2+1$.
+        \begin{enumerate}
+            \item Determine the inverse of $\al+1$ in the basis $\{1,\al,\al^2\}$ of $K$ over $\Q$.
+            \item Determine the minimum polynomial of $\al^2$ over $\Q$.
+        \end{enumerate}
+    \end{ex}
+
+    \begin{ex}{21.30}
+        Define the cyclotomic field $\Q(\zeta_3)$ and write $\al=\zeta_5^2+\zeta_5^3$.
+        \begin{enumerate}
+            \item Show that $\Q(\al)$ is a quadratic extension of $\Q$ and determine $f^\al_\Q$.
+            \item Prove: $\Q(\al)=\Q(\sqrt{5})$
+            \item Prove: $\cos(2\pi/5)=\frac{\sqrt{5}-1}{4}$ and $\sin(2\pi/5)=\sqrt{\frac{5+\sqrt{5}}{8}}$
+        \end{enumerate}
+    \end{ex}
 \subsection{Finite Fields}
 
 \subsection{Separable and Normal Extensions}
