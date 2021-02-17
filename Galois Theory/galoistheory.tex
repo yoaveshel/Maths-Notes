@@ -105,40 +105,29 @@
     $\text{Gal}(f)\subset S_n$ is transitive subgroup (i.e. if its action on the set of roots is transitive) if and only if $f$ is irreducible.
     
     \section{Symmetric Polynomials}
-    Let $f=(T-\alpha_1)\cdots(T-\alpha_n)\in\C[T]$. Then its discriminant is defined as
-    $$
-        \Delta_f = \prod_{i<j}(\alpha_i-\alpha_j)^2.
-    $$
-    When $f$ is quadratic this definition coincides with the high-school definition of the discriminant. 
-    However in high school the discriminant is usually written in terms of the coefficients rather than the roots.
-    One can rewrite the discriminant in terms of the coefficients using symmetric polynomials. 
-    An interesting property of the discriminant is that $\sqrt{\Delta_f}\in\Q\iff \text{Gal}(f)\subset A_n$, a proof of which will be given in the following sections.
-
-    Consider the ring $R = \Z[X_1,\dots,X_n]$. If $\sigma\in S_n$ is a permutation then let
-    $$
-        \sigma(X_i):= X_{\sigma(i)}
-    $$
-    which extends to a group action of $S_n$ on $R$. 
-    Then a polynomial is said to be \textit{symmetric} if $\sigma(f)=f$ for all $\sigma\in S_n$. 
-    We denote the the subset of symmetric polynomials by $R^{S_n}\subset R$.
-    Note that $R^{S_n}$ is in fact a subring of $R$.
-
-    Define the \textit{universal polynomial} $f^{\text{univ}}\in R[T]$ with roots $X_1,\dots, X_n$ as
+    A symmetric polynomial is a polynomial $F(X_1,X_2,\dots, X_n)$ the is invariant under permutations of its variables.
+    In other words
+    $$ P(X_1, X_2,\dots, X_n)=P(X_{\sigma(1)}, X_{\sigma(2)},\dots,X_{\sigma(n)})$$
+    for all $\sigma\in S_n$.
+    Symmetric polynomials arise naturally in the study of the relation between the roots of a polynomial in one variable and its coefficients, 
+    since the coefficients can be given by polynomial expressions in the roots, and all roots play a similar role in this setting.
+    Let $f\in K(T)$ be a monic polynomial of degree $n$ that splits completely in $K$.
+    Then
+    $$ f(T)=(T-X_1)(T-X_2)\cdots(T-X_n)$$
+    where $X_i$ are the roots of $f$. Then
+    $$ f(T)=T^n+s_1 T^{n-1}+\cdots+(-1)^n s_n$$
+    where
     \begin{align*}
-        f^{\text{univ}}(T):&=(T-X_1)\cdots(T-X_n)\\&=T^n-(X_1+\cdots+X_2)T^{n-1}+(X_1X_2+X_1X_3+\cdots)T^{n-1}+\\&\qquad\cdots+(-1)^n(X_1\cdots X_n).
+        s_1&=X_1+X_2+\cdots+X_n\\
+        s_2&=X_1X_2+X_1X_3+\cdots+X_{n-1}X_n\\
+        \vdots&\\
+        s_n&=X_1X_2\cdots X_n
     \end{align*}
-    Then the \textit{elementary symmetric polynomials} $s_1,\dots,s_n$ are the coefficients of $f^{\text{univ}}$. Every element in $R^{S_n}$ is a combination of the elementary symmetric polynomials
-    \begin{theorem}
-        The map
-        \begin{align*}
-            \Phi:\Z[Y_1,\dots,Y_n]&\to R^{S^n}\\
-            Y_i&\mapsto s_i
-        \end{align*}
-        is an isomorphism of rings.
-    \end{theorem}
+    are called the \textit{elementary symmetric polynomials} in $X_1,X_2,\dot, X_n$.
+    Then the fundamental theorem of symmetric polynomials states that every symmetric polynomial can be written as a polynomial expression in the elementary symmetric polynomials.
 
     To actually write a symmetric polynomial in terms of elementary symmetric polynomials we introduce some useful notation.
-    We say a polynomial is ordered \textit{lexicographically} if the monomial $T_1^{e^1}T_2^{e_2}\cdots T_n^{e_n}$ with the highest $e_1$ is in front.
+    We say a polynomial is ordered \textit{lexicographically} if the monomial $T_1^{e_1}T_2^{e_2}\cdots T_n^{e_n}$ with the highest $e_1$ is in front.
     If two monomials have the same $e_1$, then we compare their $e_2$ and so on. Like a dictionary.
     If $P$ is a symmetric polynomial in $n$ variables, choose a single representative proceeded by the symbol $\sum_n$ to denote the sum over the monomials in the $S_n$ orbit of the representative.
     Then for example
@@ -158,6 +147,8 @@
     \end{enumerate}
     The representation obtained through the algorithm above is unique.
 
+    
+    When expanding 
     The following theorem is useful when applying the algorithm above.
     \begin{theorem}[Orbit Stabilizer Theorem]\label{th:orbit_stabilizer}
         Let $G$ be a group acting on set $S$. For any $x\in S$ let $G_x=\{g\in G\mid g\cdot x= x\}$ denote the stabilizer of $x$, and let $G\cdot x=\{g\cdot x\mid g\in G\}$ denote the orbit of $x$. Then
@@ -167,7 +158,40 @@
     \end{theorem}
     Since $S_n$ is acting on the set $\{T_1,\dots,T_2\}$ we can find the number of elements in a given sum. Since $\abs{S_n}=n!$ the orbit of an elementary is given by
     $$\frac{n!}{\text{size of stabilizer}}$$
+    
+    \section{Field Extensions}
+    \subsection{Prime Fields}
+    \begin{definition}
+        Let $k$ be a field. Then the \textbf{prime field} in $K$ is the intersection over all subfields of $K$
+    \end{definition}
+    \begin{lemma}
+        Let $K$ be a field of characteristic $k$. Then the prime field of $K$ is $\mathbb{F}_p$ if $k=p$ and $\Q$ if $k=0$.
+    \end{lemma}
+    \subsection{Algebraic and Transcendental Extensions}
+    Let $L/K$ be a field extensions. Then we say that $\alpha\in L $ is \textit{algebraic} over $K$ if there exists an $f\in K[x], f\neq 0$, such that $f(\alpha)=0$.
+    We say that $\alpha$ is \textit{transcendental} over $K$ if there exists no such $f$.
+    The number of algebraic elements over $\Q$ in $\C$ is countable, so in fact $\C$ is mostly transcendental elements.
+
+    \begin{theorem}
+        Let $L/K$ be a field extension and take $\alpha\in L$. Then
+        \begin{enumerate}
+            \item If $\alpha$ is transcendental over k, then $K[\alpha]\simeq K[X]$
+            \item If $\alpha$ is algebraic over $K$ then there exists $f\in K[X]$ monic and irreducible and
+                $$ K[X]/f\simeq K[\alpha]=K(\alpha)$$
+                and the degree of $L$ over $K$ is the degree of $f$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{definition}
+        We say that an extension $L/K$ is \textbf{algebraic} if $\forall \alpha\in L$, $\alpha$ is algebraic over $K$.
+    \end{definition}
+    \begin{lemma}
+        If a field extension is finite then it is algebraic.
+    \end{lemma}
+    The converse of this lemma does not hold.
+
     \newpage
     \section{Exercises}
     \input{exercises.tex}
 \end{document}
+
