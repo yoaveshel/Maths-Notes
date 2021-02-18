@@ -1,3 +1,4 @@
+
 \subsection{Symmetric Polynomial}
     \begin{ex}{14.10}
         Express the symmetric polynomials $\sum_n T_1^2T_2$ and $\sum_{n} T_1^3T_2$ in the elementary symmetric polynomials.
@@ -308,27 +309,94 @@
         It follows that $\left[K:\Q(\al)\right]=1$ and so $K=\Q(\al)$. 
         Let 
         $$f(x)=x^2+a_1 x+a_0\in\Q[x]$$
-        be the minimal polynomial of $\al$ and take $d=\frac{a_1^2}{4}-a_0$.
-        We will now show that $K=\Q(a)=\Q(\sqrt{d})$.
+        be the minimal polynomial of $\al$. 
+        Let $d=\frac{a_1^2}{4}-a_0\in\Q$ and note that $a_0=-\al a_1-\al^2$. Then
+        \begin{align*}
+            \sqrt{d}&=\sqrt{\frac{a_1^2}{4}-a_0}\\
+            &=\sqrt{\frac{a_1^2}{4}+a_1\al+\al^2}\\
+            &=\frac{a_1+2\al}{2}.
+        \end{align*}
+        Hence $\sqrt{d}\in\Q(\al)$. By similar calculations we get $\al=\frac{2\sqrt{d}-a_1}{2}\in\Q(\sqrt{d})$.
+        Hence $K=\Q(\al)=\Q(\sqrt{d})$. Of course, it is not yet the case the $d$ is an integer.
+        Suppose that $d=\frac{p}{q}$. Since $\sqrt{d}=\frac{1}{q^2}\sqrt{qp}\in\Q(\sqrt{qp})$ we have
+        $$K=\Q(\al)=\Q(\sqrt{d})=\Q(\sqrt{qp})$$
+        with $qp\in\Z$ as desired.
     \end{proof}
 
     \begin{ex}{21.24}
         Is every cubic extension of $\Q$ of the form $\Q\left(\sqrt[3]{d}\right)$ for some $d\in\Q$?
     \end{ex}
+    \begin{sol}
+        No.
+    \end{sol}
 
     \begin{ex}{21.26}
         Let $M=\Q(\al)=\Q(1+\sqrt{2}+\sqrt{3})$. Show that $M$ is of degree 4 over $\Q$, determine the minimal polynomial and write $\sqrt{2}$ and $\sqrt{3}$ in the basis $\{1,\al, \al^2,\al^3\}$.
         Also prove that the group $G=\text{Aut}_\Q(M)$ is isomorphic to $V_4$ and that $f^\al_\Q=\prod_{\sigma\in G}X-\sigma(\al)\in\Q[X]$.
     \end{ex}
     \begin{sol}
+        Let $\be = \al-1=\sqrt{2}+\sqrt{3}$. Then clearly $M=\Q(\al)=\Q(\be)$. Let
+        \begin{align*}
+            f(x)&=(x-\sqrt{2}-\sqrt{3})(x+\sqrt{2}-\sqrt{3})(x-\sqrt{2}+\sqrt{3})(x+\sqrt{2}+\sqrt{3})\\
+            &=x^4-10x^2+1\in\Q[x]
+        \end{align*}
+        and so $f(\be)=0$ by construction. 
         
+        Is $f$ the minimal polynomial of $\be$ in $\Q[x]$? It is if we can prove that $[M:\Q]=4$.
+        From
+        $$ (\sqrt{2}+\sqrt{3})(\sqrt{3}-\sqrt{2})=1 $$
+        It follows that $\be^{-1}=\sqrt{3}-\sqrt{2}$. Therefore
+        $$ \sqrt{2}=\frac12(\be-\be^{-1})\quad\text{and}\quad\sqrt{3}=\frac12(\be+\be^{-1})$$
+        and so $M=\Q(\sqrt{2}+\sqrt{3})=\Q(\sqrt{2},\sqrt{3})$. 
+        Hence we have the towers $M/\Q(\sqrt{2})/Q$ and $M/\Q(\sqrt{3})/Q$. 
+        Let $g(x)=x^2-3$. Suppose it is not the minimal polynomial of $\sqrt{3}$ in $\Q(\sqrt{2})$.
+        Then there exists $a+b\sqrt{2}\in\Q(\sqrt{2})$ such that
+        $$ 0 = g(a+b\sqrt{2})=a^2+2b^2-3+2ab\sqrt{2}.$$
+        But since
+        \begin{equation*}
+            \begin{cases}
+                a^2+2b^2-3=0\\
+                2ab=0
+            \end{cases}
+        \end{equation*}
+        has no solutions it follows that no such element exists.
+        Therefore $g$ is the minimal polynomial of $\sqrt{3}$ and $[M:\Q(\sqrt{2})]=\deg g=2$.
+        Since $x^2-2$ is the minimal polynomial of $\sqrt{2}$ in $\Q$ we conclude that 
+        $$[M:\Q]=[M:\Q(\sqrt{2})]\cdot[\Q(\sqrt{2}):\Q)]=4$$ 
+        and therefore $f$ is the minimal polynomial of $\be$.
+
+        Thus $f(x-1)$ is the minimal polynomial of $\al$ in $\Q$. 
+        From $f(\be)=0$ it follows that $1=\beta(10\beta-\beta^3)$ and so $\be^{-1}=10\beta-\beta^3$.
+        Hence
+        $$\sqrt{2}=\frac12\left(\be-\be^{-1}\right)=\frac12\left(\be-10\be+\be^3\right)=\frac12\left(-9(\al-1)+(\al-1)^3\right)$$
+        and
+        $$\sqrt{3}=\frac12\left(\be+\be^{-1}\right)=\frac12\left(11(\al-1)-(\al-1)^3\right)$$
+
+        Let $G=\text{Aut}(M)$ and take $\sigma\in G$. Then by definition $\sigma(1)=1$ and it follows by induction and the properties of isomorphism that $\sigma(a)=a$ for all $a\in\Z$.
+        Since $1=\sigma(1)=\sigma(a\cdot a^{-1})=\sigma(a)\cdot\sigma(a)^{-1}=a\cdot a^{-1}$ it also follows that $\sigma\left(\frac{p}{q}\right)=\frac{p}{q}$. 
+        Hence $\sigma$ restricted to $\Q$ is simply the identity map. 
+        Therefore $\sigma$ is completely determined by $\sigma(\sqrt{2})$ and $\sigma(\sqrt{3})$.
+        Since $0=\sigma(0)=\sigma(\sqrt{2}^2-2)=\sigma(\sqrt{2})^2-2$ the only options are $\sigma(\sqrt{2})=\pm\sqrt{2}$.
+        Similarly we conclude that $\sigma(\sqrt{3})=\pm\sqrt{3}$. This gives four possible automorphism.
+        Take $\sigma,\tau\in G$ such that $\sigma(\sqrt{2})=-\sqrt{2}, \sigma(x)=x$ $\forall x\in M\setminus\{\sqrt{2}\}$ and $\tau(\sqrt{3})=-\sqrt{3},\tau(x)=x$ $\forall x\in M\setminus\{\sqrt{3}\}$. 
+        Since 
+        $$\sigma\circ\sigma=\tau\circ\tau=\sigma\circ\tau\circ\sigma\circ\tau=e$$
+        where $e$ is the identity map it follows that $G$ is isomorphic to $V_4$, the Klein four-group.
+
+        Lastly, consider
+        \begin{align*}
+            \tilde{f}&=\prod_{\sigma\in G}x-\sigma(\al)\\
+            &=(x-1-\sqrt{2}-\sqrt{3})(x-1+\sqrt{2}-\sqrt{3})(x-1-\sqrt{2}+\sqrt{3})\\&\qquad\qquad (x-1+\sqrt{2}+\sqrt{3}).
+        \end{align*}
+        Hence $\tilde{f}(x)=f(x-1)$ which we already proved is the minimal polynomial of $\al$ in $\Q[x]$.
+
     \end{sol}
 
     \begin{ex}{21.29}
         Take $K=\Q(\al)$ with $f^\al_\Q=x^3+2x^2+1$.
         \begin{enumerate}
             \item Determine the inverse of $\al+1$ in the basis $\{1,\al,\al^2\}$ of $K$ over $\Q$.
-            \item Determine the minimum polynomial of $\al^2$ over $\Q$.
+            \item Determine the minimal polynomial of $\al^2$ over $\Q$.
         \end{enumerate}
     \end{ex}
 
