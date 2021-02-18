@@ -151,8 +151,6 @@
     \end{enumerate}
     The representation obtained through the algorithm above is unique.
 
-    
-    When expanding 
     The following theorem is useful when applying the algorithm above.
     \begin{theorem}[Orbit Stabilizer Theorem]\label{th:orbit_stabilizer}
         Let $G$ be a group acting on set $S$. For any $x\in S$ let $G_x=\{g\in G\mid g\cdot x= x\}$ denote the stabilizer of $x$, and let $G\cdot x=\{g\cdot x\mid g\in G\}$ denote the orbit of $x$. Then
@@ -160,8 +158,21 @@
             \abs{G}=\abs{G\cdot x}\abs{G_x}
         $$
     \end{theorem}
-    Since $S_n$ is acting on the set $\{T_1,\dots,T_2\}$ we can find the number of elements in a given sum. Since $\abs{S_n}=n!$ the orbit of an elementary is given by
-    $$\frac{n!}{\text{size of stabilizer}}$$
+    Wondering how it might be useful? Consider 
+    $$s_1^4=\left(\sum_n T_1\right)^4=(T_1+\cdots+T_n)(T_1+\cdots+T_n)(T_1+\cdots+T_n)(T_1+\cdots+T_n).$$ 
+    After some thinking you might conclude that there are five possible representatives:
+    $$T_1^4,\quad T_1^3T_2,\quad T_1^2T_2^2,\quad T_1^2T_2T_3\quad\text{and}\quad T_1T_2T_3T_4$$
+    (note the the degrees always add up to four). But what are the coefficients? That's when the orbit-stabilizer theorem comes to the rescue.
+    Let the permutation group $S_4$ act on the set of indices by permuting them. Then the coefficients in front of $\sum_n T_1^4$ is the size of the orbit of $(1,1,1,1)$.
+    Since every permutation in $S_4$ return the same sequence, the size of the orbit is $\frac{4!}{4!}=1$. 
+    Then the coefficients in front of $\sum_n T_1^2T_2^2$ is the size of the orbit of $(1,1,2,2)$.
+    The permutations that fix it are $(1), (12), (34)$ and $(12)(34)$. So the size of the stabilizer is 4 and the size of the orbit is $\frac{4!}{4}=6$
+    Similarly, the coefficients in front of $\sum_n T_1^2T_2T_3$ is the size of the orbit of $(1,1,2,3)$.
+    Since the stabilizer contains only the permutations that switches the 1s and fixes the other two elements (namely $(1)$ and $(12)$) the size of the orbit is $ \frac{4!}{2}=12$.
+    Lastly, the size of the orbit of $\sum_n T_1T_2T_3T_4$ is the $4!$ since there is no permutations (except the identity of course) that stabilizes it. We conclude that
+    $$s_1^4=\sum_n T_1^4+6\sum_n T_1^2T_2^2+12\sum_n T_1^2T_2T_3+24\sum_n T_1T_2T_3T_4$$
+    
+
     
     \section{Field Extensions}
     \subsection{Prime Fields}
