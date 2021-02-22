@@ -271,7 +271,9 @@
 \subsection{Field Extensions}
     \begin{ex}{21.18}
         Let $K\subset L$ be an algebraic extension. For $\alpha, \beta\in L$ prove that we have
-        $$ \left[K(\alpha,\beta):K\right]\leq\left[K(\alpha):K\right]\cdot\left[K(\beta):K\right]$$.
+        $$ \left[K(\alpha,\beta):K\right]\leq\left[K(\alpha):K\right]\cdot\left[K(\beta):K\right].$$
+
+        Show that equality does not always hold. Does equality always hold if $[K(\alpha):K]$ and $[K(\beta):K]$ are relatively prime?
     \end{ex}
     \begin{proof}
         Let $f$ and $g$ be the minimal polynomials of $\al$ and $\be$ (respectively) in $K[x]$ and $f'$ be the minimal polynomial of $\alpha$ in $K(\beta)[x]$.
@@ -283,6 +285,19 @@
             &=\left[K(\al):K\right]\cdot \left[K(\be):K\right],   
         \end{align*}
         as desired.
+
+        To show that equality does not always hold consider $\Q(\sqrt{2}, \sqrt[4]{2})$.
+        Then $[\Q(\sqrt{2}):\Q]=2$ and $[\Q(\sqrt[4]{2}):\Q]=4$ but
+        $$[\Q(\sqrt{2}, \sqrt[4]{2}):\Q]=4\cdot[\Q(\sqrt{2}, \sqrt[4]{2}):\Q(\sqrt[4]{2})]=4<8$$
+        since $\left(\sqrt[4]{2}\right)^2=\sqrt{2}\in\Q(\sqrt[4]{2})$
+
+        Lastly, suppose that $\deg f$ and $\deg g$ are relatively prime. Since
+        \begin{align*}
+            [K(\al,\be):K]&=[K(\al,\be), K(\al)]\cdot\deg f\\
+            &=[K(\al,\be), K(\be)]\cdot\deg g
+        \end{align*}
+        it follows that $[K(\al,\be):K]$ is divisible by $\deg f$ and $\deg g$ and since they are relatively prime it is also divisible by $\deg f\cdot \deg g$.
+        But we know that $[K(\al,\be):K]\leq\deg f\cdot\deg g$ and so $[K(\al,\be):K]=\deg f\cdot \deg g$.
     \end{proof}
 
     \begin{ex}{21.19}
@@ -399,15 +414,100 @@
             \item Determine the minimal polynomial of $\al^2$ over $\Q$.
         \end{enumerate}
     \end{ex}
+    \begin{sol}
+        ${}$
+        \begin{enumerate}
+            \item Since
+                \begin{align*}
+                    0&=\al^3+2\al^2+1\\
+                    &=(\al+1)(\al^2+\al-1)+2.
+                \end{align*}
+                It follows that $(\al+1)^{-1}=-\frac12(\al^2+\al-1)$.
+            \item From $\al^3+2\al^2+1=0$ it follows that $\al^3=-2\al^2-1$.
+                Squaring both sides we get that $\al^6=4\al^4+4\al^2+1$ or alternatively
+                $$\left(\al^2\right)^3-4\left(\al^2\right)^2-4\left(\al^2\right)-1=0.$$
+                By Ex. 19 we know that $\Q(\al)=\Q(\al^2)$.
+                Therefore the minimal polynomial of $\al^2$ over $\Q$ has degree 3 and it follows that
+                $$ f^{\al^2}_\Q(x)=x^3-4x^2-4x-1. $$
+        \end{enumerate}
+    \end{sol}
 
     \begin{ex}{21.30}
-        Define the cyclotomic field $\Q(\zeta_3)$ and write $\al=\zeta_5^2+\zeta_5^3$.
+        Define the cyclotomic field $\Q(\zeta_5)$ and let $\al=\zeta_5^2+\zeta_5^3$.
         \begin{enumerate}
             \item Show that $\Q(\al)$ is a quadratic extension of $\Q$ and determine $f^\al_\Q$.
             \item Prove: $\Q(\al)=\Q(\sqrt{5})$
             \item Prove: $\cos(2\pi/5)=\frac{\sqrt{5}-1}{4}$ and $\sin(2\pi/5)=\sqrt{\frac{5+\sqrt{5}}{8}}$
         \end{enumerate}
     \end{ex}
+    \begin{proof}
+        ${}$ 
+        \begin{enumerate}
+            \item The degree of the 5th cyclotomic polynomial
+            $$\Phi_5(x)=\prod_{\substack{1\leq k\leq 5\\(k,5)=1}}\left(x-e^{\frac{2\pi k}{5}i}\right)=x^4+x^3+x^2+x+1$$
+            is 4 and since $\Phi_5=f^{\zeta_5}_\Q$ it follows that $[\Q(\zeta_5):\Q]=4$.
+            Thus 
+            $$[\Q(\zeta_5):\Q(\alpha)]\mid4.$$ 
+            Note that $\zeta_5^3=\frac{1}{\zeta_5^2}=\overline{\zeta_5^2}$. 
+            Hence $\al=\zeta_5^2+\zeta_5^3=\zeta_5^2+\overline{\zeta_5^2}\in\R$ and so $\Q(\al)\subsetneq\Q(\zeta_5)$.
+            Together with the fact that $\zeta_5$ is a root of $x^3+x^2-\al\in\Q(\al)$ it follows that
+            $$1<[\Q(\zeta_5):\Q(\al)]\leq 3\implies [\Q(\zeta_5):\Q(\al)]=2.$$
+            Finally, since $\Q(\zeta_5)/\Q(\al)/\Q$ is a tower of fields and
+            $$[\Q(\al):\Q]=\frac{[\Q(\zeta_5):\Q]}{[\Q(\zeta_5):\Q(\al)]}=2$$
+            it follows that $\Q(\al)$ is a quadratic extension.
+
+            Let $w=\zeta_5^2$. Then $\al=w+\frac1w$ and $\Phi_5(w)=0$ by definition of $\Phi_5$. Since $w\neq0$ it follows that
+            \begin{align*}
+                0&=1+w+w^2+w^3+w^4\\
+                0&=\frac{1}{w^2}+\frac1w+1+w+w^2\\
+                0&=\left(w+\frac1w\right)^2+w+\dfrac1w-1\\
+                0&=\al^2+\al-1.
+            \end{align*}
+            Since $x^2+x-1$ is monic polynomial of degree 2 we conclude that $f^\al_\Q=x^2+x-1$.
+        \item By construction $\al$ is a root of $x^2+x-1$ and so
+            $$\al\in\left\{\frac{-1\pm\sqrt{5}}{2}\right\}.$$
+            Since we can write $\al$ as polynomial in $\sqrt{5}$ and vice versa it follows that $\Q(\al)=\Q(\sqrt{5})$.
+        \item Let $\zeta_5=e^{\frac{6\pi}{5}i}$. Then $w=\zeta_5^2=e^{\frac{2\pi}{5}i}$ and 
+            $$\cos\frac{2\pi}{5}=\frac{w+\overline{w}}{2}=\frac{\al}{2}.$$
+            Thus $2\cos\frac{2\pi}{5}$ is a root of $f^\al_Q$. Since $\frac{2\pi}{5}$ is in the first quadrant, $\cos\frac{2\pi}{5}$ is positive and so
+            $$\cos\frac{2\pi}{5}=\frac{-1+\sqrt{5}}{4}.$$
+            Therefore we also have
+            \begin{align*}
+                \sin\frac{2\pi}{5}&=\sqrt{1-\cos^2\frac{2\pi}{5}}\\
+                &=\sqrt{\frac{5+\sqrt{5}}{8}}.
+            \end{align*}
+        \end{enumerate}
+    \end{proof}
+
+
+    \begin{enumerate}
+        \item The degree of the $p$th cyclotomic polynomial is $\varphi(p)=p-1$ and so
+            $$4=\deg\Phi_5=\left[\Q(\zeta_5):\Q\right]=\left[\Q(\zeta_5):\Q(\al)\right]\cdot\left[\Q(\al):\Q\right]$$
+            Since $\zeta_5$ is a root of $x^3+x^2-\al\in\Q(\al)[x]$ it follows that 
+            $$\left[\Q(\zeta_5):\Q(\al)\right]\leq 3.$$
+            Thus the minimal polynomial of $\al$ over $\Q$ is of degree 2 or 4.
+
+            Let $f(x)=x^2+x-1\in\Q[x]$. Then
+            \begin{align*}
+                f(\al)&=\al^2+\al-1\\
+                &=(\zeta_5^2+\zeta_5^3)^2+\zeta_5^2+\zeta_5^3-1\\
+                &=\zeta_5^4+2+\zeta_5^6+\zeta_5^2+\zeta_5^3-1&&(\text{Since }\zeta_5^5=1)\\
+                &=1+\zeta_5+\zeta_5^2+\zeta_5^3+\zeta_4^4.
+            \end{align*}
+            Since the 5th cyclotomic polynomial is given by
+            $$\Phi_5(x)=\prod_{\substack{1\leq k\leq 5\\(k,5)=1}}\left(x-e^{\frac{2\pi k}{5}i}\right)=x^4+x^3+x^2+x+1$$
+            and $\Phi_5(\zeta_5)=0$ by definition it follows that $f(\al)=0$.
+            Since $f$ is monic and of degree $2$ it is the minimal polynomial of $\al$ over $\Q$.
+            Hence $\Q(\al)$ is a quadratic extension.
+        \item Since $\al$ is a root of $f(x)=x^2+x-1$ and the roots of $f$ are given by $\frac{-1\pm\sqrt{5}}{4}$
+            it follows that $\Q(\al)=\Q(\sqrt{5})$.
+        \item We know that
+            $$\frac{-1\pm\sqrt{5}}{4}=\al=\zeta_5^2+\zeta_5^3=\cos\frac{4\pi k}{5}+\cos\frac{6\pi k}{5}+\left(\sin\frac{4\pi k}{5}+\sin\frac{6\pi k}{5}\right)i.$$
+            and since
+            $$\sin\frac{4\pi k}{5}+\sin\frac{6\pi k}{5}=2\cos\frac{2\pi k}{10}\sin\pi k= 0,\quad k\in\Z$$
+            it follows that
+            $$\frac{-1\pm\sqrt{5}}{4}=\cos\frac{4\pi k}{5}+\cos\frac{6\pi k}{5}.$$
+    \end{enumerate}
 \subsection{Finite Fields}
 
 \subsection{Separable and Normal Extensions}
