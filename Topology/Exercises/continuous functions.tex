@@ -23,3 +23,65 @@
             Therefore $i$ is a homeomorphism if and only if $\Ta'=\Ta$.
     \end{enumerate}
 \end{proof}
+
+\begin{ex}{18.10}
+    Let $f:A\to B$ and $g:C\to D$ be continuous functions. 
+    Let us define a map $f\times g:A\times C\to B\times D$ by
+    $$(f\times g)(a\times c)=f(a)\times g(c).$$
+    Show that $f\times g$ is continuous.
+\end{ex}
+\begin{proof}
+    Let $U\times V\subset B\times D$ be a basis element and suppose $a\times c\in(f\times g)^{-1}(U\times V)$.
+    Then $a\in f^{-1}(U)$ and $c\in f^{-1}(V)$ and so $a\times c\in f^{-1}(U)\times g^{-1}(V)$.
+    Now suppose that $a\times c\in f^{-1}(U)\times g^{-1}(V)$. Then $f(a)\in U$ and $g(c)\in V$ and so
+    \begin{align*}
+        (f\times g)(a\times c)&=f(a)\times g(c)\\
+        &\in U\times V.
+    \end{align*}
+    Therefore $a\times c\in(f\times g)^{-1}(U\times V)$ and it follows that $(f\times g)^{-1}(U\times V)=f^{-1}(U)\times g^{-1}(V)$.
+    Since $f^{-1}(U)$ is open in $A$ and $g^{-1}(V)$ is open in $C$ it follows that $f^{-1}(U)\times g^{-1}(V)$ is open in $A\times C$ and so $f\times g$ is continuous.
+\end{proof}
+
+\begin{ex}{18.13}
+    Let $Y$ be Hausdorff, $A\subset X$ and $f:A\to Y$ continuous. Show that if $f$ may be extended to a continuous function $g:\overline{A}\to Y$, then $g$ is uniquely determined by $f$.
+\end{ex}
+\begin{proof}
+    Let $g$ and $\Tilde{g}$ be continuous maps from $\overline{A}$ to $Y$ s.t. $g(a)=f(a)=\Tilde{g}(a)$ for all $a\in A$.
+    Suppose there exists $x\in\overline{A}$ such that $g(x)\neq\tilde{g}(x)$.
+    Then there exists disjoint open neighborhoods $U$ and $V$ in $Y$ such that $g(x)\in U$ and $\tilde{g}(x)\in V$.
+    Then $U'=g^{-1}(U)$ and $V'=\tilde{g}^{-1}(V)$ are open in $\overline{A}$ and contain $x$.
+    Thus $U'\cap V'$ is open in $\overline{A}$ and contains $x$, so it intersects $A$. 
+    Take $y\in A$ such that $y\in U'\cap V'$. Then $f(y)=g(y)=\tilde{g}(y)$, $g(y)\in U$ and $\tilde{g}(y)\in V$. 
+    But then $f(y)\in U\cap V$ and so $U$ and $V$ cannot be disjoint. By contradiction, $g(x)=\tilde{g}(x)$ for all $x\in\overline{A}$. 
+\end{proof}
+
+\subsubsection{Extra Exercises}
+\begin{ex}{2.18.1}
+    Let $X$ be a Hausdorff space and $Y$ a non Hausdorff space.
+    \begin{enumerate}
+        \item Can there be a continuous bijective map $X\to Y$? Give an example or prove that this is not possible
+        \item Can there be a continuous bijective map $Y\to X$? Give an example or prove that this is not possible
+        \item Show that $X$ and $Y$ are not homeomorphic.
+    \end{enumerate}
+\end{ex}
+\begin{proof}
+    ${}$
+    \begin{enumerate}
+        \item Yes. Suppose $X=Y$, $\Ta_X=\mathcal{P}(X)$, $\Ta_Y=\{\varnothing, X\}$ and $f:X\to Y$ is the identity map.
+        Then $X$ is Hausdorff, $Y$ is not and $f$ is clearly bijective and continuous.
+        \item Suppose it is possible. Then there exists a continuous bijective map $f:Y\to X$.
+        Let $x,y\in Y$ such that there are no disjoint open neighborhoods containing $x$ and $y$.
+        Then $f(x)\neq f(y)$ since $f$ is injective and so there exists open sets  $U$ and $V$ in $X$ such that $f(x)\in U$, $f(y)\in V$ and $U\cap V=\varnothing$.
+        Then $x\in f^{-1}(U)$ and $y\in f^{-1}(V)$ and $f^{-1}(U)\cap f^{-1}(V)$ is nonempty.
+        Let $z\in f^{-1}(U)\cap f^{-1}(V)$. Then $f(z)\in U$ and $f(z)\in Z$ which is a contradiction. Therefore $f$ does not exists :)
+        \item Follows immediately from (1), (2) and the definition of Homeomorphism.
+    \end{enumerate}
+\end{proof}
+
+\begin{ex}{2.18.2}
+    Give an explicit homeomorphism $f:\R\to(0,\infty)$.
+\end{ex}
+\begin{sol}
+    Let $f(x)=e^x$. Then $f$ is injective since $e^x=e^y\implies x=y$ and surjective since $\forall x\in(0,\infty), e^{\ln x}=x$. So $f$ is bijective.
+    Moreover, $f((a,b))=\left(e^a,e^b\right)$ and $f^{-1}((a,b))=(\ln a, \ln b)$ and so $f$ is a homeomorphism.
+\end{sol}

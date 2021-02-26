@@ -1,1 +1,34 @@
 \subsection{The Product Topology}
+\begin{ex}{19.3}
+    If each space $X_\alpha$ is Hausdorff, then $X =\prod_\alpha X_\alpha$ is Hausdorff in both the box and product topology.
+\end{ex}
+\begin{proof}
+    Let $\mathbf{x}, \mathbf{y}\in X$ such that $\mathbf{x}\neq\mathbf{y}$. Then $x_\beta\neq y_\beta$ for at least one $\beta\in J$.
+    Then there exists disjoint open neighborhoods $W_x$ and $W_y$ around $x_\beta$ and $y_\beta$ in  $X_\beta$. Let
+    $$
+    U_\alpha=
+    \begin{cases}
+        W_x,&\alpha=\beta\\
+        X_\alpha,&\alpha\neq\beta\\
+    \end{cases}
+    \quad\text{and}\quad 
+    V_\alpha= 
+    \begin{cases}
+        W_y,&\alpha=\beta\\
+        X_\alpha,&\alpha\neq\beta\\
+    \end{cases}.
+    $$
+    Then $\prod_\alpha U_\alpha$ and $\prod_\alpha V_\alpha$ are disjoint and open in both the product and box topologies
+    (open in the box topology since they are a product of open sets and in the product topology since they have finitely many components that are not all of $X_\alpha$).
+    To prove that they are disjoint, suppose there exists $\mathbf{z}\in\left(\prod_\alpha U_\alpha\right)\cap\left(\prod_\alpha V_\alpha\right)$.
+    Then $z_\beta\in U_\beta\cap V_\beta=W_x\cap W_y=\varnothing$.
+    It follows that $X$ is Hausdorff.
+\end{proof}
+
+\begin{ex}{19.10}
+    Let $A$ be a set;let $\left\{X_\alpha\right\}_{\alpha\in J}$ be an indexed family of spaces; and let $\{f_\alpha\}$ be an indexed family of functions $f_\alpha:A\to X_\alpha$.
+    \begin{enumerate}
+        \item Show that there is a unique coarsest topology $\Ta$ on $A$ relative to which each of the functions $f_\alpha$ is continuous.
+        \item L
+    \end{enumerate}
+\end{ex}
