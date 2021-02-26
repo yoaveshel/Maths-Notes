@@ -1,0 +1,152 @@
+\subsection{Closed Sets and Limit Points}
+\begin{ex}{17.1}
+    Let $\mathcal{C}$ be a collection of subsets of $X$. Suppose that $X,\varnothing\in\mathcal{C}$ and that $\mathcal{C}$ is closed under finite unions and arbitrary intersections.
+    Prove that
+    $$
+        \Ta=\{X-C\mid C\in\mathcal{C}\}
+    $$
+    is a topology.
+\end{ex}
+\begin{proof}
+    Since $X-X=\varnothing$ and $X-\varnothing=X$ it follows that $X,\varnothing\in\Ta$. Let $U_\alpha$ be some collection of elements of $\Ta$.
+    Then $U_\alpha = X-C_\alpha$ for some $C_\alpha\in\mathcal{C}$. Then
+    $$\bigcup_\alpha U_\alpha = \bigcup_\alpha\left(X-C_\alpha\right)=X-\bigcap_\alpha C_\alpha\in\Ta $$
+    Since $\mathcal{C}$ is closed under arbitrary intersections. Lastly let $U_i=X-C_i$, $1\leq i\leq n$ be a finite collection in $\Ta$. Then
+    $$\bigcap_{i=1}^n U_i=X-\bigcup_{i=1}^n C_i\in\Ta.$$
+    It follows that $\Ta$ is a topology on $X$.
+\end{proof}
+
+\begin{ex}{17.2}
+    Show that if $A$ is closed in $Y$ and $Y$ is closed in $X$, then $A$ is closed in $X$.
+\end{ex}
+\begin{proof}
+    Suppose that $A$ is closed in $Y$ and $Y$ is closed in $X$. Then $Y-A$ is open in $Y$ and so $Y-A=U\cap Y$ for some $U\subset X$ open.
+    Hence $A = (X-U)\cap Y$. Since $X-U$ and $Y$ are closed in $A$ and arbitrary intersections of closed sets are closed, it follows that $A$ is closed in $X$.
+\end{proof}
+
+\begin{ex}{17.6}
+    Let $A,B$ and $A_\alpha$ denote subsets of a space $X$. Prove the following
+    \begin{enumerate}
+        \item If $A\subset B$, then $\bar{A}\subset\bar{B}$
+        \item $\overline{A\cup B}=\bar{A}\cup\bar{B}$
+        \item $\overline{\bigcup_\alpha A_\alpha}\supset \bigcup_\alpha \overline{A_\alpha}$
+    \end{enumerate}
+\end{ex}
+\begin{proof}
+    ${}$
+    \begin{enumerate}
+        \item Suppose that $A\subset B$. Let $x\in\overline{A}$. Then for every neighborhood $U$ containing $x$ intersects $A$. 
+            Hence $U\cap A$ is non empty, so take $y\in U\cap A$. Then $y\in U\cap B$ since $A\subset B$ and it follows that every neighborhood of $x$ intersects $B$.
+            Therefore $x\in\overline{B}$ and the result follows.
+        \item Let $x\in \overline{A\cup B}$. Then every neighborhood $U$ of $x$ intersects $A\cup B$. Since $A\subset\bar{A}$ and $B\subset\bar{B}$ it follows that $A\cup B\subset\bar{A}\cup\bar{B}$ and so $U$ intersects $\bar{A}\cup\bar{B}$.
+            Hence $x\in\bar{A}\cup\bar{B}$ and so $\overline{A\cup B}\subset\bar{A}\cup\bar{B}$.
+
+            Let $x\in \bar{A}\cup\bar{B}$. Then $x$ is in $\bar{A}$ or $\bar{B}$ and every neighborhood $U$ of $x$ intersects either $A$ or $B$. Therefore $U$ intersects $A\cup B$ and it follows that $x\in \overline{A\cup B}$.
+            Therefore $\bar{A}\cup\bar{B}\subset\overline{A\cup B}$ and equality follows.
+        \item Let $x\in\bigcup_\alpha\overline{A_\alpha}$. Then $x\in\overline{A_\alpha}$ for at least one $\alpha$. Hence every neighborhood $U$ of $x$ intersects $A_\alpha$ and so $U$ intersects $\bigcup_\alpha A_\alpha$. 
+            Hence $x\in\overline{\bigcup_\alpha A_\alpha}$ and so $\bigcup_\alpha \overline{A_\alpha}\subset\overline{\bigcup_\alpha A_\alpha}$.
+
+            To show that the other inclusion doesn't hold in general let $A_\alpha=\left(\frac1\alpha, 1\right)$.
+            Then 
+            $$\bigcup_{\alpha=1}^\infty\overline{A_\alpha}=\bigcup_{\alpha=1}^\infty\overline{\left(\frac1\alpha, 1\right)}=\bigcup_{\alpha=1}^\infty\left[\frac1\alpha, 1\right]=(0, 1]$$
+            and
+            $$\overline{\bigcup_{\alpha=1}^\infty A_\alpha}=\overline{(0,1)}=[0,1].$$
+    \end{enumerate}
+\end{proof}
+
+\begin{ex}{17.8}
+    
+\end{ex}
+
+\begin{ex}{17.11}
+    Show that the product of two Hausdorff spaces is Hausdorff
+\end{ex}
+\begin{proof}
+    Let $X,Y$ be Hausdorff spaces and take $(x_1,y_1),(x_2, y_2)\in X\times Y$.
+    Then there are open subsets $U_1,U_2$ in $X$ such that $x_1\in U_1$, $x_2\in U_2$ and $U_1\cap U_2=\varnothing$.
+    Similarly there exists $V_1,V_2\subset Y$ that are open in $Y$ with $y_1\in V_1, y_2\in V_2$ and $V_1\cap V_2=\varnothing$.
+    Then $(x_1,y_1)\in U_1\times V_1, (x_2,y_2)\in U_2\times V_2$ and
+    $$\left(U_1\times V_1\right)\cap\left(U_2\times V_2\right)=\left(U_1\cap U_2\right)\times\left(V_1\cap V_2\right)=\varnothing\times\varnothing=\varnothing.$$
+    Since $U_1\times V_1$ and $U_2\times V_2$ are open it follows that $X\times Y$ is a Hausdorff space.
+\end{proof}
+
+\begin{ex}{17.12}
+    Show that a subspace of Hausdorff space is Hausdorff.
+\end{ex}
+\begin{proof}
+    Let $X$ be a Hausdorff space and $Y\subset X$. Then for every $x_1, x_2\in Y$ there exists neighborhoods $U_1$ and $U_2$ of $x_1$ and $x_2$ (respectively) that are disjoint.
+    Then $U_1\cap Y$ and $U_2\cap Y$ are open in $Y$, contain $x_1$ and $x_2$ (respectively) and are clearly disjoint. Hence $Y$ is Hausdorff.
+\end{proof}
+
+\begin{ex}{17.13}
+    Show that $X$ is Hausdorff if and only if $\Delta = \{(x,x)\mid x\in X\}$ is closed in $X\times X$.
+\end{ex}
+\begin{proof}
+    Suppose $X$ is Hausdorff and consider $(x,y)\not\in\Delta$. Since $X$ is Hausdorff, there exists disjoint neighborhoods $U$ and $V$ that contain $x$ and $y$ (respectively).
+    Then take $(x', y')\in U\times V$. Since $U\cap V=\varnothing$ it follows that $x'\neq y'$ and so $(x',y')\not\in\Delta$.
+    Since $U\times V$ is open in $X\times X$ it follows that $(x,y)$ is not a limit point of $\Delta$. Hence $\Delta$ contains all of its limit points and so it is closed.
+
+    Now suppose that $\Delta$ is closed in $X\times X$ and consider $(x,y)\not\in\Delta$. Since $\Delta$ is closed, it contain all of its limit points and so $(x,y)$ is not a limit point of $\Delta$. 
+    Hence there exists a neighborhood $T$ of $(x,y)$ that does not intersect $\Delta$. Then there is a basis element $U\times V$ such that $(x,y)\in U\times V\subset T$.
+    Since $U\times V$ does not intersect $\Delta$ it follows that for every $(x', y')\in U\times V$ $x'\neq y'$. Hence $U\cap V=\varnothing$. 
+    It follows that for every $x$ and $y$ in $X$ there exists disjoint neighborhoods $U$ and $V$ that contain $x$ and $y$ respectively. Therefore $X$ is Hausdorff.
+\end{proof}
+
+\begin{ex}{17.14}
+    In the finite complement topology on $\R$, to what point or points does the sequence $x_n=\frac1n$ converge?
+\end{ex}
+\begin{sol}
+    This sequence converges to every point in $\R$! To see why, suppose there exists $a\in\R$ that the sequence does not converge to.
+    Then there exists an open neighborhood $U$ of $a$ such that for all $N\in\N$ there exists an $n\geq N$ for which $x_n\not\in U$.
+    There has to be an infinite number of such $x_n$, for otherwise we could just take $N'$ bigger than the largest $n$. But then $\R-U$ is not finite nor empty, so it must be all of $\R$.
+    Therefore $U=\varnothing$ which is a contradiction since we assumed that $a\in U$.
+\end{sol}
+
+\begin{ex}{17.19}
+    For $A\subset X$, the \textit{boundary} of $A$ is 
+    $$\Bd A=\overline{A}\cap\overline{\left(X-A\right)}.$$
+    Show that
+    \begin{enumerate}
+        \item $\Int A\cap \Bd A=\varnothing$ and $\overline{A}=\Int A\cup \Bd A$.
+        \item $\Bd A=\varnothing\iff A$ is both open and closed.
+        \item $U$ is open $\iff\Bd U = \overline{U}-U$
+        \item If $U$ is open, is it true that $U=\Int\overline{U}$? Justify your answer. 
+    \end{enumerate}    
+\end{ex}
+
+\begin{proof}
+   ${}$
+   \begin{enumerate}
+       \item Let $x\in\Int A$.  Then there is a neighborhood $U$ of $x$ that is contained in $A$, and so $U$ does not intersect $X-A$.
+            Hence $x$ is not a limit of point of $X-A$ and so $x\not\in \overline{X-A}$. Therefore $x$ is not in $\overline{A}\cap\overline{\left(X-A\right)}$, and so $\Int A\cap\Bd A=\varnothing$.
+
+            Let $x\in X$. If $x\in\Int A$ then clearly $x\in\Int A\cup \overline{\left(X-A\right)}$.
+            So suppose $x\not\in\Int A$. Then $x\in X-\Int A\subset\overline{X-\Int A}$.
+            Consider any neighborhood $U$ containing $x$. Since $x$ is not in the interior of $A$, $U$ is not a subset of $A$, hence $U$ intersects $X-A$.
+            It follows that $x$ is a limit point of $X-A$ and so $x\in\overline{X-A}$. Therefore $X=\Int A\cup\overline{\left(X-A\right)}$ and it follows that
+            \begin{align*}
+                \Int A\cup \Bd A&=\Int A\cup\left(\overline{A}\cap\overline{\left(X-A\right)}\right)\\
+                &=\left(\Int A\cup \overline{A}\right)\cap\left(\Int A\cup\overline{\left(X-A\right)}\right)\\
+                &=\overline{A}\cap\left(\Int A\cup\overline{\left(X-A\right)}\right)\\
+                &=\overline{A}\cap X\\
+                &=\overline{A}.
+            \end{align*}
+        \item Suppose $\Bd A=\varnothing$. Then 
+                $$\overline{A}=\Int A\cup\Bd A=\Int A.$$
+            Since $\Int A\subset A\subset\overline{A}$ it follows that $A=\Int A=\overline{A}$ and so $A$ is both close and open.
+
+            Now suppose that $A$ is both closed and open. Then $A=\Int A$ and $A=\overline{A}$ so $\Int{A}=\overline{A}$.
+            From $\overline{A}=\Int A\cup \Bd A$ it follows that $\Bd A\subset \overline{A}$ but 
+                $$\varnothing=\Int A\cap \Bd A= \overline{A}\cap \Bd A.$$
+            Hence $\Bd A=\varnothing$.
+        \item Suppose $U$ is open. Then $U=\Int U$ and $\overline{U}=U\cup \Bd U$. Since $U\cap\Bd U=\varnothing$ it follows that $\Bd U =\overline{U}-U$.
+        
+            Now suppose that $\Bd U = \overline{U}-U$ and take $x\in U$. Then $x\in\overline{U}$ and
+                $$x\not\in \overline{U}-U=\Bd U=\overline{U}\cap\overline{\left(X-U\right)}.$$
+            So $x\not\in\overline{\left(X-U\right)}$. Then there exists a neighborhood $V$ of $x$ that does not intersect $X-U$.
+            Since for every $y\in V\implies y\not\in X-U\implies y\in U$ it follows that $V\subset U$.
+            We showed that for every $x\in U$ there exists an open neighborhood $V\subset U$ that contains $x$. Therefore $U$ is open.
+        \item No. Consider $U=(0,1)\cup(1,2)$ which is open in the standard topology on $\R$.
+            Then $\overline{U}=[0,2]$ and $\Int\overline{U}=(0,2)\neq U$.
+   \end{enumerate} 
+\end{proof}

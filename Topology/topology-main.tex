@@ -269,6 +269,23 @@ An isomorphism in algebra is a bijective map that preserve algebraic structure (
 In topology, a homeomorphism is a bijective map that preserve topological structure. However in algebra any homomorphism (without an e) that is one-to-one and onto is an isomorphism.
 This is, in general, not true in topology. There are continuous bijective maps whose inverses are not continuous. 
 
+\begin{lemma}{(The Pasting Lemma)}
+    Let $X=A\cup B$ be a topological space and $A, B$ are closed. Consider
+    $$ f:A\to Y\quad\text{and}\quad g:B\to Y$$
+    continuous such that $f(x)=g(x)$ for all $x\in A\cap B$. Then $h:X\to X$ defined by
+    $$ h(x)=\begin{cases}
+        f(x),&x\in A\\
+        g(x),&x\in B\\
+    \end{cases}$$
+    is continuous.
+\end{lemma}
+The lemma also holds if $A$ and $B$ are both open.
+
+\section{The Product Topology}
+
+\section{The Metric Topology}
+
+
 \newpage
 \section{Exercises}
 \input{exercises.tex}

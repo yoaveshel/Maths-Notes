@@ -1,0 +1,31 @@
+\subsection{The Subspace Topology}
+\begin{ex}{16.1}
+    Show that if $Y$ is a subspace of $X$, and $A$ is a subset of $Y$ then the topology $A$ inherits as a subspace of $Y$ is the same as the topology it inherits as a subspace of $X$.
+\end{ex}
+\begin{proof}
+    Let $\Ta$ be a topology on $X$, $\Ta_Y$ subspace topology on $Y$. Let $\Ta_A'$ be the topology $A$ inherits as a subset of $Y$.
+    Then
+    \begin{align*}
+        \Ta_A'&=\left\{A\cap U\mid U\in\Ta_Y\right\}\\
+        &=\big\{A\cap U\mid U\in\left\{Y\cap V\mid V\in \Ta\right\} \big\}\\
+        &=\left\{A\cap U\mid U= Y\cap V, V\in\Ta\right\}\\
+        &=\left\{A\cap\left(Y\cap V\right)\mid V\in\Ta\right\}\\
+        &=\left\{\left(A\cap Y\right)\cap V\mid V\in\Ta\right\}\\
+        &=\left\{A\cap V\mid V\in\Ta\right\}    
+    \end{align*}
+    which is by definition the topology $A$ inherits as a subset of $X$.
+\end{proof}
+
+\begin{ex}{16.3}
+    
+\end{ex}
+
+\begin{ex}{16.4}
+    Show that $\pi_1:X\times Y\to X$ is an open map.
+\end{ex}
+\begin{proof}
+    Let $U$ be open in $X\times Y$ and take $(x,y)\in U$. Then there exists a basis element $B_x\times B_y$ such that $(x,y)\in B_x\times B_y\subset U$.
+    For any $b\in B_x$, $(b,y)\in B_x\times B_y\subset U$ and so $b=\pi_1(b,y)\in \pi_1(U)$. It follows that $B_x\subset\pi_1(U)$.
+    Since the basis of a product topology is the the product of open sets, $B_x$ is open in $X$ which means that for every $x\in\pi_1(U)$ there is an open set $B_x\in X$ such that $x\in B_x\subset \pi_1(U)$.
+    From Exercise 13.1 it follows that $\pi_1(U)$ is open in $X$.    
+\end{proof}

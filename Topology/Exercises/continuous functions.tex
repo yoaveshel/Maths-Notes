@@ -1,0 +1,25 @@
+\subsection{Continuous Functions}
+\begin{ex}{18.3}
+    Let $X$ and $X'$ denote a single set in two topologies, $\Ta$ and $\Ta'$ respectively.
+    Let $i:X'\to X$ be the identity map.
+    \begin{enumerate}
+        \item Show that $i$ is continuous $\iff\Ta\subset\Ta'$.
+        \item Show that $i$ is a homeomorphism $\iff\Ta=\Ta'$.
+    \end{enumerate}    
+\end{ex}
+\begin{proof}
+    ${}$
+    \begin{enumerate}
+        \item Suppose $i$ is continuous. Let $B$ be a basis element in $X$ and take $x\in X$. 
+            Then $B=i^{-1}(B)$ is open in $X'$. So there exists a basis element $B'\subset X$ such that $x\in B'\subset B$.
+            It follows that $\Ta'$ is finer than $\Ta$.
+
+            Now suppose that $\Ta\subset\Ta'$. Then for any $U\in\Ta$, $U\in\Ta'$. 
+            This is equivalent to saying that for any open set $U$ in $X$, $i^{-1}(U)=U$ is open in $X'$.
+            Therefore $i$ is continuous.
+        \item $i$ is a homeomorphism if and only if $i$ and $i^{-1}$ are continuous.
+            By the result above, $i$ is continuous if and only if $\Ta\subset\Ta'$. 
+            Similarly, $i^{-1}$ is continuous if and only if $\Ta'\subset\Ta$. 
+            Therefore $i$ is a homeomorphism if and only if $\Ta'=\Ta$.
+    \end{enumerate}
+\end{proof}
