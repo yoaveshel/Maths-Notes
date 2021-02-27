@@ -1,0 +1,265 @@
+\subsection{Field Extensions}
+    \begin{ex}{21.18}
+        Let $K\subset L$ be an algebraic extension. For $\alpha, \beta\in L$ prove that we have
+        $$ \left[K(\alpha,\beta):K\right]\leq\left[K(\alpha):K\right]\cdot\left[K(\beta):K\right].$$
+
+        Show that equality does not always hold. Does equality always hold if $[K(\alpha):K]$ and $[K(\beta):K]$ are relatively prime?
+    \end{ex}
+    \begin{proof}
+        Let $f$ and $g$ be the minimal polynomials of $\al$ and $\be$ (respectively) in $K[x]$ and $f'$ be the minimal polynomial of $\alpha$ in $K(\beta)[x]$.
+        If $\deg f'> \deg f$ then $f$ is a lower degree polynomial in $K(\beta)[x]$ with $f(\alpha)=0$ which is a contradiction. Hence $\deg f'\leq \deg f$ and so
+        \begin{align*}
+            \left[K(\alpha,\beta):K\right]&=\left[K(\al, \be):K(\be)\right]\cdot\left[K(\be):K\right]\\
+            &=\deg f'\cdot \deg g\\
+            &\leq\deg f\cdot \deg g\\
+            &=\left[K(\al):K\right]\cdot \left[K(\be):K\right],   
+        \end{align*}
+        as desired.
+
+        To show that equality does not always hold consider $\Q(\sqrt{2}, \sqrt[4]{2})$.
+        Then $[\Q(\sqrt{2}):\Q]=2$ and $[\Q(\sqrt[4]{2}):\Q]=4$ but
+        $$[\Q(\sqrt{2}, \sqrt[4]{2}):\Q]=4\cdot[\Q(\sqrt{2}, \sqrt[4]{2}):\Q(\sqrt[4]{2})]=4<8$$
+        since $\left(\sqrt[4]{2}\right)^2=\sqrt{2}\in\Q(\sqrt[4]{2})$
+
+        Lastly, suppose that $\deg f$ and $\deg g$ are relatively prime. Since
+        \begin{align*}
+            [K(\al,\be):K]&=[K(\al,\be), K(\al)]\cdot\deg f\\
+            &=[K(\al,\be), K(\be)]\cdot\deg g
+        \end{align*}
+        it follows that $[K(\al,\be):K]$ is divisible by $\deg f$ and $\deg g$ and since they are relatively prime it is also divisible by $\deg f\cdot \deg g$.
+        But we know that $[K(\al,\be):K]\leq\deg f\cdot\deg g$ and so $[K(\al,\be):K]=\deg f\cdot \deg g$.
+    \end{proof}
+
+    \begin{ex}{21.19}
+        Let $K\subset K(\al)$ be an extension of odd degree. Prove that $K(\al^2)=K(\al)$.
+    \end{ex}
+    \begin{proof}
+        Let $f$ be the minimal polynomial of $\al$ in $K[x]$. Then $\deg f=2n+1$ for some $n\in\Z_+$. 
+        Since $\al^2\in K(\al)$ we get the tower $K(\al)/K\left(\al^2\right)/K$ and so\
+        $$ \left[K(\al):K\right]=\left[K(\al):K\left(\al^2\right)\right]\cdot\left[K\left(\al^2\right):K\right].$$
+        Let $g$ be the minimal polynomial of $\al$ in $K\left(\alpha^2\right)$. Then $\deg g\leq 2$ since $x^2-\al^2\in K\left(\alpha^2\right)$ is a polynomial with a root $\al$.
+        Since $\left[K(\al):K\right]$ is odd, it is not divisible by two and so $\deg g = 1$. Hence $\left[K(\al):K\left(\al^2\right)\right]=1$ and it follows that $K(\al)=K\left(\al^2\right)$.
+    \end{proof}
+
+    \begin{ex}{21.23}
+        Show that every quadratic extension of $\Q$ is of the form $\Q\left(\sqrt{d}\right)$ with $d\in\Z$.
+        For what $d$ do we obtain the cyclotomic field $\Q(\zeta_3)$?
+    \end{ex}
+    \begin{proof}
+        Let $K/\Q$ be a quadratic extension. Take $\al\in K\setminus\Q$. Then 
+        $$ \Q\subset\Q(\al)\subset K $$
+        and so
+        $$2=\left[K:\Q\right]=\left[K:\Q(\al)\right]\left[\Q(\al):\Q\right].$$
+        If $\left[\Q(\al):\Q\right]=1$ then $\Q(\al)=\Q$ and so $\al\in\Q$, which contradicts our assumption. 
+        It follows that $\left[K:\Q(\al)\right]=1$ and so $K=\Q(\al)$. 
+        Let 
+        $$f(x)=x^2+a_1 x+a_0\in\Q[x]$$
+        be the minimal polynomial of $\al$. 
+        Let $d=\frac{a_1^2}{4}-a_0\in\Q$ and note that $a_0=-\al a_1-\al^2$. Then
+        \begin{align*}
+            \sqrt{d}&=\sqrt{\frac{a_1^2}{4}-a_0}\\
+            &=\sqrt{\frac{a_1^2}{4}+a_1\al+\al^2}\\
+            &=\frac{a_1+2\al}{2}.
+        \end{align*}
+        Hence $\sqrt{d}\in\Q(\al)$. By similar calculations we get $\al=\frac{2\sqrt{d}-a_1}{2}\in\Q(\sqrt{d})$.
+        Hence $K=\Q(\al)=\Q(\sqrt{d})$. Of course, it is not yet the case the $d$ is an integer.
+        Suppose that $d=\frac{p}{q}$. Since $\sqrt{d}=\frac{1}{q^2}\sqrt{qp}\in\Q(\sqrt{qp})$ we have
+        $$K=\Q(\al)=\Q(\sqrt{d})=\Q(\sqrt{qp})$$
+        with $qp\in\Z$ as desired.
+    \end{proof}
+
+    \begin{ex}{21.24}
+        Is every cubic extension of $\Q$ of the form $\Q\left(\sqrt[3]{d}\right)$ for some $d\in\Q$?
+    \end{ex}
+    \begin{sol}
+        No.
+    \end{sol}
+
+    \begin{ex}{21.26}
+        Let $M=\Q(\al)=\Q(1+\sqrt{2}+\sqrt{3})$. Show that $M$ is of degree 4 over $\Q$, determine the minimal polynomial and write $\sqrt{2}$ and $\sqrt{3}$ in the basis $\{1,\al, \al^2,\al^3\}$.
+        Also prove that the group $G=\text{Aut}_\Q(M)$ is isomorphic to $V_4$ and that $f^\al_\Q=\prod_{\sigma\in G}X-\sigma(\al)\in\Q[X]$.
+    \end{ex}
+    \begin{sol}
+        Let $\be = \al-1=\sqrt{2}+\sqrt{3}$. Then clearly $M=\Q(\al)=\Q(\be)$. Let
+        \begin{align*}
+            f(x)&=(x-\sqrt{2}-\sqrt{3})(x+\sqrt{2}-\sqrt{3})(x-\sqrt{2}+\sqrt{3})(x+\sqrt{2}+\sqrt{3})\\
+            &=x^4-10x^2+1\in\Q[x]
+        \end{align*}
+        and so $f(\be)=0$ by construction. 
+        
+        Is $f$ the minimal polynomial of $\be$ in $\Q[x]$? It is if we can prove that $[M:\Q]=4$.
+        From
+        $$ (\sqrt{2}+\sqrt{3})(\sqrt{3}-\sqrt{2})=1 $$
+        It follows that $\be^{-1}=\sqrt{3}-\sqrt{2}$. Therefore
+        $$ \sqrt{2}=\frac12(\be-\be^{-1})\quad\text{and}\quad\sqrt{3}=\frac12(\be+\be^{-1})$$
+        and so $M=\Q(\sqrt{2}+\sqrt{3})=\Q(\sqrt{2},\sqrt{3})$. 
+        Hence we have the towers $M/\Q(\sqrt{2})/Q$ and $M/\Q(\sqrt{3})/Q$. 
+        Let $g(x)=x^2-3$. Suppose it is not the minimal polynomial of $\sqrt{3}$ in $\Q(\sqrt{2})$.
+        Then there exists $a+b\sqrt{2}\in\Q(\sqrt{2})$ such that
+        $$ 0 = g(a+b\sqrt{2})=a^2+2b^2-3+2ab\sqrt{2}.$$
+        But since
+        \begin{equation*}
+            \begin{cases}
+                a^2+2b^2-3=0\\
+                2ab=0
+            \end{cases}
+        \end{equation*}
+        has no solutions it follows that no such element exists.
+        Therefore $g$ is the minimal polynomial of $\sqrt{3}$ and $[M:\Q(\sqrt{2})]=\deg g=2$.
+        Since $x^2-2$ is the minimal polynomial of $\sqrt{2}$ in $\Q$ we conclude that 
+        $$[M:\Q]=[M:\Q(\sqrt{2})]\cdot[\Q(\sqrt{2}):\Q)]=4$$ 
+        and therefore $f$ is the minimal polynomial of $\be$.
+
+        Thus $f(x-1)$ is the minimal polynomial of $\al$ in $\Q$. 
+        From $f(\be)=0$ it follows that $1=\beta(10\beta-\beta^3)$ and so $\be^{-1}=10\beta-\beta^3$.
+        Hence
+        $$\sqrt{2}=\frac12\left(\be-\be^{-1}\right)=\frac12\left(\be-10\be+\be^3\right)=\frac12\left(-9(\al-1)+(\al-1)^3\right)$$
+        and
+        $$\sqrt{3}=\frac12\left(\be+\be^{-1}\right)=\frac12\left(11(\al-1)-(\al-1)^3\right)$$
+
+        Let $G=\text{Aut}(M)$ and take $\sigma\in G$. Then by definition $\sigma(1)=1$ and it follows by induction and the properties of isomorphism that $\sigma(a)=a$ for all $a\in\Z$.
+        Since $1=\sigma(1)=\sigma(a\cdot a^{-1})=\sigma(a)\cdot\sigma(a)^{-1}=a\cdot a^{-1}$ it also follows that $\sigma\left(\frac{p}{q}\right)=\frac{p}{q}$. 
+        Hence $\sigma$ restricted to $\Q$ is simply the identity map. 
+        Therefore $\sigma$ is completely determined by $\sigma(\sqrt{2})$ and $\sigma(\sqrt{3})$.
+        Since $0=\sigma(0)=\sigma(\sqrt{2}^2-2)=\sigma(\sqrt{2})^2-2$ the only options are $\sigma(\sqrt{2})=\pm\sqrt{2}$.
+        Similarly we conclude that $\sigma(\sqrt{3})=\pm\sqrt{3}$. This gives four possible automorphism.
+        Take $\sigma,\tau\in G$ such that $\sigma(\sqrt{2})=-\sqrt{2}, \sigma(x)=x$ $\forall x\in M\setminus\{\sqrt{2}\}$ and $\tau(\sqrt{3})=-\sqrt{3},\tau(x)=x$ $\forall x\in M\setminus\{\sqrt{3}\}$. 
+        Since 
+        $$\sigma\circ\sigma=\tau\circ\tau=\sigma\circ\tau\circ\sigma\circ\tau=e$$
+        where $e$ is the identity map it follows that $G$ is isomorphic to $V_4$, the Klein four-group.
+
+        Lastly, consider
+        \begin{align*}
+            \tilde{f}&=\prod_{\sigma\in G}x-\sigma(\al)\\
+            &=(x-1-\sqrt{2}-\sqrt{3})(x-1+\sqrt{2}-\sqrt{3})(x-1-\sqrt{2}+\sqrt{3})\\&\qquad\qquad (x-1+\sqrt{2}+\sqrt{3}).
+        \end{align*}
+        Hence $\tilde{f}(x)=f(x-1)$ which we already proved is the minimal polynomial of $\al$ in $\Q[x]$.
+
+    \end{sol}
+
+    \begin{ex}{21.29}
+        Take $K=\Q(\al)$ with $f^\al_\Q=x^3+2x^2+1$.
+        \begin{enumerate}
+            \item Determine the inverse of $\al+1$ in the basis $\{1,\al,\al^2\}$ of $K$ over $\Q$.
+            \item Determine the minimal polynomial of $\al^2$ over $\Q$.
+        \end{enumerate}
+    \end{ex}
+    \begin{sol}
+        ${}$
+        \begin{enumerate}
+            \item Since
+                \begin{align*}
+                    0&=\al^3+2\al^2+1\\
+                    &=(\al+1)(\al^2+\al-1)+2.
+                \end{align*}
+                It follows that $(\al+1)^{-1}=-\frac12(\al^2+\al-1)$.
+            \item From $\al^3+2\al^2+1=0$ it follows that $\al^3=-2\al^2-1$.
+                Squaring both sides we get that $\al^6=4\al^4+4\al^2+1$ or alternatively
+                $$\left(\al^2\right)^3-4\left(\al^2\right)^2-4\left(\al^2\right)-1=0.$$
+                By Ex. 19 we know that $\Q(\al)=\Q(\al^2)$.
+                Therefore the minimal polynomial of $\al^2$ over $\Q$ has degree 3 and it follows that
+                $$ f^{\al^2}_\Q(x)=x^3-4x^2-4x-1. $$
+        \end{enumerate}
+    \end{sol}
+
+    \begin{ex}{21.30}
+        Define the cyclotomic field $\Q(\zeta_5)$ and let $\al=\zeta_5^2+\zeta_5^3$.
+        \begin{enumerate}
+            \item Show that $\Q(\al)$ is a quadratic extension of $\Q$ and determine $f^\al_\Q$.
+            \item Prove: $\Q(\al)=\Q(\sqrt{5})$
+            \item Prove: $\cos(2\pi/5)=\frac{\sqrt{5}-1}{4}$ and $\sin(2\pi/5)=\sqrt{\frac{5+\sqrt{5}}{8}}$
+        \end{enumerate}
+    \end{ex}
+    \begin{proof}
+        ${}$ 
+        \begin{enumerate}
+            \item The degree of the 5th cyclotomic polynomial
+            $$\Phi_5(x)=\prod_{\substack{1\leq k\leq 5\\(k,5)=1}}\left(x-e^{\frac{2\pi k}{5}i}\right)=x^4+x^3+x^2+x+1$$
+            is 4 and since $\Phi_5=f^{\zeta_5}_\Q$ it follows that $[\Q(\zeta_5):\Q]=4$.
+            Thus 
+            $$[\Q(\zeta_5):\Q(\alpha)]\mid4.$$ 
+            Note that $\zeta_5^3=\frac{1}{\zeta_5^2}=\overline{\zeta_5^2}$. 
+            Hence $\al=\zeta_5^2+\zeta_5^3=\zeta_5^2+\overline{\zeta_5^2}\in\R$ and so $\Q(\al)\subsetneq\Q(\zeta_5)$.
+            Together with the fact that $\zeta_5$ is a root of $x^3+x^2-\al\in\Q(\al)$ it follows that
+            $$1<[\Q(\zeta_5):\Q(\al)]\leq 3\implies [\Q(\zeta_5):\Q(\al)]=2.$$
+            Finally, since $\Q(\zeta_5)/\Q(\al)/\Q$ is a tower of fields and
+            $$[\Q(\al):\Q]=\frac{[\Q(\zeta_5):\Q]}{[\Q(\zeta_5):\Q(\al)]}=2$$
+            it follows that $\Q(\al)$ is a quadratic extension.
+
+            Let $w=\zeta_5^2$. Then $\al=w+\frac1w$ and $\Phi_5(w)=0$ by definition of $\Phi_5$. Since $w\neq0$ it follows that
+            \begin{align*}
+                0&=1+w+w^2+w^3+w^4\\
+                0&=\frac{1}{w^2}+\frac1w+1+w+w^2\\
+                0&=\left(w+\frac1w\right)^2+w+\dfrac1w-1\\
+                0&=\al^2+\al-1.
+            \end{align*}
+            Since $x^2+x-1$ is monic polynomial of degree 2 we conclude that $f^\al_\Q=x^2+x-1$.
+        \item By construction $\al$ is a root of $x^2+x-1$ and so
+            $$\al\in\left\{\frac{-1\pm\sqrt{5}}{2}\right\}.$$
+            Since we can write $\al$ as polynomial in $\sqrt{5}$ and vice versa it follows that $\Q(\al)=\Q(\sqrt{5})$.
+        \item Let $\zeta_5=e^{\frac{6\pi}{5}i}$. Then $w=\zeta_5^2=e^{\frac{2\pi}{5}i}$ and 
+            $$\cos\frac{2\pi}{5}=\frac{w+\overline{w}}{2}=\frac{\al}{2}.$$
+            Thus $2\cos\frac{2\pi}{5}$ is a root of $f^\al_Q$. Since $\frac{2\pi}{5}$ is in the first quadrant, $\cos\frac{2\pi}{5}$ is positive and so
+            $$\cos\frac{2\pi}{5}=\frac{-1+\sqrt{5}}{4}.$$
+            Therefore we also have
+            \begin{align*}
+                \sin\frac{2\pi}{5}&=\sqrt{1-\cos^2\frac{2\pi}{5}}\\
+                &=\sqrt{\frac{5+\sqrt{5}}{8}}.
+            \end{align*}
+        \end{enumerate}
+    \end{proof}
+    \begin{ex}{21.32}
+        Let $K\subset L$ be a field extension and $\overline{K}$ the algebraic closure of $K$ in $L$. 
+        Prove that every $\alpha\in L\setminus\overline{K}$ is transcendental over $\overline{K}$.
+    \end{ex}
+    \begin{proof}
+        Suppose there exists $\alpha\in L\setminus\overline{K}$ that is algebraic over $\overline{K}$.
+        Let
+        $$f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_0$$
+        be the minimal polynomial of $\alpha$ in $\overline{K}[x]$. Let 
+        $$K_1=K(a_0,\dots,a_{n-1})\aand K_2=K_1(\alpha).$$
+        Then $K_1/K$ is an algebraic extension since $a_0,\dots,a_n\in\overline{K}$ and $K_2/K_1$ is algebraic since $f\in K_1[x]$.
+        So we have the tower of fields $K_2/K_1/K$  and it follows that $K_2/K$ is an algebraic extension and so $\alpha$ is algebraic over $K$.
+        By definition of algebraic closure, $\alpha\in\overline{K}$ which contradicts our assumption. 
+        Therefore $\alpha$ must be transcendental over $\overline{K}$.
+    \end{proof}
+
+    \begin{ex}{21.36}
+        Let $d\in\Z$ be an integer that is not a third power in $\Z$. Prove that the splitting field $\Omega_\Q^{x^3-d}$ has degree 6 over $\Q$.
+        What is the degree if $d$ is a third power?
+    \end{ex}
+    \begin{proof}
+        Let $f(x)=x^3-d$. Suppose $f$ has a root in $r/s\in\Q$. Then $s\mid 1$ and $r\mid d$ so $f(r)=r^3-d=0\implies d=r^3$ which contradicts our assumption.
+        Therefore $f(x)$ has no roots in $\Q$ and since $\deg f=3$ it follows that $f$ is irreducible. Then $\Q[X]/(f)$ is a field and $\alpha\equiv x\mod\left(x^3-d\right)$ is a zero of $f$.
+        Therefore $f$ splits in $\Q(\alpha)$ as
+        $$x^3-d=(x-\alpha)(x^2+\alpha x+\alpha^2)$$
+        and $[\Q(\alpha):\Q]=3$. Let $g(x)=x^2+\alpha x+\alpha^2\in\Q(\alpha)[x]$. Then $\alpha^{-2}g(\alpha x)=x^2+x+1$ and we know that  $x^2+x+1$ is irreducible in $\Q[x]$. 
+        Since $\Q[x]/(x^2+x+1)$ is a quadratic extension, it cannot be a subfield of the cubic extension $\Q[x]/(x^3-d)$ and so $a^{-2}g(ax)$ has no zeros in $\Q(a)$.
+        Therefore $g(x)$ has no zeros in $\Q(a)$ and so it is irreducible in $\Q(a)[x]$. Hence $\Q(\alpha)[x]/(x^2+x+1)\cong\Q(\alpha)(\beta)$ is a quadratic extension for $\beta\equiv x\mod\left(x^2+x+1\right)$.
+        Then 
+        $$f(x)=(x-\alpha)(x-\alpha\beta)(x+\alpha\beta+\alpha)$$
+        and so $\Q(\alpha, \beta)$ is the splitting of $f$.
+        Moreover
+        $$[\Q(\alpha, \beta):\Q]=[\Q(\alpha,\beta):\Q(\alpha)]\cdot[\Q(\alpha):\Q]=2\cdot 3= 6$$
+        as desired.
+
+        If $d=r^3$ for some $r\in\Z$ then $f(x)$ is reducible since
+        $$f(x)=(x-r)(x^2+rx+r^2)\in\Q[x].$$
+        Then $r\beta$ is a root of $X^2+rx+r^2$ and so $\Q(\beta)\cong\Q[x]/(x^2+x+1)$ is the splitting field of $f$.
+    \end{proof}
+
+    \begin{ex}{21.38}
+        Determine the degree of the splitting field of $x^4-4$ and $x^4+4$. Explain why the notation $\Q(\sqrt[4]{4})$ and $\Q(\sqrt[4]{-4})$  is not used for the fields obtained through the adjunction of a zero of, respectively, $x^4-4$ and $x^4+4$ to $\Q$.
+    \end{ex}
+    \begin{sol}
+        Since
+        $$ x^4-4=\left(x+\sqrt{2}\right)\left(x-\sqrt{2}\right)\left(x+\sqrt{2}i\right)\left(x-\sqrt{2}i\right)$$
+        and
+        $$x^4+4=\left(x-1-i\right)\left(x-1+i\right)\left(x+1-i\right)\left(x+1+i\right)$$
+        the splitting fields are $\Omega_\Q^{x^4-4}=\Q(\sqrt{2}, i)$ and $\Omega_\Q^{x^4+4}=\Q(i)$.
+        Since $x^2+1$ has no roots in $\Q$ (only possible roots are $\pm 1$) it is irreducible and so it is the minimal polynomial of $i$ over $\Q$.
+        Therefore $\Q(i)/\Q$ is a quadratic extension. 
+        Moreover, $x^2-2$ is the minimal polynomial of $\sqrt{2}$ (Eisenstein with $p=2$) and $x^2+1$ is minimal polynomial of $i$ over $\Q(\sqrt{2})$ since $\Q(\sqrt{2})\subset\R$.
+        Hence
+        $$\left[\Q\left(\sqrt{2}, i\right):\Q\right]=\left[\Q\left(\sqrt{2}, i\right):\Q\left(\sqrt{2}\right)\right]\left[\Q\left(\sqrt{2}\right):\Q\right]=4.$$   
+    \end{sol}

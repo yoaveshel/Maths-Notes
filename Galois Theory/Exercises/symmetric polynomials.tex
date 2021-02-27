@@ -1,0 +1,268 @@
+\subsection{Symmetric Polynomial}
+    \begin{ex}{14.10}
+        Express the symmetric polynomials $\sum_n T_1^2T_2$ and $\sum_{n} T_1^3T_2$ in the elementary symmetric polynomials.
+    \end{ex}
+    \begin{sol}
+        To get the polynomial $\sum_n T_1^2T_2$ we start with
+        $$
+            s_1s_2=\sum_n T_1\sum_n T_1T_2 = \sum_n T_1^2T_2+3\sum_n T_1T_2T_3 = \sum_n T_1^2T_2+3s_3
+        $$
+        Thus 
+        $$
+            \sum_n T_1^2T_2 = s_1s_2-3s_3
+        $$
+
+        Similarly, to transform the polynomial $\sum_{n} T_1^3T_2$ we start with
+        \begin{align*}
+            s_1^2s_2&=\left(\sum_nT_1\right)^2\sum_nT_1T_2\\
+            &=\left(\sum_n T_1^2+2\sum_n T_1T_2\right)\sum_nT_1T_2\\
+            &=\sum_nT_1^2\sum_n T_1T_2+2s_2^2\\
+            &=\sum_nT_1^3T_2+\sum_n T_1^2T_2T_3+2s_2^2.
+        \end{align*}
+        And since
+        $$
+            s_1s_3=\sum_nT_1\sum_nT_1T_2T_3=\sum_nT_1^2T_2T_3+4\sum_n T_1T_2T_3T_4
+        $$
+        it follows that $\sum_n T_1^2T_2T_3=s_1s_3-4s_4$ and so
+        $$
+            \sum_{n} T_1^3T_2=s_1^2s_2-s_1s_3+4s_4-2s_2^2
+        $$
+    \end{sol}
+
+    \begin{ex}{14.14}
+        Prove: For $n\in\Z_{>0}$, we have $\Delta(X^n+a)=(-1)^{\frac12n(n-1)}n^na^{n-1}$.
+    \end{ex}
+    \begin{proof}
+        Let $f(X)=X^n+a$ and let $\alpha_i$ be its roots. Then $f'(X)=nX^{n-1}$ and
+        $$
+            \Delta(f)=(-1)^{n(n-1)/2}R(f,f').
+        $$
+        Let $f_1(X)=a$ and then $f\equiv f_1\mod(f')$ since $f = f_1+f'\cdot\left(\frac1n X\right)$.
+        Simplifying the resultant we get
+        \begin{align*}
+            R(f,f')&=R(f',f)&&(\text{Property }1)\\
+            &=n^{n}R(f',f_1)&&(\text{Property }3)\\
+            &=n^{n}\cdot\left(n^0\prod_{i=1}^{n-1}f_1(\alpha_i)\right)&&(\text{Property }2)\\
+            &=n^n a^{n-1}
+        \end{align*}
+        and the result follows.
+    \end{proof}
+
+    \begin{ex}{14.15}
+        Calculate the discriminant of the polynomial $f(X)=X^4+pX+q\in\Q(p,q)[X]$.
+    \end{ex}
+    \begin{sol}
+        Then $f'(X)=4X^3+p$ and so 
+        $$f_1(X)=f-f'\cdot h = X^4+pX+q+(4X^3+p)(\frac14 X) = \frac{3p}{4}X+q.$$
+        Then the resultant is
+        \begin{align*}
+            R(f,f')&=R(f',f)&&(\text{Property } 1)\\
+            &=4^{4-1}R(f', f_1)&&(\text{Property } 3)\\
+            &=4^3\left((-1)^{3\cdot 1}R(f_1,f')\right)&&(\text{Property } 1)\\
+            &=-4^3\left(\left(\frac{3p}{4}\right)^3\prod_{i=1}^{1}f'\left(\frac{-4q}{3p}\right)\right)&&(\text{Property } 2)\\
+            &=-3^3p^3\left(4\left(\frac{-4q}{3p}\right)^3+p\right)\\
+            &=4^4q^3-3^3p^4.
+        \end{align*}
+        Therefore the discriminant of $f$ is
+        $$
+            \Delta(f) = (-1)^{4\cdot 3/2}R(f,f') = R(f, f') = 4^4q^3-3^3p^4.
+        $$
+    \end{sol}
+
+    \begin{ex}{14.16}
+        For every $n>1$, determine an expression for the discriminant of the polynomial $f(X) = X^n+pX+q\in\Q(p,q)[X]$.
+    \end{ex}
+    \begin{sol}
+        Let $f(X)=X^n+pX+q\in\Q(p,q)[X]$ for $n>1$. 
+        Then $f'(X)=nX^{n-1}+p$ and $f\equiv f_1\mod(f')$ where
+        $$f_1 = f-f'\cdot h = X^n+pX+q-\left(nX^{n-1}+p\right)\left(\frac1n X\right)=\frac{p(n-1)}{n}X+q.$$
+        The resultant of $f$ and $f'$ is given by
+        \begin{align*}
+            R(f,f') &= R(f', f)&&(\text{Property } 1)\\
+            &=n^{n-1}R(f', f_1)&&(\text{Property } 3)\\
+            &=n^{n-1}\left((-1)^{n-1}R(f_1, f')\right)&&(\text{Property } 1)\\
+            &=(-n)^{n-1}\left(\frac{p(n-1)}{n}\right)^{n-1}\prod_{i=1}^1 f'\left(-\frac{nq}{(n-1)p}\right)&&(\text{Property } 2)\\
+            &=(-1)^{n-1}p^{n-1}(n-1)^{n-1}\left(\frac{(-1)^{n-1}n^nq^{n-1}}{(n-1)^{n-1}p^{n-1}}+p\right)\\
+            &=n^nq^{n-1}+(-1)^{n-1}p^n(n-1)^{n-1}.
+        \end{align*}
+        Hence the discriminant of $f$ is
+        $$
+            \Delta(f)=(-1)^{n(n-1)/2}R(f,f')=(-1)^{n(n-1)/2}\left(n^nq^{n-1}+(-1)^{n-1}p^n(n-1)^{n-1}\right)
+        $$
+    \end{sol}
+
+    \begin{ex}{14.17}
+        Let $f\in\Z[X]$ be a monic polynomial. Prove that the following are equivalent
+        \begin{enumerate}
+            \item $\Delta(f)\neq 0$.
+            \item The polynomial $f$ has no double zeroes in $\C$.
+            \item The decomposition of $f$ in $\Q[X]$ has no multiple prime factors.
+            \item The polynomial $f$ and its derivative $f'$ are relatively prime in $\Q[X]$.
+            \item The polynomial $f\mod p $ and $f' \mod p$ are relatively prime in $\mathbb{F}_p[X]$ for almost all prime numbers $p$.
+        \end{enumerate}
+    \end{ex}
+    \begin{proof}
+        Let  $f\in\Z[X]$ be monic and $\{\alpha_1,\alpha_2,\dots,\alpha_n\}$ it roots in $\C$.
+
+        $(1)\Rightarrow  (2)$. Suppose that $\alpha_i=\alpha_j$ for some $i\neq j$. Then 
+        $$\Delta(f)=\prod_{1\leq i<j\leq n}(\alpha_i-\alpha_j)= 0,$$ 
+        which is a contradiction.
+        Therefore if $f$ has non-zero discriminant it has no double zeroes in $\C$. 
+
+        $(2)\Rightarrow (3)$.
+        
+        $(3)\Rightarrow (4)$.
+
+        $(4)\Rightarrow (5)$. If $f$ and $f'$ are relatively prime in $\Q[X]$ then 
+
+        $(1)\Rightarrow (1)$. 
+    \end{proof}
+
+    \begin{ex}{14.19}
+        Let $f\in\Q[X]$ be a monic polynomial with $n=\deg(f)$ distinct complex roots. Prove: the sign of $\Delta(f)$ is equal to $(-1)^s$ where $2s$ is the number of non-real zeroes of $f$.
+    \end{ex}
+    \begin{proof}
+        Let $\{\alpha_1,\dots,\alpha_{n}\}$ be all the roots of $f$.
+        Then each term $(\alpha_i-\alpha_j)^2$ in the discriminant falls into one of 3 cases
+        \begin{enumerate}
+            \item Both $\alpha_i$ and $\alpha_j$ are non-real. Then
+            \begin{enumerate}
+                \item If $\alpha_j=\overline{\alpha_i}$ then $\alpha_i-\alpha_j$ is purely complex and $(\alpha_i-\alpha_j)^2$ is negative.
+                \item If $\alpha_j\neq\overline{\alpha_i}$ then $\overline{\alpha_i}$ and $\overline{\alpha_j}$ are also roots of $f$ and the term
+                $$(\alpha_i-\alpha_j)^2(\overline{\alpha_i}-\overline{\alpha_j})^2=\left((\overline{\alpha_i-\alpha_j})(\alpha_i-\alpha_j)\right)^2=\abs{\alpha_i-\alpha_j}^2 $$
+                is positive.
+            \end{enumerate}
+            \item $\alpha_i$ is non-real and $\alpha_j$ is real. Then $\overline{\alpha_i}$ is a root of $f$ and the term
+            $$(\alpha_i-\alpha_j)^2(\overline{\alpha_i}-\alpha_j)^2=\abs{\alpha_i-\alpha_j}^2 $$
+            is positive.
+            \item Both $\alpha_i$ and $\alpha_j$ are real. Then $(\alpha_i-\alpha_j)^2$ is positive.
+        \end{enumerate}
+        Since the only negative terms are of the form $(\alpha_i-\overline{\alpha_i})^2$ and there are $2s$ non-real roots the sign of the determinant is $(-1)^s$.
+
+    \end{proof}
+
+    \begin{ex}{14.20}
+        Prove: $f(X)=X^3+pX+q\in\R[X]$ has three (counted with multiplicity) real zeroes $\iff$ $4p^3+27q^\leq 0$.
+    \end{ex}
+    \begin{proof}
+        By Ex. 16 we know that $\Delta(f)=(-1)^3\left(3^3q^2+2^2p^3\right)=-27q^2-4p^3$. 
+        Let $a,b$ and $c$ be the roots of $f$. If $a,b,c\in\R$ then 
+        $$
+        -27q^2-4p^3=\Delta(f)=(a-b)^2(a-c)^2(b-c)^2\geq 0
+        $$
+        and so $4p^3+27q^\leq 0$.
+
+        Now suppose that $a=x+yi$ and $b=x-yi$ are complex conjugates and $c$ is real. Then 
+        \begin{align*}
+            -27q^2-4p^3&=\Delta(f)\\
+            &=(a-b)^2(a-c)^2(b-c)^2\\
+            &=-4y^2\left((a-c)(\overline{a-c})\right)^2\\
+            &=-4y^2\abs{a-c}^2\\
+            &\leq 0.
+        \end{align*}
+        Hence $4p^3+27q^\geq 0$ and the result follows by contraposition.
+    \end{proof}
+        
+    \begin{ex}{14.21}
+        Express $p_4=\sum_nT_1^4$ in elementary symmetric polynomials
+    \end{ex}
+    \begin{sol}
+        Let $n\geq 4$. Starting with
+        \begin{align*}
+            s_1^4 &= \left(\sum_nT_1\right)^4\\& = \sum_n T_1^4+4\sum_n T_1^3T_2+12\sum_n T_1^2T_2T_3+6\sum_nT_1^2T_2^2+24\sum_nT_1T_2T_3T_4.
+        \end{align*}
+        To understand how to coefficients of the sum are obtained, consider the number of ways the $T_i$ can be arranged. 
+        For example, $T_1^4=T_1T_1T_1T_1$ can only be arranged in 1 way but $T_1^2T_2T_3=T_1T_1T_2T_3$ can be arrange in $\frac{4!}{2}=12$ ways (where we divided by 2 since the two $T_1$ can be swapped in any given arrangement).
+        Then
+        $$
+            s_1^2s_2=\left(\sum_n T_1\right)^2s_2=\left(\sum_nT_1^2+2\sum_n T_1T_2\right)s_2 = \sum_n T_1^3T_2+\sum_nT_1^2T_2T_3+2s_2^2.
+        $$
+        So far we have
+        \begin{align*}
+            p_4 &= s_1^4-4\left(s_1^2s_2-2s_2^2-\sum_nT_1^2T_2T_3\right)-12\sum_n T_1^2T_2T_3-6\sum_nT_1^2T_2^2-24\sum_nT_1T_2T_3T_4\\
+            &=s_1^4-4s_1^2s_2+8s_2^2-24s_4-6\sum_nT_1^2T_2^2-8\sum_n T_1^2T_2T_3.
+        \end{align*}
+        So continuing with $\sum_nT_1^2T_2^2$ we get
+        $$
+            s_2^2 = \left(\sum_n T_1T_2\right)^2=\sum_n T_1^2T_2^2+2\sum_n T_1^2 T_2T_3+6\sum_n T_1T_2T_3T_4.
+        $$
+        Finding the coefficients here is slightly trickier since $s_2$ contains pairs not all arrangements are allowed. 
+        For example, $T_1^2T_2^2$ can only come from the pair $T_1T_2$. On the other hand $T_1T_2T_3T_4$ can come from $T_1T_2$ and $T_3T_4$ or $T_1T_4$ and $T_2T_3$ and so on.
+        We choose the first pair (${4\choose 2}=6$ ways) which also fixes the second pair and so there are 6 ways to get $T_1T_2T_3T_4$.
+        Hence
+        \begin{align*}
+            p_4 &= s_1^4-4s_1^2s_2+8s_2^2-24s_4-6\left(s_2^2-2\sum_nT_1^2T_2T_3-6s_4\right)-8\sum_n T_1^2T_2T_3\\
+            &=s_1^4-4s_1^2s_2+2s_2^2+12s_4+4\sum_n T_1^2T_2T_3.
+        \end{align*}
+        Using Exercise 14.10 we get
+        \begin{align*}
+            p_4 &=s_1^4-4s_1^2s_2+2s_2^2+12s_4+4(s_1s_3-4s_4)\\
+            &=s_1^4-4s_1^2s_2+2s_2^2-4s_4+4s_1s_3
+        \end{align*}
+    \end{sol}
+
+    \begin{ex}{14.22}
+        A rational function $f\in\Q[T_1,\dots,T_n]$ is called symmetric if it is invariant under all permutations of the variables $T_i$. Prove that every symmetric rational function is a rational function in the elementary symmetric functions.
+    \end{ex}
+    \begin{proof}
+        Let $f\in\Q[T_1,\dots,T_n]$ be a symmetric rational function. 
+        Then $f=g/h$ for $g,h$ polynomials. If $h$ is a symmetric polynomial then $g=fh$ is symmetric as well.
+        By the fundamental theorem of symmetric polynomial both $g$ and $h$ can be written in terms of elementary symmetric polynomials and we're done.
+        If $h$ is not symmetric, then let 
+        $$\tilde{h}=\prod_{\sigma\in S_n\setminus\{e\}}\sigma(h)$$
+        and then $h\tilde{h}$ is symmetric so $f=\frac{g\tilde{h}}{h\tilde{h}}$ which is again the case above.
+    \end{proof}
+
+    \begin{ex}{14.23}
+        Write $\sum_{n}T_1^{-1}$ and $\sum_n T_1^{-2}$ as rational functions in $\Q[s_1,\dots,s_n]$
+    \end{ex}
+    \begin{sol}
+        Starting with
+        $$
+            \sum_{n}T_1^{-1}=\frac{1}{T_1}+\cdots+\frac{1}{T_n}.
+        $$
+        We multiply by $1=\frac{s_n}{s_n}$ and simplify
+        \begin{align*}
+            \frac{s_n}{s_n}\sum_{n}T_1^{-1}&=\frac{T_1T_2\cdots T_n}{T_1T_2\cdots T_n}\left(\frac{1}{T_1}+\cdots+\frac{1}{T_n}\right)\\
+            &=\frac{s_{n-1}}{s_n}
+        \end{align*}
+
+        For the second expression we present to approaches.
+        \begin{enumerate}
+            \item Observing that 
+                $$\left(\sum_n T_1^{-1}\right)^2=\sum_{n} T_1^{-2}+2\sum_{n}T_1^{-1}T_2^{-1}$$
+            we can write using the previous part
+                $$ \sum_n T_1^{-2} = \frac{s_{n-1}^2}{s_n^2}-2\sum_{n}T_1^{-1}T_2^{-1}$$
+            and multiplying by the second term by $\frac{s_{n}}{s_{n}}$ we get
+                $$ \sum_n T_1^{-2} = \frac{s_{n-1}^2}{s_n^2} - 2\left(\frac{1}{T_1T_2}+\cdots+\frac{1}{T_{n-1}T_n}\right)\frac{T_1\cdots T_n}{T_1\cdots T_n}=\frac{s_{n-1}^2}{s_n^2} - 2\frac{s_{n-2}}{s_n}.$$
+            Hence $\sum_n T_1^{-2}=\frac{s_{n-1}^2-2s_{n-2}s_n}{s_n^2}$.
+            \item The second approach is slightly more involved. We start by multiplying by 1 in a clever (but different) way
+                $$\left(\sum_n T_1^{-2}\right)\frac{s_n^2}{s_n^2}=\left(\frac{1}{T_1^2}+\cdots+\frac{1}{T_n^2}\right)\frac{T_1^2\cdots T_n^2}{T_1^2\cdots T_n^2}=\frac{\sum_n T_1^2\cdots T_{n-1}^2}{s_n^2}.$$
+            Then $\sum_n T_1^2\cdots T_{n-1}^2$ is obviously (condescending much?) a symmetric polynomial and so we can use our trusty algorithm. Starting with
+            \begin{align*}
+                s_1^{2-2}s_2^{2-2}\cdots s_{n-1}^{2-0}&=s_{n-1}^2\\
+                &=\left(\sum_n T_1\cdots T_{n-1}\right)^2\\
+                &=\sum_n T_1^2\cdots T_{n-1}^2 + 2\sum_n T_1^2\cdots T_{n-2}^2T_{n-1}T_n.
+            \end{align*}
+            Moving to the second term
+            \begin{align*}
+                s_1^{2-2}\cdots s_{n-2}^{2-1}s_{n-1}^{1-1}s_n^1&=s_{n-2}s_n\\
+                &=\left(\sum_n T_1\cdots T_{n-2}\right)T_1\cdots T_n\\
+                &=\sum_n T_1^2\cdots T_{n-2}^2 T_{n-1}T_n
+            \end{align*}
+            and it follows that
+            $$\sum_n T_1^2\cdots T_{n-1}^2 = s_{n-1}^2-2s_{n-2}s_n.$$
+            So we conclude that
+            $$ \sum_n T_1^{-2} = \frac{s_{n-1}^2-2s_{n-2}s_n}{s_n^2}$$
+            which is reassuring.
+        \end{enumerate}
+        Note that in the first approach we stumbled upon something rather interesting:
+        $$
+            \sum_n T_1^{-1}\cdots T_k^{-1} = \frac{s_{n-k}}{s_n}
+        $$
+        the proof of which is left as an exercise to the reader.
+    \end{sol}
+
+    \begin{ex}{14.24}
+        
+    \end{ex}
