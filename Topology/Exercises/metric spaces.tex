@@ -1,1 +1,71 @@
 \subsection{Metric Spaces}
+\begin{ex}{20.1a}
+    In $\R^n$ let
+    $$d'(\mathbf{x},\mathbf{y})=\sum_{i=1}^n \abs{x_i-y_i}.$$
+    Show that $d'$ is a metric that induces the usual topology on $\R^n$.
+\end{ex}
+\begin{proof}
+    Clearly $d'$ define a metric. Let $\varepsilon>0$. We will show that
+    \begin{equation}\label{eq:ball-inclusion}
+        B_d\left(\mathbf{x},\tfrac{\varepsilon}{\sqrt{n}}\right)\subset B_{d'}(\mathbf{x},\varepsilon)\subset B_d(\mathbf{x},\mathbf{y})
+    \end{equation}
+    from which the result would follow.
+    Recall the inequality
+    \begin{equation}\label{eq:sqrt-inequality}
+        \sqrt{a_1+\cdots+a_n}\leq\sqrt{a_1}+\cdots+\sqrt{a_n}\leq\sqrt{n\left(a_1+\cdots+a_n\right)},
+    \end{equation}
+    for $a_i\geq 1$. Let $\mathbf{y}\in B_{d'}(\mathbf{x},\varepsilon)$. Then
+    \begin{align*}
+        d(\mathbf{x},\mathbf{y})&=\left(\sum_{i=1}^n(x_i-y_i)^2\right)^\frac12\\
+        &\leq\sum_{i=1}^n\sqrt{\left(x_i-y_i\right)^2}&&(\text{By (\ref{eq:sqrt-inequality})})\\
+        &=\sum_{i=1}^n \abs{x_i-y_i}\\
+        &=d'(\mathbf{x},\mathbf{y})\\
+        &<\varepsilon
+    \end{align*}
+    which proves the right inequality of (\ref{eq:ball-inclusion}). Now let $\mathbf{y}\in B_d\left(\mathbf{x},\tfrac{\varepsilon}{\sqrt{n}}\right)$.
+    Then using the left right inequality of (\ref{eq:sqrt-inequality}) we get
+    \begin{align*}
+        d'(\mathbf{x}, \mathbf{y})&=\sum_{i=1}^n \abs{x_i-y_i}\\
+        &=\sum_{i=1}^n\sqrt{\left(x_i-y_i\right)^2}\\
+        &\leq\sqrt{n}\left(\sum_{i=1}^n(x_i-y_i)^2\right)^\frac12\\
+        &=\sqrt{n}d(\mathbf{x},\mathbf{y})\\
+        &<\sqrt{n}\frac{\varepsilon}{\sqrt{n}}=\varepsilon
+    \end{align*}
+    which proves the left inequality of (\ref{eq:ball-inclusion}) and completes the proof.
+\end{proof}
+
+\begin{ex}{20.3}
+    Let $X$ be a metric space with a metric $d$.
+    \begin{enumerate}
+        \item Show that $d:X\times X\to\R$ is continuous.
+        \item Let $X'$ denote a space having the same underlying set as $X$. Show that if $d:X'\times X'\to\R$ is continuous, then the topology of $X'$ is finer than the topology of $X$.
+    \end{enumerate}
+\end{ex}
+\begin{proof}
+    ${}$
+    \begin{enumerate}
+        \item Let $\varepsilon>0$ and $(x,y)\in X\times X$. Then for $\delta=\varepsilon/2$ the open set $U =B(x,\delta)\times B(y,\delta)$ is a neighborhood of $(x,y)$.
+            Let $d=d(x,y)$ and consider $(d-\varepsilon, d+\varepsilon)$ in $\R$. 
+            Then for $(x',y')\in U$
+            \begin{align*}
+                d(x',y')&\leq d(x',x)+d(x,y)+d(y,y')\\
+                < 2\delta+ d\\
+                < \varepsilon+d
+            \end{align*}
+            and
+            \begin{align*}
+                d(x,y)\leq d(x',x)+d(x',y')+d(y,y')\\
+                <d(x',y')+\varepsilon.
+            \end{align*}
+            Therefore $d(x',y')\in(d-\varepsilon,d+\varepsilon)$ for all $(x',y')\in X\times X$ and so $d(U)\subset (d-\varepsilon,d+\varepsilon)$.
+            Since for any open set $V$ in $\R$ containing $d(x,y)$ there exists a neighborhood $U$ in $X\times X$ such that $d(U)\subset V$ it follows that $d$ is continuous.
+        \item  Suppose $d:X'\times X'\to \R$ is continuous. Let $\varepsilon>0$ and consider
+            $$ U = d^{-1}\left((-\infty,\varepsilon)\right)=\{(x,y)\mid d(x,y)<\varepsilon\}$$
+            which is open in $X'\times X'$ since $d$ is continuous. Let $x\in X$ and $y\in B(x,\varepsilon)$.
+            Since $d(x,y)<\varepsilon$ it follows that $(x,y)\in U$ and so there exists a basis $V_1\times V_2$ element of $X'\times X'$ such
+            $$ (x,y)\in V_1\times V_2\subset U.$$
+            Where $V_2$ is an open neighborhood in $X'$ containing $y$.
+            Since for any $z\in V_2$, $(x,z)\in U$ it follows that $d(x,z)<\varepsilon$ and so $z\in B(x,\epsilon)$. Therefore $V_2\subset B(x,\epsilon)$.
+            Since for all $y$ there exists an open neighborhood $V\subset B(x,\varepsilon)$ in $X'$ containing $y$ and it follows that $X\subset X'$.
+    \end{enumerate}
+\end{proof}

@@ -26,9 +26,48 @@
 \end{proof}
 
 \begin{ex}{19.10}
-    Let $A$ be a set;let $\left\{X_\alpha\right\}_{\alpha\in J}$ be an indexed family of spaces; and let $\{f_\alpha\}$ be an indexed family of functions $f_\alpha:A\to X_\alpha$.
+    Let $A$ be a set; let $\left\{X_\alpha\right\}_{\alpha\in J}$ be an indexed family of spaces; and let $\{f_\alpha\}$ be an indexed family of functions $f_\alpha:A\to X_\alpha$.
     \begin{enumerate}
         \item Show that there is a unique coarsest topology $\Ta$ on $A$ relative to which each of the functions $f_\alpha$ is continuous.
-        \item L
+        \item Let
+            $$\Ss_\beta =\left\{f^{-1}_\beta\left(U_\beta\right)\mid U_\beta \text{ is open in } X_\beta\right\}$$
+            and let $S=\bigcup_\alpha \Ss_\alpha$. Show that $\Ss$ is a subbasis for $\Ta$.
+        \item Show that a map $g:Y\to A$ is continuous relative to $\Ta$ if and only if each map $f_\alpha\circ g$ is continuous. 
+        \item Let $f:A\to\prod X_\alpha$ be defined by
+            $$ f(a)=\left(f_\alpha(a)\right)_{\alpha\in J}.$$
+            Let $Z$ denote the subspace $f(A)$  of the product space $\prod X_\alpha$. Show that the image under $f$ of each element of $\Ta$ is an open set of $Z$.
     \end{enumerate}
 \end{ex}
+\begin{sol}
+    ${}$
+    \begin{enumerate}
+        \item Let $\mathcal{C}$ be the collection of all topologies on $A$ such that each $f_\alpha$ is continuous.
+            This collection is not empty since every function is continuous relative to $\mathcal{P}(A)$. Let $\Ta=\bigcap_{\Ta'\in\mathcal{C}}\Ta'$.
+            By Exercise 13.4 we know that $\Ta$ is the unique coarsest topology in the collection. Since $\Ta\in\mathcal{C}$ each $f_\alpha$ is continuous relative to $\Ta$.
+        \item We show that $\Ss$ is a subbasis by proving that $\Ta'\in\mathcal{C}$ if and only if $\Ss\subset\Ta$. Since $\Ta$ is the coarsest topology in $\mathcal{C}$, it is the smallest topology containing $\Ss$ and so $\Ss$ is a basis.
+        
+        Suppose $\Ta\in\mathcal{C}$ and let $U\in\Ss$. Then $U=f^{-1}_\beta\left(U_\beta\right)$ for some $U_\beta$ open in $X_\beta$. Since $\Ta'\in\mathcal{C}$ it follows that $U$ is open in $\Ta'$ and so $\Ss\subset\Ta$.
+
+        Conversely suppose that $\Ta'$ is a topology on $A$ such that $\Ss\subset\Ta'$. Then for any $U_\beta$ open in $X_\beta$, $f^{-1}_\beta\left(U_\beta\right)\in\Ss$ and so it is open in $\Ta$.
+        Hence every $f_\alpha$ is continuous relative to $\Ta'$ and so $\Ta'\in\mathcal{C}$.
+        \item Suppose $g:Y\to A$ is continuous and let $U_\beta$ be an open subset of $X_\beta$. 
+        Then $U=f^{-1}_\beta\left(U_\beta\right)$ is open in $A$ and so $g^{-1}(U)$ is open in $Y$. 
+        Since $\beta$ was arbitrary, it follows that $f_\alpha\circ g:Y\to X_\alpha$ is continuous for all $\alpha$.
+
+        Conversely suppose that  $f_\alpha\circ g:Y\to X_\alpha$ is continuous for all $\alpha$ and let $U$ be open in $A$.
+        By part (b) we know that $U$ is an arbitrary union of finite intersections of elements $f^{1}_\beta\left(U_\beta\right)\in\Ss$. 
+        There $g^{-1}(U)$ is an arbitrary union of finite intersections of elements of the form $g^{-1}\left(f^{-1}_\beta\left(U_\beta\right)\right)=\left(f_\beta\circ g\right)^{-1}\left(U_\beta\right)$ which are all open in $Y$.
+        Hence $g^{-1}(U)$ is open in $Y$ and so $g$ is continuous.
+        \item Let $U$ be an open subset of $A$ and consider $f(U)=\left(f_\alpha(U)\right)_{\alpha\in J}$.
+            Let $\mathbf{y}\in f\left(U\right)$ such that $\mathbf{y}=f(a)$ for some $a\in A$. 
+            Then there exists a basis element $B_A$ such that $a\in B_A$. By part (b) $B_A$ is a finite intersection of preimages of open sets. 
+            Hence
+            $$ B_A=\prod_{\alpha\in I}f^{-1}_\alpha\left(U_\alpha\right)$$
+            for some finite $I\subset J$. Then the element
+            $$ V = \prod_{\alpha\in I}U_\alpha\times\prod_{\alpha\in J\setminus I}X_\alpha$$
+            is open in $\prod X_\alpha$ since $I$ is finite. Then $B_Z=V\cap Z$ is a basis element of $Z$. 
+            Furthermore, since $\mathbf{y}=f(a)\in f(A)=Z$ and $y_\alpha=f_\alpha(a)\in U_\alpha$ for all $\alpha\in I$ and $y_\alpha\in X_\alpha$ for all $\alpha\in J\setminus I$ it follows that $\mathbf{y}\in B_Z$.
+            Since $\mathbf{y}$ was arbitrary, $f(U)$ is an arbitrary union of basis elements in $Z$ and so it is open in $Z$. 
+            
+    \end{enumerate}
+\end{sol}
