@@ -1,1 +1,39 @@
 \subsection{The Quotient Topology}
+\begin{ex}{22.2}
+    ${}$
+    \begin{enumerate}
+        \item Let $p:X\to Y$ be a continuous map. Show that if there is a continuous map $f:Y\to X$ such that $p\circ f$ is the identity map on $Y$, then $p$ is a quotient map.
+        \item If $A\subset X$, a retraction of $X$ onto $A$ is a continuous map $r:X\to A$ such that $r(a)=a$ for all $a\in A$. Show that a retraction in a quotient map.
+    \end{enumerate}
+\end{ex}
+\begin{proof}
+    ${}$
+    \begin{enumerate}
+        \item Let $y\in Y$. Then $(p\circ f)(y)=p\left(f(y)\right)=y$ and so $p$ is surjective. 
+            Let $U$ be an open subset of $Y$. Then $p^{-1}(U)$ is open in $X$ since $p$ is continuous.
+            Now suppose that $U$ is a subset of $Y$ such that $p^{-1}(U)$ is open in $X$. Then $f^{-1}\left(p^{-1}(U)\right)=(p\circ f)^{-1}(U)=U$ since $f$ is continuous.
+            It follows that $p$ is a quotient map.
+        \item Let $i:A\to X$ be given by $i(a)=a$ for each $a\in A$. Let $U$ be open in $X$. Then $i^{-1}(U)=U\cap A$ is open in $A$ by definition of subspace topology. Therefore $i$ is continuous.
+            Since $r\circ i$ is the identity on $A$ it follows by part (a) the $r$ is a quotient map.
+    \end{enumerate}
+\end{proof}
+
+\begin{ex}{22.3}
+    Let $\pi_1:\R\times\R\to\R$ be projection on the first coordinate. 
+    Let $A$ be the a subspace of $\R\times\R$ consisting of all points $(x,y)$ for which either $x\geq 0$ or $y=0$.
+    Let $q:A\to\R$ be obtained by restricting $\pi_1$. Show that $\pi$ is a quotient map that is neither closed not open.
+\end{ex}
+\begin{proof}
+    Let $x\in\R$. Then $(x,0)\in A$ and $q\left((x,0)\right)=x$. Since for $U$ open in $\R$, $\pi^{-1}(U)$ is open in $\R\times\R$ it follows that $q^{-1}(U)=\pi^{-1}(U)\cap A$ is open in $A$.
+    Therefore $q$ is continuous. Let $i:\R\to\R\times\R$ be given by $x\mapsto(x,0)$. 
+    Then for $U\times V$ open in $\R\times\R$, we have that
+    $$i^{-1}(U\times V)=\begin{cases}
+        U,&\text{if } 0\in V\\
+        \varnothing,&\text{otherwise}\\
+    \end{cases}$$
+    is open in $\R$ and so $i$ is continuous. 
+    Since $i(\R)\subset A$ it follows that $i':\R\to A$ is continuous. 
+    Since $(q\circ i')(x)=q((x,0))=x$ is the identity on $\R$ it follows by Exercise 2 that $q$ is a quotient map.
+    Consider the set $[0,1)\times(0,1)$ which is open in $A$, but $q\left([0,1)\times(0,1)\right)=[0,1)$ is not open in $\R$.
+    Therefore $q$ is not an open map. Similarly, consider 
+\end{proof}

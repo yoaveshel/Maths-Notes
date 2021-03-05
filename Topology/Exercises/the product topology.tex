@@ -1,10 +1,13 @@
 \subsection{The Product Topology}
 \begin{ex}{19.3}
-    If each space $X_\alpha$ is Hausdorff, then $X =\prod_\alpha X_\alpha$ is Hausdorff in both the box and product topology.
+    If each space $X_\alpha$ is Hausdorff, then $X =\prod_\alpha X_\alpha$ is Hausdorff 
+    in both the box and product topology.
 \end{ex}
 \begin{proof}
-    Let $\mathbf{x}, \mathbf{y}\in X$ such that $\mathbf{x}\neq\mathbf{y}$. Then $x_\beta\neq y_\beta$ for at least one $\beta\in J$.
-    Then there exists disjoint open neighborhoods $W_x$ and $W_y$ around $x_\beta$ and $y_\beta$ in  $X_\beta$. Let
+    Let $\mathbf{x}, \mathbf{y}\in X$ such that $\mathbf{x}\neq\mathbf{y}$. 
+    Then $x_\beta\neq y_\beta$ for at least one $\beta\in J$.
+    Then there exists disjoint open neighborhoods $W_x$ and $W_y$ around $x_\beta$ 
+    and $y_\beta$ in  $X_\beta$. Let
     $$
     U_\alpha=
     \begin{cases}
@@ -18,56 +21,111 @@
         X_\alpha,&\alpha\neq\beta\\
     \end{cases}.
     $$
-    Then $\prod_\alpha U_\alpha$ and $\prod_\alpha V_\alpha$ are disjoint and open in both the product and box topologies
-    (open in the box topology since they are a product of open sets and in the product topology since they have finitely many components that are not all of $X_\alpha$).
-    To prove that they are disjoint, suppose there exists $\mathbf{z}\in\left(\prod_\alpha U_\alpha\right)\cap\left(\prod_\alpha V_\alpha\right)$.
+    Then $\prod_\alpha U_\alpha$ and $\prod_\alpha V_\alpha$ are disjoint and open in both the 
+    product and box topologies
+    (open in the box topology since they are a product of open sets and in the product topology 
+    since they have finitely many components that are not all of $X_\alpha$).
+    To prove that they are disjoint, suppose there exists 
+    $\mathbf{z}\in\left(\prod_\alpha U_\alpha\right)\cap\left(\prod_\alpha V_\alpha\right)$.
     Then $z_\beta\in U_\beta\cap V_\beta=W_x\cap W_y=\varnothing$.
     It follows that $X$ is Hausdorff.
 \end{proof}
 
+\begin{ex}{19.7}
+    Let $\R^\infty$ be a subset of $\R^\omega$ consisting of all sequences that are 
+    "eventually zero", that is, all sequences $(x_1,x_2,\dots)$ such that $x_i=0$ for 
+    all $i\geq n$ for some $n\in\N$.
+    What is the closure of $\R^\infty$ in $\R^\omega$ in the box and product topologies?
+\end{ex}
+\begin{sol}
+    We start with the box topology. Let $\mathbf{x}\in\R^\omega\setminus\R^\infty$. 
+    Then let $J$ be an index set such that $x_j\neq 0$ for all $j\in J$. 
+    Note that $J$ is infinite since $\mathbf{x}\not\in\R^\infty$.
+    Then there exists an open neighborhood $U_j$ around $x_j$ that does not contain 0.
+    Let $U=\prod_{i\in N} V_i$ where
+    $$V_i=\begin{cases}
+        U_i,& i\in J\\
+        A_i\text{ open in $\R$ and } x_i\in A_i,&i\not\in j
+    \end{cases}.$$
+    Since for any $(y_1,y_2,\dots)\in U$, $y_i\neq 0$ for infinitely many $i$, it follows that 
+    $(y_1,y_2,\dots)\not\in\R^\infty$ and so $U\cap\R^\infty=\varnothing$.
+    Therefore for any $\mathbf{x}\in\R^\omega\setminus\R^\infty$ there exists a neighborhood $U$ 
+    containing $\mathbf{x}$ such that $U\subset\R^\omega\setminus\R^\infty$ and it follows that 
+    $\R^\omega\setminus\R^\infty$ is open and so $\R^\infty$ is closed.
+    Therefore $\overline{\R^\infty}=\R^\infty$ in the box topology.
+
+    We now consider the product topology. 
+    We will show that $\Int \R^\omega\setminus\R^\infty =\varnothing$ and so $\R^\infty$ is dense in $\R^\omega$.
+    Let $U$ be an basis element in $\R^\omega$ and $J$ an index set such that $U_j\subsetneq\R$ for all $j\in J$.
+    Then $J$ is finite by definition of the product topology. 
+    So there exists a sequence $\mathbf{y}=(y_1,y_2,\dots)$ in $\R^\infty$ such that $y_i\in U_i$ for $i\in J$ and $y_i=0$ otherwise.
+    Then $\mathbf{y}\in U$. Therefore there is no open set contained in $\R^\omega\setminus\R^\infty$ and it follows that $\Int \R^\omega\setminus\R^\infty =\varnothing$.
+    Hence $\R^\infty$ is dense in $\R^\omega$ and so $\overline{\R^\infty}=\R^\omega$. 
+\end{sol}
+
 \begin{ex}{19.10}
-    Let $A$ be a set; let $\left\{X_\alpha\right\}_{\alpha\in J}$ be an indexed family of spaces; and let $\{f_\alpha\}$ be an indexed family of functions $f_\alpha:A\to X_\alpha$.
+    Let $A$ be a set; let $\left\{X_\alpha\right\}_{\alpha\in J}$ be an indexed family of spaces; 
+    and let $\{f_\alpha\}$ be an indexed family of functions $f_\alpha:A\to X_\alpha$.
     \begin{enumerate}
-        \item Show that there is a unique coarsest topology $\Ta$ on $A$ relative to which each of the functions $f_\alpha$ is continuous.
+        \item Show that there is a unique coarsest topology $\Ta$ on $A$ relative to which each of the 
+        functions $f_\alpha$ is continuous.
         \item Let
             $$\Ss_\beta =\left\{f^{-1}_\beta\left(U_\beta\right)\mid U_\beta \text{ is open in } X_\beta\right\}$$
             and let $S=\bigcup_\alpha \Ss_\alpha$. Show that $\Ss$ is a subbasis for $\Ta$.
-        \item Show that a map $g:Y\to A$ is continuous relative to $\Ta$ if and only if each map $f_\alpha\circ g$ is continuous. 
+        \item Show that a map $g:Y\to A$ is continuous relative to $\Ta$ if and only if each map 
+        $f_\alpha\circ g$ is continuous. 
         \item Let $f:A\to\prod X_\alpha$ be defined by
             $$ f(a)=\left(f_\alpha(a)\right)_{\alpha\in J}.$$
-            Let $Z$ denote the subspace $f(A)$  of the product space $\prod X_\alpha$. Show that the image under $f$ of each element of $\Ta$ is an open set of $Z$.
+            Let $Z$ denote the subspace $f(A)$  of the product space $\prod X_\alpha$. 
+            Show that the image under $f$ of each element of $\Ta$ is an open set of $Z$.
     \end{enumerate}
 \end{ex}
 \begin{sol}
     ${}$
     \begin{enumerate}
-        \item Let $\mathcal{C}$ be the collection of all topologies on $A$ such that each $f_\alpha$ is continuous.
-            This collection is not empty since every function is continuous relative to $\mathcal{P}(A)$. Let $\Ta=\bigcap_{\Ta'\in\mathcal{C}}\Ta'$.
-            By Exercise 13.4 we know that $\Ta$ is the unique coarsest topology in the collection. Since $\Ta\in\mathcal{C}$ each $f_\alpha$ is continuous relative to $\Ta$.
-        \item We show that $\Ss$ is a subbasis by proving that $\Ta'\in\mathcal{C}$ if and only if $\Ss\subset\Ta$. Since $\Ta$ is the coarsest topology in $\mathcal{C}$, it is the smallest topology containing $\Ss$ and so $\Ss$ is a basis.
+        \item Let $\mathcal{C}$ be the collection of all topologies on $A$ such that each $f_\alpha$ is 
+        continuous.
+            This collection is not empty since every function is continuous relative to $\mathcal{P}(A)$. 
+            Let $\Ta=\bigcap_{\Ta'\in\mathcal{C}}\Ta'$.
+            By Exercise 13.4 we know that $\Ta$ is the unique coarsest topology in the collection. 
+            Since $\Ta\in\mathcal{C}$ each $f_\alpha$ is continuous relative to $\Ta$.
+        \item We show that $\Ss$ is a subbasis by proving that $\Ta'\in\mathcal{C}$ if and only if 
+        $\Ss\subset\Ta$. Since $\Ta$ is the coarsest topology in $\mathcal{C}$, it is the smallest topology containing $\Ss$ and so $\Ss$ is a basis.
         
-        Suppose $\Ta\in\mathcal{C}$ and let $U\in\Ss$. Then $U=f^{-1}_\beta\left(U_\beta\right)$ for some $U_\beta$ open in $X_\beta$. Since $\Ta'\in\mathcal{C}$ it follows that $U$ is open in $\Ta'$ and so $\Ss\subset\Ta$.
+        Suppose $\Ta\in\mathcal{C}$ and let $U\in\Ss$. Then $U=f^{-1}_\beta\left(U_\beta\right)$ 
+        for some $U_\beta$ open in $X_\beta$. Since $\Ta'\in\mathcal{C}$ it follows that $U$ is open 
+        in $\Ta'$ and so $\Ss\subset\Ta$.
 
-        Conversely suppose that $\Ta'$ is a topology on $A$ such that $\Ss\subset\Ta'$. Then for any $U_\beta$ open in $X_\beta$, $f^{-1}_\beta\left(U_\beta\right)\in\Ss$ and so it is open in $\Ta$.
+        Conversely suppose that $\Ta'$ is a topology on $A$ such that $\Ss\subset\Ta'$. Then for any 
+        $U_\beta$ open in $X_\beta$, $f^{-1}_\beta\left(U_\beta\right)\in\Ss$ and so it is open in $\Ta$.
         Hence every $f_\alpha$ is continuous relative to $\Ta'$ and so $\Ta'\in\mathcal{C}$.
         \item Suppose $g:Y\to A$ is continuous and let $U_\beta$ be an open subset of $X_\beta$. 
         Then $U=f^{-1}_\beta\left(U_\beta\right)$ is open in $A$ and so $g^{-1}(U)$ is open in $Y$. 
-        Since $\beta$ was arbitrary, it follows that $f_\alpha\circ g:Y\to X_\alpha$ is continuous for all $\alpha$.
+        Since $\beta$ was arbitrary, it follows that $f_\alpha\circ g:Y\to X_\alpha$ is continuous 
+        for all $\alpha$.
 
-        Conversely suppose that  $f_\alpha\circ g:Y\to X_\alpha$ is continuous for all $\alpha$ and let $U$ be open in $A$.
-        By part (b) we know that $U$ is an arbitrary union of finite intersections of elements $f^{1}_\beta\left(U_\beta\right)\in\Ss$. 
-        There $g^{-1}(U)$ is an arbitrary union of finite intersections of elements of the form $g^{-1}\left(f^{-1}_\beta\left(U_\beta\right)\right)=\left(f_\beta\circ g\right)^{-1}\left(U_\beta\right)$ which are all open in $Y$.
+        Conversely suppose that  $f_\alpha\circ g:Y\to X_\alpha$ is continuous for all $\alpha$ and 
+        let $U$ be open in $A$.
+        By part (b) we know that $U$ is an arbitrary union of finite intersections of elements 
+        $f^{1}_\beta\left(U_\beta\right)\in\Ss$. 
+        There $g^{-1}(U)$ is an arbitrary union of finite intersections of elements of the form 
+        $g^{-1}\left(f^{-1}_\beta\left(U_\beta\right)\right)=\left(f_\beta\circ g\right)^{-1}\left(U_\beta\right)$ 
+        which are all open in $Y$.
         Hence $g^{-1}(U)$ is open in $Y$ and so $g$ is continuous.
         \item Let $U$ be an open subset of $A$ and consider $f(U)=\left(f_\alpha(U)\right)_{\alpha\in J}$.
             Let $\mathbf{y}\in f\left(U\right)$ such that $\mathbf{y}=f(a)$ for some $a\in A$. 
-            Then there exists a basis element $B_A$ such that $a\in B_A$. By part (b) $B_A$ is a finite intersection of preimages of open sets. 
+            Then there exists a basis element $B_A$ such that $a\in B_A$. By part (b) $B_A$ is a finite 
+            intersection of preimages of open sets. 
             Hence
             $$ B_A=\prod_{\alpha\in I}f^{-1}_\alpha\left(U_\alpha\right)$$
             for some finite $I\subset J$. Then the element
             $$ V = \prod_{\alpha\in I}U_\alpha\times\prod_{\alpha\in J\setminus I}X_\alpha$$
             is open in $\prod X_\alpha$ since $I$ is finite. Then $B_Z=V\cap Z$ is a basis element of $Z$. 
-            Furthermore, since $\mathbf{y}=f(a)\in f(A)=Z$ and $y_\alpha=f_\alpha(a)\in U_\alpha$ for all $\alpha\in I$ and $y_\alpha\in X_\alpha$ for all $\alpha\in J\setminus I$ it follows that $\mathbf{y}\in B_Z$.
-            Since $\mathbf{y}$ was arbitrary, $f(U)$ is an arbitrary union of basis elements in $Z$ and so it is open in $Z$. 
+            Furthermore, since $\mathbf{y}=f(a)\in f(A)=Z$ and $y_\alpha=f_\alpha(a)\in U_\alpha$ for all 
+            $\alpha\in I$ and $y_\alpha\in X_\alpha$ for all $\alpha\in J\setminus I$ it follows that 
+            $\mathbf{y}\in B_Z$.
+            Since $\mathbf{y}$ was arbitrary, $f(U)$ is an arbitrary union of basis elements in $Z$ and 
+            so it is open in $Z$. 
             
     \end{enumerate}
 \end{sol}

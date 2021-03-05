@@ -42,8 +42,28 @@
 \end{proof}
 
 \begin{ex}{22.12}
-    
+    Let $q$ be a prime power.
+    \begin{enumerate}
+        \item For what $q$ is the quadratic extension $\F_{q^2}$ of $\F_q$ of the form $\F_q(\sqrt{x})$ with $x\in\F_q$?
+        \item For what $q$ is the cubic extension $\F_{q^3}$ of $\F_q$ of the form $\F_q(\sqrt[3]{x})$ with $x\in\F_q$?
+    \end{enumerate}
 \end{ex}
+\begin{sol}
+    ${}$
+    \begin{enumerate}
+        \item Let $\varphi:\F_q\to\F_q$ be given by $\varphi(a)=a^2$. If $q=p^n$ is even, then $p=2$ and $\varphi$ is a field isomorphism.
+            Therefore $\F_q(\sqrt{b})=\F_q$ for all $x\in\F_q$. If $q$ is odd, then $(-1)^2=1=1^2$ so the map is not injective and so it's not surjective.
+            Therefore there exists $b\in\F_q$ such that $\sqrt{b}\not\in\F_q$. Then $x^2-b$ is the minimal polynomial of $b$ and so $\F_q(\sqrt{b})$ is a quadratic extension.
+            Hence $\F_q(\sqrt{b})=\F_{q^2}$.
+        \item Let $\varphi:\F_q\to\F_q$ be given by $\varphi(a)=a^2$. 
+            If $q\equiv 0\mod 3$ then $\varphi$ is a field isomorphism and so $\F_q(\sqrt[3]{b})=\F_q$ for all $b\in\F_q$.
+            If $q\equiv 1\mod 3$ then $\abs{\F_q^*}\equiv 0\mod 3$. 
+            Hence there exists an element $a\in\F_q$ of order three so $\varphi(a)=1=\varphi(1)$ and so $\varphi$ is not injective.
+            It follows that there exists $b\in\F_q$ such that $\sqrt[3]{b}\not\in\F_q$. Then $F_q(\sqrt[3]{b})$ is a cubic extension and so it is equal to $F_{q^3}$.
+            Lastly if $q\equiv 2\mod 3$ then $\abs{\F_q^*}\equiv 1\mod 3$ and so there is no element of order three in $\F_q$.
+            Therefore $\varphi$ is injective hence surjective and so every element has a cube root. It follows that $\F_q(\sqrt[3]{b})=\F_q, \forall b\in\F_q$. 
+    \end{enumerate} 
+\end{sol}
 
 \begin{ex}{22.13}
     
@@ -53,5 +73,25 @@
     Determine all the primes for which $\F_p[x]/(x^4+1)$ is a field. 
 \end{ex}
 \begin{sol}
+    If $p=2$ then $x^4+1=(x^2+1)^2=(x+1)^4$ so $p$ is odd. 
+    Then $x^4+1$ divides $x^8-1$ in $\F_p[x]$. 
+    Since $p^2-1=(p+1)(p-1)$ is a product of two consecutive even numbers it follows that $8\mid p^2-1$.
+    Hence $x^8-1$ splits completely in $\F_{p^2}[x]$. So
+    $$x^8-1=(x-1)(x-\beta)\cdots(x-\beta^7)=(x^4+1)(x^4-1)$$
+    for some $\beta\in\F_{p^2}$. 
+    If $x^4+1$ is irreducible in $\F_p[x]$, then for any root $\alpha$ of $x^4+1$, $\F_p(\alpha)$ is an extension of degree four.
+    But $x^4+1$ splits completely in a quadratic extension and so it is reducible in $\F_p[x]$.
+
+    \noindent\textbf{Alternative solution}
     
+    If $-1$ is a square in $\F_p$ then $a^2=-1$ for some $a\in\F_p$. So
+    $$x^4+1=x^4-a^2=(x^2+a)(x^2-a).$$
+    If $2$ is a square in $\F_p$ then $b^2=2$ for some $b\in\F_p$ and so
+    $$x^4+1=(x^2+1)^2-(bx)^2=(x^2+1+bx)(x^2+1-bx).$$
+    Lastly, if neither $-1$ nor $2$ are squares in $\F_p$, then $p$ is odd (since $-1=1=1^2$ in $\Z/2\Z$).
+    Then $\F_p^*=\{1,\alpha, \alpha^2,\dots,\alpha^{p-1}\}$ is cyclic subgroup of even order. 
+    Since $-1$ and $2$ are odd powers of $\alpha$, it follows that their product $-2$ is an even power of $\alpha$ and so it is a square.
+    So let $c\in\F_p$ such that $c^2=-2$. Then
+    $$x^4+1=(x^2-1)-(cx)^2=(x^2-1-cx)(x^2-1+cx).$$
+    Therefore $x^4+1$ is reducible modulo every prime.
 \end{sol}

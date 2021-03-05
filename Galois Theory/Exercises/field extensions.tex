@@ -165,10 +165,10 @@
         Since $f$ modulo 5 has no cubic terms it follows that $\deg a = 6$ and $\deg b = 1$ and so $f$ is irreducible. Therefore $[\Q(\sqrt{2},\sqrt[3]{3}):\Q]=\deg f=6$
         and since $\Q(\sqrt{2}\sqrt[3]{3})\subset\Q(\sqrt{2},\sqrt[3]{3})$ it follows that $\Q(\sqrt{2}\sqrt[3]{3})=\Q(\sqrt{2},\sqrt[3]{3})$. 
 
-        Lastly, Note that $\left(\sqrt{2}\sqrt[3]{3}\right)^2=2\left(\sqrt[3]{3}\right)^2\in\Q(\sqrt{2}\sqrt[3]{3})$ and so
-        $$\left(\sqrt{2}+\sqrt[3]{3}\right)^2=2+2\sqrt{2}\sqrt[3]{3}+\left(\sqrt[3]{3}\right)^2\in\Q(\sqrt{2}\sqrt[3]{3})$$
-        
-        
+        Let $\alpha=\sqrt{2},\beta=\sqrt[3]{3}$ and $\gamma=\alpha+\beta$. Let $L=\mathbb{Q}(\alpha, \beta)$, $K=\mathbb{Q}(\gamma)$ and suppose that $\alpha,\beta\not\in K$. Since if one of $\alpha,\beta$ is in $K$, we get the other one for free it follows that $L=K(\alpha)=K(\beta)$. Then the minimal polynomial of $\alpha$ in $K[X]$ is of degree 2 since $\alpha$ is a root of $X^2-2$ and we assumed $\alpha\not\in K$. Since $X^3-3$ has one real root and two non-real roots it follows that it is the minimal polynomial of $\beta$ in $K[X]$. Hence we conclude
+        $$2=[K(\alpha):K]=[L:K]=[K(\beta):K]=3,$$
+        clearly a contradiction. Therefore $K=L$ and so
+        $\Q(\sqrt{2}\sqrt[3]{3})\subset\Q(\sqrt{2},\sqrt[3]{3}).$
     \end{proof}
 
     \begin{ex}{21.29}
@@ -270,8 +270,30 @@
     \end{proof}
 
     \begin{ex}{21.35}
-        Let $f\in K[x]$ be a polynomial of degree $n\geq 1$. Prove: $\left[\Omega_K^f:K\right]$ divides $n!$. 
+        Let $f\in K[x]$ be a polynomial of degree $n\geq 1$. Prove: $[\Omega_K^f:K]$ divides $n!$. 
     \end{ex}
+    \begin{proof}
+        If $n=1$, the $K$ is splitting field of $f$ and $[K:K]=1$ divides $n!=1$.
+        Suppose the statement holds for some $n\geq 1$. There are two cases
+        \begin{enumerate}
+            \item Suppose $f$ is irreducible, $\deg f = n+1$ and $\alpha$ is a root of $f$.
+                Then $K(\alpha)$ is an extension of degree $n+1$ and $f(x)=(x-\alpha)g(x)\in K(\alpha)[x]$.
+                Let $M$ be the splitting field of $g$ over $K(\alpha)$. 
+                Then $[M:K(\alpha)]$ divides $n!$ by the induction hypothesis.
+                But $M$ is also the splitting field of $f$ over $K$ and so
+                $$[M:K]=[M:K(\alpha)][K(\alpha):K]=[M:K(\alpha)](n+1)$$
+                which divides $(n+1)!$.
+            \item Suppose $f$ is a reducible polynomial of degree $n+1$. Let $f(x)=h(x)g(x)$ with $h$ irreducible. 
+                Construct the tower of fields $M/L/K$ such that $L$ is the splitting field of $h$ over $K$ and $M$ is the splitting field of $g$ over $L$.
+                Then $[L:K]$ divides $\deg h!$ and $[M:L]$ divides $\deg g!$ by induction hypothesis. 
+                Hence 
+                $$[M:K]=[M:L][L:K]$$ 
+                divides $\deg h!\cdot\deg g!$.
+                And since 
+                $${n+1\choose \deg h}=\frac{(n+1)!}{\deg h!(n+1-\deg h)!}=\frac{(n+1)!}{\deg h!\deg g!}$$
+                is an integer it follows that $[M:K]$ divides $(n+1)!$.
+        \end{enumerate}
+    \end{proof}
 
     \begin{ex}{21.36}
         Let $d\in\Z$ be an integer that is not a third power in $\Z$. Prove that the splitting field $\Omega_\Q^{x^3-d}$ has degree 6 over $\Q$.
