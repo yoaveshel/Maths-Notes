@@ -148,7 +148,7 @@
     \end{sol}
 
     \begin{ex}{21.28}
-        Prove $\Q(\sqrt{2},\sqrt[3]{3})=\Q(\sqrt{2}\sqrt[3]{3})=\Q(\sqrt{2}+\sqrt{3})$.
+        Prove $\Q(\sqrt{2},\sqrt[3]{3})=\Q(\sqrt{2}\sqrt[3]{3})=\Q(\sqrt{2}+\sqrt[3]{3})$.
         Determine the minimum polynomials of $\sqrt{2}\sqrt[3]{3}$ and $\sqrt{2}+\sqrt[3]{3}$ over $\Q$.
     \end{ex}
     \begin{proof}
@@ -165,6 +165,9 @@
         Since $f$ modulo 5 has no cubic terms it follows that $\deg a = 6$ and $\deg b = 1$ and so $f$ is irreducible. Therefore $[\Q(\sqrt{2},\sqrt[3]{3}):\Q]=\deg f=6$
         and since $\Q(\sqrt{2}\sqrt[3]{3})\subset\Q(\sqrt{2},\sqrt[3]{3})$ it follows that $\Q(\sqrt{2}\sqrt[3]{3})=\Q(\sqrt{2},\sqrt[3]{3})$. 
 
+        Lastly, Note that $\left(\sqrt{2}\sqrt[3]{3}\right)^2=2\left(\sqrt[3]{3}\right)^2\in\Q(\sqrt{2}\sqrt[3]{3})$ and so
+        $$\left(\sqrt{2}+\sqrt[3]{3}\right)^2=2+2\sqrt{2}\sqrt[3]{3}+\left(\sqrt[3]{3}\right)^2\in\Q(\sqrt{2}\sqrt[3]{3})$$
+        
         
     \end{proof}
 
@@ -266,6 +269,10 @@
         Therefore $\alpha$ must be transcendental over $\overline{K}$.
     \end{proof}
 
+    \begin{ex}{21.35}
+        Let $f\in K[x]$ be a polynomial of degree $n\geq 1$. Prove: $\left[\Omega_K^f:K\right]$ divides $n!$. 
+    \end{ex}
+
     \begin{ex}{21.36}
         Let $d\in\Z$ be an integer that is not a third power in $\Z$. Prove that the splitting field $\Omega_\Q^{x^3-d}$ has degree 6 over $\Q$.
         What is the degree if $d$ is a third power?
@@ -275,9 +282,11 @@
         Therefore $f(x)$ has no roots in $\Q$ and since $\deg f=3$ it follows that $f$ is irreducible. Then $\Q[X]/(f)$ is a field and $\alpha\equiv x\mod\left(x^3-d\right)$ is a zero of $f$.
         Therefore $f$ splits in $\Q(\alpha)$ as
         $$x^3-d=(x-\alpha)(x^2+\alpha x+\alpha^2)$$
-        and $[\Q(\alpha):\Q]=3$. Let $g(x)=x^2+\alpha x+\alpha^2\in\Q(\alpha)[x]$. Then $\alpha^{-2}g(\alpha x)=x^2+x+1$ and we know that  $x^2+x+1$ is irreducible in $\Q[x]$. 
-        Since $\Q[x]/(x^2+x+1)$ is a quadratic extension, it cannot be a subfield of the cubic extension $\Q[x]/(x^3-d)$ and so $a^{-2}g(ax)$ has no zeros in $\Q(a)$.
-        Therefore $g(x)$ has no zeros in $\Q(a)$ and so it is irreducible in $\Q(a)[x]$. Hence $\Q(\alpha)[x]/(x^2+x+1)\cong\Q(\alpha)(\beta)$ is a quadratic extension for $\beta\equiv x\mod\left(x^2+x+1\right)$.
+        and $$[\Q(\alpha):\Q]=3$$. 
+        Let $h(x)=x^2+x+1$. Then $h(x+1)=x^2+3x+3$ is irreducible in $\Q[x]$ (Eisenstein with $p=3$) and so $h(x)$ is irreducible in $\Q[x]$.
+        Since $\Q[x]/(h)$ is a quadratic extension, it cannot be a subfield of the cubic extension $\Q[x]/(f)$ and so $h(x)$ has no zeros in $\Q(a)$.
+        Hence it is irreducible in $\Q(a)[x]$. 
+        It follows that  $\Q(\alpha)[x]/(h)\cong\Q(\alpha)(\beta)$ is a quadratic extension for $\beta\equiv x\mod\left(x^2+x+1\right)$.
         Then 
         $$f(x)=(x-\alpha)(x-\alpha\beta)(x+\alpha\beta+\alpha)$$
         and so $\Q(\alpha, \beta)$ is the splitting of $f$.
@@ -287,7 +296,7 @@
 
         If $d=r^3$ for some $r\in\Z$ then $f(x)$ is reducible since
         $$f(x)=(x-r)(x^2+rx+r^2)\in\Q[x].$$
-        Then $r\beta$ is a root of $X^2+rx+r^2$ and so $\Q(\beta)\cong\Q[x]/(x^2+x+1)$ is the splitting field of $f$.
+        Then $r\beta$ is a root of $X^2+rx+r^2$ and so the quadratic extension $\Q(\beta)\cong\Q[x]/(x^2+x+1)$ is the splitting field of $f$.
     \end{proof}
 
     \begin{ex}{21.37}
@@ -306,14 +315,25 @@
         Determine the degree of the splitting field of $x^4-4$ and $x^4+4$. Explain why the notation $\Q(\sqrt[4]{4})$ and $\Q(\sqrt[4]{-4})$  is not used for the fields obtained through the adjunction of a zero of, respectively, $x^4-4$ and $x^4+4$ to $\Q$.
     \end{ex}
     \begin{sol}
-        Since
-        $$ x^4-4=\left(x+\sqrt{2}\right)\left(x-\sqrt{2}\right)\left(x+\sqrt{2}i\right)\left(x-\sqrt{2}i\right)$$
+        Note that
+        $$ x^4-4=\left(x+\sqrt{2}\right)\left(x-\sqrt{2}\right)\left(x+\sqrt{2}i\right)\left(x-\sqrt{2}i\right).$$
+        Since $i=\left(\sqrt{2}\right)^{-1}\sqrt{2}i$ the splitting field of $x^4-4$ is $\Q\left(\sqrt{2},\sqrt{2}i\right)=\Q\left(\sqrt{2},i\right)$. 
+        Similarly
+        $$x^4+4=\left(x-1-i\right)\left(x-1+i\right)\left(x+1-i\right)\left(x+1+i\right),$$
+        and so the splitting filed of $x^4+4$ is $\Q(i)$. To compute the degree of the splitting fields note that:
+        \begin{enumerate}
+            \item $(x+1)^2+1$ is irreducible in $\Q[x]$ (Eisenstein with $p=2$) hence $x^2+1$ is irreducible in $\Q[x]$ and so $x^2+1$ is the minimal polynomial of $i$ over $\Q$.
+            \item $x^2-2$ is the minimal polynomial of $\sqrt{2}$ over $\Q$ (Eisenstein with $p=2$)
+            \item $\left[\Q\left(\sqrt{2},i\right):\Q\left(\sqrt{2}\right)\right]\leq 2$ since the minimal polynomial of $i$ over $\Q$ is of degree two by (1). 
+            However $\Q\left(\sqrt{2}\right)\subset\R$ and $i\not\in\R$ so the degree cannot be one. Therefore $\left[\Q\left(\sqrt{2},i\right):\Q\left(\sqrt{2}\right)\right]=2$.
+        \end{enumerate}
+        It follows that
+        $$[\Q(i):\Q]=2$$
         and
-        $$x^4+4=\left(x-1-i\right)\left(x-1+i\right)\left(x+1-i\right)\left(x+1+i\right)$$
-        the splitting fields are $\Omega_\Q^{x^4-4}=\Q(\sqrt{2}, i)$ and $\Omega_\Q^{x^4+4}=\Q(i)$.
-        Since $x^2+1$ has no roots in $\Q$ (only possible roots are $\pm 1$) it is irreducible and so it is the minimal polynomial of $i$ over $\Q$.
-        Therefore $\Q(i)/\Q$ is a quadratic extension. 
-        Moreover, $x^2-2$ is the minimal polynomial of $\sqrt{2}$ (Eisenstein with $p=2$) and $x^2+1$ is minimal polynomial of $i$ over $\Q(\sqrt{2})$ since $\Q(\sqrt{2})\subset\R$.
-        Hence
         $$\left[\Q\left(\sqrt{2}, i\right):\Q\right]=\left[\Q\left(\sqrt{2}, i\right):\Q\left(\sqrt{2}\right)\right]\left[\Q\left(\sqrt{2}\right):\Q\right]=4.$$   
+
+        Outside the fact that the notation $\Q\left(\sqrt[4]{-4}\right)$ is ambiguous (which of the four roots does it stand for?), it is also misleading.
+        It might seem like an extension of degree four, but as shown above it is of degree 2, regardless of which of the roots you assign to $\sqrt[4]{-4}$.
+        Similarly the degree of $\Q\left(\sqrt[4]{4}\right)$ is two and not four since $\sqrt[4]{4}=\sqrt{2}$. 
+        Therefore it is clearer and to simply write $\Q(\sqrt{2})$ and $\Q(1+i)$ for the adjunction of a zero of, respectively, $x^4-4$ and $x^4+4$ to $\Q$.
     \end{sol}

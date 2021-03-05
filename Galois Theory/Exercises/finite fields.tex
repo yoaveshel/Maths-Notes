@@ -1,1 +1,57 @@
 \subsection{Finite Fields}
+\begin{ex}{22.6}
+    Give an explicit isomorphism $\F_5[x]/(x^2+x+1)\xrightarrow\sim \F_5(\sqrt{2})$
+\end{ex}
+\begin{sol}
+    Let $\varphi:\F_5[x]/(x^2+x+1)\xrightarrow \F_5(\sqrt{2})$ be an isomorphism and $\alpha$ the equivalence class of $x$ in $\F_5[x]/(x^2+x+1)$. 
+    Since $\varphi$ is identity on $\F_5$, we only need to find where $\alpha$ is mapped to.
+    Suppose
+    $$\varphi(\alpha)=c+d\sqrt{2}.$$
+    Then $\left(c+d\sqrt{2}\right)^2+c+d\sqrt{2}+1=0$. Hence 
+    \begin{equation*}
+        \begin{cases}
+            d(2c+1)=0\\
+            c^2+2d^2+c+1=0\\
+        \end{cases}.
+    \end{equation*}
+     Since $d=0$ would be a contradiction it follows from the first equation that $c=2$.
+     Substituting into the second we get $4+2d^2+3=2d^2+2$ and so $2d^2=3$. Therefore $d=2,3$ and either value will give us an isomorphism.
+     So let
+     $$\varphi(a+b\alpha)=a+b(2+2\sqrt{2})= 2a+2b\sqrt{2}.$$
+\end{sol}
+
+\begin{ex}{22.7}
+    
+\end{ex}
+
+\begin{ex}{22.8}
+    
+\end{ex}
+
+\begin{ex}{22.11}
+    Let $p$ be a prime. Show that $\F_p(x)/(x^2+x+1)$ is a field if and only if $p\equiv 2\mod 3$.
+\end{ex}
+\begin{proof}
+    $(\Rightarrow)$ Suppose $\F_p(x)/(x^2+x+1)$ is a field. So $f(x)=x^2+x+1$ is irreducible in $\F_p[x]$. 
+    Therefore $\F_p$ does not contain a non-trivial cube root of unity and so 3 doesn't divide $\abs{\F_p^*}=p-1$. 
+    Since $f(x)=(x+2)^2$ in $\F_3[x]$ it can't be the case that $p$ is congruent to $0\mod 3$ and so $p\equiv 2\mod 3$. 
+    
+    $(\Leftarrow)$ Suppose $\F_p(x)/(x^2+x+1)$ is not a field. Then $f(x)=x^2+x+1$ is reducible in $\F_p[x]$ and so $f$ has a root $\alpha\in\F_p$.
+    Then $\alpha\neq 0$ and $\alpha^3=1$. Therefore 3 divides $\abs{\F_p^*}=p-1$ and so $p\equiv 1\mod 3$.
+
+\end{proof}
+
+\begin{ex}{22.12}
+    
+\end{ex}
+
+\begin{ex}{22.13}
+    
+\end{ex}
+
+\begin{ex}{22.15}
+    Determine all the primes for which $\F_p[x]/(x^4+1)$ is a field. 
+\end{ex}
+\begin{sol}
+    
+\end{sol}
