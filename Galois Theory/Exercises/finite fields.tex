@@ -21,12 +21,36 @@
 \end{sol}
 
 \begin{ex}{22.7}
-    
+    Show that $f(x)=x^2+2x+2$ and $g=x^2+x+3$ are irreducible in $\F_7[x]$ and give an explicit isomorphism
+    $\F_7[x]/(f)\xrightarrow{\sim}\F_7[x]/(g)$.
 \end{ex}
+\begin{sol}
+    Check that every element of $\F_7$ is not a root.
+
+    We need to find $c+d\beta\in\F_7[x]/(g)$ such that
+    $$(c+d\beta)^2+2(c+d\beta)+2=0.$$
+    Using that $\beta^2=6\beta+4$ we get
+    \begin{align*}
+        0 &= c^2+2cd\beta+d^2\beta^2+2c+2d\beta+2\\
+        &=(2cd+6d^2+2d)\beta+(c^2+4d^2+2c+2).
+    \end{align*}
+    which is equivalent to
+    $$\begin{cases}
+        d(2c+6d+2)=0\\
+        c^2+4d^2+2c+2=0\\
+    \end{cases}.$$
+    Since $d\neq0$ it follows that $c=4d+6$. Hence $d^2=1$ and so $d=1,6$.
+    So $c=3,2$ and either pair would give us an isomorphism. 
+\end{sol}
 
 \begin{ex}{22.8}
-    
+    Calculate the orders $1-\sqrt{2}, 2-\sqrt{2}$ and $3-\sqrt{2}$ in $\F_5(\sqrt{2})^2$.
 \end{ex}
+\begin{sol}
+    Note that $(1-\sqrt{2})^3=2$ and the order of 2 is 4. Hence the order of $(1-\sqrt{2})$ divides 12.
+    Since $(1-\sqrt{2})^2=3-2\sqrt{2}, (1-\sqrt{2})^3=2, (1-\sqrt{2})^4=4$ and $(1-\sqrt{2})^6=(1-\sqrt{2})^2(1-\sqrt{2})^4=8=3$
+    it follows that the order of $1-\sqrt{2}$ in $\F_5(\sqrt{2})$ is 12.
+\end{sol}
 
 \begin{ex}{22.11}
     Let $p$ be a prime. Show that $\F_p(x)/(x^2+x+1)$ is a field if and only if $p\equiv 2\mod 3$.
@@ -66,8 +90,49 @@
 \end{sol}
 
 \begin{ex}{22.13}
-    
+    Let $p$ be an odd prime. 
+    \begin{enumerate}
+        \item Show that $\F_{p^2}$ contains a primitive eighth root of unity $\zeta$ and that $\alpha=\zeta+\zeta^{-1}$ satisfies $\alpha^2=2$.
+        \item Prove: $\alpha\in\F_p\iff p\equiv\pm 1\mod 8$. Conclude that 2 is a square modulo $p$ if and only if $p\equiv\pm 1\mod 8$.
+    \end{enumerate}
 \end{ex}
+\begin{proof}
+    ${}$
+    \begin{enumerate}
+        \item Since $p^2-1=(p-1)(p+1)$ is a product of two consecutive even numbers it follows that $8\mid p^2-1$ and so there exists an element $\zeta\in\F_{p^2}^*$ of order 8.
+            Let $\alpha=\zeta+\zeta^{-1}$. Then $\alpha^2=\zeta^2+2+\zeta^{-2}$. Noting that $\zeta^4=-1$ we have
+            \begin{align*}
+                \left(\zeta^2+\zeta^{-2}\right)^2&=\zeta^4+2+\zeta^{-4}\\
+                &=2\zeta^4+2&&(\text{Since }\zeta^{-4}=\zeta^4)\\
+                &=0
+            \end{align*}
+            and so $\alpha^2=2$. 
+        \item Suppose $p\equiv\pm 1\mod 8$. Then 
+            \begin{align*}
+                \alpha^p &= \zeta^p+\zeta^{-p}\\
+                &=\zeta^{8k\pm 1}+\zeta^{-8k\mp 1}\\
+                &=\zeta^{\pm 1}+\zeta^{\mp 1}\\
+                &=\alpha
+            \end{align*}
+            and so $\alpha\in\F_p$ as $\F_p=\{a\in\F_{p^2}\mid a^p = a\}$. 
+            This proves that $p\equiv\mod 8\implies 2$ is a a square modulo $p$. 
+
+            Conversely suppose that $p\not\equiv\pm 1\mod 8$. 
+            Since $p$ can't be congruent to 0,2,4 or 6 modulo 8 it follows that $p\equiv 3\mod 8$ or $p\equiv 5\mod 8$.
+            Equivalently, $p\equiv\pm 3\mod 8$. So we have
+            \begin{align*}
+                \alpha^p&=\zeta^p+\zeta^{-p}\\
+                &=\zeta^{8k\pm 3}+\zeta^{-8k\mp 3}\\
+                &=\zeta^{\pm 3}+\zeta^{\mp 3}\\
+                &=\zeta^3+\zeta^{-3}\\
+                &=\zeta^4\left(\zeta^{-1}+\zeta^{-7}\right)\\
+                &=\zeta^4\left(\zeta^{-1}+\zeta^1\right)\\
+                &=-\alpha.x
+            \end{align*}
+            So $\alpha\not\in\F_p$. 
+            Since $\pm\alpha$ are the roots of 2 in $\F_{p^2}$, it follows that $2$ is not a square in $\F_p$.
+    \end{enumerate}
+\end{proof}
 
 \begin{ex}{22.15}
     Determine all the primes for which $\F_p[x]/(x^4+1)$ is a field. 
