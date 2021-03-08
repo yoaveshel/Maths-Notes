@@ -74,14 +74,14 @@
     \begin{sol}
         No. Let $\alpha$ be a root of the monic irreducible polynomial $f(x)=x^3-3x+1\in\Q[x]$ (possible roots are $\pm 1$ and they both clearly don't work).
         There are three choices for $\alpha$ all in $\R$ (why? Using Exercise 14.16 the determinant is $4\cdot(-3)^3+27\cdot 1=-81<0$ and so by Exercise 14.20 $f$ has three real roots).
-        Therefore there are three embeddings $\varphi:\Q(\alpha)\to\C$ and $\text{Im }\varphi\subset\R$.
+        Therefore there are three embeddings $\varphi:\Q(\alpha)\to\Cc$ and $\text{Im }\varphi\subset\R$.
         
         Assume for contradiction that there exists an isomorphism $\phi:\Q(\alpha)\to\Q(\sqrt[3]{d})$ for some $d\in\Q$.
         Since $\sqrt[3]{d}\not\in\Q$, $x^3-d$ is irreducible and so $f_\Q^{\sqrt[3]{d}}=x^3-d$.
-        Since $f_\Q^{\sqrt[3]{d}}$ has one real and two non-real roots (again, using exercises 14.16 and 14.20 with the fact that $27\cdot(-d)^2>0$) there are three embeddings of $\Q(\sqrt[3]{d})$ into $\C$ to of which are not subsets of $\R$.
+        Since $f_\Q^{\sqrt[3]{d}}$ has one real and two non-real roots (again, using exercises 14.16 and 14.20 with the fact that $27\cdot(-d)^2>0$) there are three embeddings of $\Q(\sqrt[3]{d})$ into $\Cc$ to of which are not subsets of $\R$.
         
-        Let $\Phi:\Q(\sqrt[3]{d})\to\C$ be one of the latter. 
-        Then $\Phi\circ\phi:\Q(\alpha)\to\C$ is an imbedding of $\Q(\alpha)$ into $\C$ whose image is not a subset of $\R$.
+        Let $\Phi:\Q(\sqrt[3]{d})\to\Cc$ be one of the latter. 
+        Then $\Phi\circ\phi:\Q(\alpha)\to\Cc$ is an imbedding of $\Q(\alpha)$ into $\Cc$ whose image is not a subset of $\R$.
         Therefore we conclude that $\phi$ doesn't exists.
     \end{sol}
 
@@ -285,12 +285,12 @@
                 which divides $(n+1)!$.
             \item Suppose $f$ is a reducible polynomial of degree $n+1$. Let $f(x)=h(x)g(x)$ with $h$ irreducible. 
                 Construct the tower of fields $M/L/K$ such that $L$ is the splitting field of $h$ over $K$ and $M$ is the splitting field of $g$ over $L$.
-                Then $[L:K]$ divides $\deg h!$ and $[M:L]$ divides $\deg g!$ by induction hypothesis. 
+                Then $[L:K]$ divides $(\deg h)!$ and $[M:L]$ divides $(\deg g)!$ by induction hypothesis. 
                 Hence 
                 $$[M:K]=[M:L][L:K]$$ 
-                divides $\deg h!\cdot\deg g!$.
+                divides $(\deg h)!\cdot(\deg g)!$.
                 And since 
-                $${n+1\choose \deg h}=\frac{(n+1)!}{\deg h!(n+1-\deg h)!}=\frac{(n+1)!}{\deg h!\deg g!}$$
+                $${n+1\choose \deg h}=\frac{(n+1)!}{(\deg h)!(n+1-\deg h)!}=\frac{(n+1)!}{(\deg h)!(\deg g)!}$$
                 is an integer it follows that $[M:K]$ divides $(n+1)!$.
         \end{enumerate}
     \end{proof}

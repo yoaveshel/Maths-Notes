@@ -26,7 +26,7 @@
 \newcommand{\Ta}{\mathcal{T}}
 \newcommand{\Aa}{\mathcal{A}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
+\newcommand{\Cc}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -67,6 +67,16 @@
     {\noindent\textbf{Exercise #1}\normalsize\newline}
     {\vspace{0.5 em}}
 
+\newsavebox{\selvestebox}
+\newenvironment{colbox}
+    {\newcommand\colboxcolor{B6D0DE}%
+    \begin{lrbox}{\selvestebox}%
+    \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+    {\end{minipage}\end{lrbox}%
+    \begin{center}
+    \colorbox[HTML]{\colboxcolor}{\usebox{\selvestebox}}
+    \end{center}}
+
 \setcounter{secnumdepth}{1}
 
 \title{Galois Theory - 5122GALO6Y}
@@ -80,21 +90,21 @@
     \section{Summary}
     % write down summary of important definitions/theorems as well as useful techniques to solving exercises
     \section{Introduction}
-    Galois theory is about studying Polynomials with coefficients in a field ($\Q,\R,\C$ etc.).
+    Galois theory is about studying Polynomials with coefficients in a field ($\Q,\R,\Cc$ etc.).
     Let
     $$
         f(T) = T^n+\cdots+a_1T+a_0\in\Q[T].
     $$
-    Then $f(T)$ splits completely in $\C[T]$ as
+    Then $f(T)$ splits completely in $\Cc[T]$ as
     $$
         f(T)=(T-\alpha_1)\cdots(T-\alpha_n)
     $$
-    with $\alpha_1,\dots \alpha_n\in\C$ are the roots of $f$. Galois theory studies permutation of the the roots that preserve algebraic relations between these roots.
+    with $\alpha_1,\dots \alpha_n\in\Cc$ are the roots of $f$. Galois theory studies permutation of the the roots that preserve algebraic relations between these roots.
     The allowed permutation of the roots give rise to a group denoted $\text{Gal}(f)$.
     The following definition of a Galois group does not require any background knowledge but is not very useful in practice.
 
     \begin{definition}
-        Let $\sigma:\C\to\C$ be a field automorphism and $\alpha\in\C$ a root of $F(T)\in\Q[T]$. Since $\sigma(1)=1$ it follows that $\sigma(n)=n$ for all integers and so $\sigma(a/b)=\sigma(a)/\sigma(b)=a/b$ is the identity on $\Q$.
+        Let $\sigma:\Cc\to\Cc$ be a field automorphism and $\alpha\in\Cc$ a root of $F(T)\in\Q[T]$. Since $\sigma(1)=1$ it follows that $\sigma(n)=n$ for all integers and so $\sigma(a/b)=\sigma(a)/\sigma(b)=a/b$ is the identity on $\Q$.
         Then
         \begin{align*}
             f(\sigma(\alpha))&=\sigma(\alpha)^n+\cdots+a_1\sigma(\alpha)+a_0\\
@@ -104,9 +114,9 @@
         Then each automorphism $\sigma$ is a permutation of the roots which is precisely the Galois group of the polynomial $\text{Gal}(f)\subset S_n$.
         In other words we have a group action 
         $$
-        \text{Aut}(\C)\times\{\alpha_1,\dots,\alpha_n\}\to\{\alpha_1,\dots,\alpha_n\}
+        \text{Aut}(\Cc)\times\{\alpha_1,\dots,\alpha_n\}\to\{\alpha_1,\dots,\alpha_n\}
         $$
-        Then $\text{Gal}(f):=\text{Im}(\phi)$ where $\phi:\text{Aut}(\C)\to S_n$ mapping $\sigma\mapsto(\alpha_i\mapsto \sigma(\alpha_i))$
+        Then $\text{Gal}(f):=\text{Im}(\phi)$ where $\phi:\text{Aut}(\Cc)\to S_n$ mapping $\sigma\mapsto(\alpha_i\mapsto \sigma(\alpha_i))$
     \end{definition}
 
     $\text{Gal}(f)\subset S_n$ is transitive subgroup (i.e. if its action on the set of roots is transitive) if and only if $f$ is irreducible.
@@ -178,9 +188,32 @@
 
     
     \section{Field Extensions}
+    
+
+    \begin{colbox}
+        \begin{theorem}
+            Let $K\subset L\subset M$ be a tower of fields, $X$ a $K$-basis for $L$ and $Y$ an $L$-basis for $M$.
+            Then the set of elements $xy$ with $x\in X$ and $y\in Y$ forms a $K$-basis for $M$ and we have
+            $$[M:K]=[M:L][L:K].$$
+            In particular, $K\subset M$ is finite if and only if $K\subset L$ and $L\subset M$ are finite
+        \end{theorem}
+    \end{colbox}
+    
+    \begin{proof}
+        Let $c\in M$. Then $c$ can be written uniquely as $c=\sum_{y\in Y} b_y\cdot y$ with coefficients $b_y\in L$ that are almost all 0.
+        The elements $b_y\in L$ each have a unique representation as $b_y=\sum_{x\in X}a_{xy}\cdot x$ with coefficients $a_{xy}\in K$ that are almost all 0.
+        Hence
+        $$c=\sum_{y\in Y}\sum_{x\in X}a_{xy}\cdot x\cdot y$$
+        and so $c$ is a finite $K$-linear combination of the elements $xy$. Therefore $(x,y)\in X\times Y$ forms a basis for $M$ over $K$.
+
+        Since $\abs{X\times Y}=\abs{X}\cdot\abs{Y}$ it follows that
+        $$[M:K]=[M:L]\cdot [L:K].$$
+        Moreover, it follows that $X\times Y$ is finite if and only if $X$ and $Y$ are finite, since $X$ and $Y$ are non-empty.
+    \end{proof}
+
     \subsection{Prime Fields}
     \begin{definition}
-        Let $k$ be a field. Then the \textbf{prime field} in $K$ is the intersection over all subfields of $K$
+        Let $K$ be a field. Then the \textbf{prime field} in $K$ is the intersection over all subfields of $K$
     \end{definition}
     \begin{lemma}
         Let $K$ be a field of characteristic $k$. Then the prime field of $K$ is $\mathbb{F}_p$ if $k=p$ and $\Q$ if $k=0$.
@@ -188,17 +221,23 @@
     \subsection{Algebraic and Transcendental Extensions}
     Let $L/K$ be a field extensions. Then we say that $\alpha\in L $ is \textit{algebraic} over $K$ if there exists an $f\in K[x], f\neq 0$, such that $f(\alpha)=0$.
     We say that $\alpha$ is \textit{transcendental} over $K$ if there exists no such $f$.
-    The number of algebraic elements over $\Q$ in $\C$ is countable, so in fact $\C$ is mostly transcendental elements.
+    The number of algebraic elements over $\Q$ in $\Cc$ is countable, so in fact $\Cc$ is mostly transcendental elements.
 
-    \begin{theorem}
-        Let $L/K$ be a field extension and take $\alpha\in L$. Then
-        \begin{enumerate}
-            \item If $\alpha$ is transcendental over k, then $K[\alpha]\simeq K[X]$
-            \item If $\alpha$ is algebraic over $K$ then there exists $f\in K[X]$ monic and irreducible and
-                $$ K[X]/f\simeq K[\alpha]=K(\alpha)$$
-                and the degree of $L$ over $K$ is the degree of $f$.
-        \end{enumerate}
-    \end{theorem}
+    \begin{colbox}
+        \begin{theorem}
+            Let $L/K$ be a field extension and take $\alpha\in L$. Then
+            \begin{enumerate}
+                \item If $\alpha$ is transcendental over k, then $K[\alpha]\simeq K[X]$ and $K(\alpha)\simeq K(x)$.
+                \item If $\alpha$ is algebraic over $K$ then there exists a unique monic irreducible polynomial $f\in K[x]$ that has $\alpha$ has a zero.
+                    In this case there is a field isomorphism
+                    \begin{align*}
+                        K[X]/(f)&\simeq K[\alpha]=K(\alpha)\\
+                        g\mod (f)\mapsto g(\alpha)
+                    \end{align*}
+                    and the degree of $K(\alpha)$ over $K$ is the degree of $f$.
+            \end{enumerate}
+        \end{theorem}
+    \end{colbox}
 
     \begin{definition}
         We say that an extension $L/K$ is \textbf{algebraic} if $\forall \alpha\in L$, $\alpha$ is algebraic over $K$.
