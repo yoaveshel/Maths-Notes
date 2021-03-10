@@ -228,16 +228,26 @@
             Let $L/K$ be a field extension and take $\alpha\in L$. Then
             \begin{enumerate}
                 \item If $\alpha$ is transcendental over k, then $K[\alpha]\simeq K[X]$ and $K(\alpha)\simeq K(x)$.
-                \item If $\alpha$ is algebraic over $K$ then there exists a unique monic irreducible polynomial $f\in K[x]$ that has $\alpha$ has a zero.
+                \item If $\alpha$ is algebraic over $K$ then there exists a unique monic irreducible polynomial $f=f_K\alpha\in K[x]$ that has $\alpha$ has a zero.
                     In this case there is a field isomorphism
                     \begin{align*}
-                        K[X]/(f)&\simeq K[\alpha]=K(\alpha)\\
-                        g\mod (f)\mapsto g(\alpha)
+                        K[X]/(f)&\simeq K(\alpha)\\
+                        g\mod (f)&\mapsto g(\alpha)
                     \end{align*}
                     and the degree of $K(\alpha)$ over $K$ is the degree of $f$.
             \end{enumerate}
         \end{theorem}
     \end{colbox}
+    \begin{proof}
+        Consider the ring homomorphism $\phi:K[x]\to L$ given by $f\mapsto f(\alpha)$.
+        The image of $\phi$ is equal to $K[\alpha]$, and we have two possibilities.
+
+        If $\alpha$ is transcendental over $K$, then $\phi$ is injective, and we obtain an isomorphism $K[x]\xrightarrow{\sim}K[\alpha]$.
+        The field of fractions $K(\alpha)$ is then isomorphic to $K(x)$.
+
+        If $\alpha$ is algebraic over $K$, then $\ker\phi$ is a non-trivial ideal of $K[x]$.
+        Since $K[x]$ is a PID, there is a unique monic generator $f=f_K^\alpha\in K[x]$ of $\ker\phi$.
+    \end{proof}
 
     \begin{definition}
         We say that an extension $L/K$ is \textbf{algebraic} if $\forall \alpha\in L$, $\alpha$ is algebraic over $K$.

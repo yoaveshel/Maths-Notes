@@ -1,0 +1,32 @@
+\subsection{Connected Subspaces of the Real Line}
+\begin{ex}{24.1}
+    ${}$
+    \begin{enumerate}
+        \item Is a product of path-connected spaces necessarily path connected?
+        \item If $A\subset X$ and $A$ is path connected, is $\overline{A}$ necessarily path connected?
+        \item If $f:X\to Y$ is continuous and $X$ is path connected, is $f(X)$ necessarily path connected?
+        \item If $\{A_\alpha\}$ is a collection of path connected subspaces of $X$ and $\bigcap_\alpha A_\alpha\neq\varnothing$,
+        is $\bigcup_\alpha A_\alpha$ necessarily path connected? 
+    \end{enumerate}
+\end{ex}
+
+\begin{sol}
+    ${}$
+    \begin{enumerate}
+        \item Let $\prod_\alpha X_\alpha$ be given in the product topology and let $\mathbf{x},\mathbf{y}\in\prod_\alpha X_\alpha$.
+            Then for each $\alpha$ there exists a continuous map $f_\alpha:[0,1]\to X_\alpha$ such that $f_\alpha(0)=x_\alpha$ and $f_\alpha(1)=y_\alpha$.
+            Then $f:[0,1]\to\prod_\alpha X_\alpha$ mapping $f(t)=(f_\alpha(t))_\alpha$ is continuous and so $\prod_\alpha X_\alpha$ is path connected. 
+        \item No. The topologist's sine curve is a counter example. 
+        \item let $a,b\in f(X)$. Then there exists $x,y\in X$ such that $f(x)=a$ and $f(y)=b$. Morover, there exists a continuous map $g:[0,1]\to X$ such that $g(0)=x$ and $g(1)=y$.
+            Then $f\circ g:[0,1]\to f(X)$ is continuous, $(f\circ g)(0)=f(x)=a$ and $(f\circ g)(1)=f(y)=b$. Hence $f(X)$ is path connected.
+        \item Let $p\in\bigcap_\alpha A_\alpha$ and $x,y\in\bigcup_\alpha A_\alpha$. If $x,y\in A_\alpha$ then there exists a path between them since $A_\alpha$ is path connected.
+            So suppose $x\in A_\alpha$ and $y\in A_\beta$. Then there exists $f:[0,1]\to A_\alpha$, $g:[0,1]\to A_\beta$ such that $f(0)=x$, $f(1)=p$, $g(0)=p$ and $g(1)=y$. 
+            Then the map $h:[0,2]\to A_\alpha\cup A_\beta$ given by
+            $$h(a)=\begin{cases}
+                f(a),&\text{if } a\in[0, 1]\\
+                g(a-1),&\text{if } a\in[1, 2]\\
+            \end{cases}$$
+            is continuous by the pasting lemma. It follows that $\bigcup_\alpha A_\alpha$ is path connected.
+
+    \end{enumerate}
+\end{sol}

@@ -21,7 +21,7 @@
 \begin{ex}{22.3}
     Let $\pi_1:\R\times\R\to\R$ be projection on the first coordinate. 
     Let $A$ be the a subspace of $\R\times\R$ consisting of all points $(x,y)$ for which either $x\geq 0$ or $y=0$.
-    Let $q:A\to\R$ be obtained by restricting $\pi_1$. Show that $\pi$ is a quotient map that is neither closed not open.
+    Let $q:A\to\R$ be obtained by restricting $\pi_1$. Show that $q$ is a quotient map that is neither closed not open.
 \end{ex}
 \begin{proof}
     Let $x\in\R$. Then $(x,0)\in A$ and $q\left((x,0)\right)=x$. Since for $U$ open in $\R$, $\pi^{-1}(U)$ is open in $\R\times\R$ it follows that $q^{-1}(U)=\pi^{-1}(U)\cap A$ is open in $A$.
@@ -34,6 +34,51 @@
     is open in $\R$ and so $i$ is continuous. 
     Since $i(\R)\subset A$ it follows that $i':\R\to A$ is continuous. 
     Since $(q\circ i')(x)=q((x,0))=x$ is the identity on $\R$ it follows by Exercise 2 that $q$ is a quotient map.
-    Consider the set $[0,1)\times(0,1)$ which is open in $A$, but $q\left([0,1)\times(0,1)\right)=[0,1)$ is not open in $\R$.
-    Therefore $q$ is not an open map. Similarly, consider 
+    
+    Consider the set 
+    $$U = (-1,1)\times (1, 2)\cap A=[0,1)\times(1,2)$$
+    which is open in $A$ since $(-1,1)\times (1, 2)$ is open in $\R\times\R$. 
+    Then $q(U)=[0,1)$ which is not open in $\R$ since any neighborhood containing 0 is not contained in $[0,1)$.
+    Next consider $f:\R\times\R\to\R$ given by $f(x,y)=xy$. Since $f$ is continuous, $f^{-1}(\{1\})$ is closed and so
+    $$C=f^{-1}(\{1\})\cap A=\{(x,1/x)\mid x>0\}$$
+    is closed in $X$. But $q(C)=(0,\infty)$ is not closed in $\R$. Therefore $q$ is a quotient map the is neither open nor closed.
+\end{proof}
+
+\begin{ex}{22.4}
+    ${}$
+    \begin{enumerate}
+        \item Define an equivalence relation on the plane $X=\R^2$ as follows:
+            $$x_0\times y_0\sim x_1\times y_1\quad\text{if}\quad x_0+y_0^2=x_1+y_1^2$$
+            Let $X^*$ be the corresponding quotient space. It is homeomorphic to a familiar space, what is it?
+        \item Repeat (a) for the equivalence relation 
+            $$x_0\times y_0\sim x_1\times y_1\quad\text{if}\quad x_0^2+y_0^2=x_1^2+y_1^2.$$
+    \end{enumerate}
+\end{ex}
+\begin{sol}
+    ${}$
+    \begin{enumerate}
+        \item Let
+        \begin{align*}
+            g:\R^2&\to\R\\
+            (x,y)&\mapsto x+y^2.
+        \end{align*}
+        If $g$ is continuous and surjective quotient map, then it would induce a homeomorphism from
+        $$X^*=\{g^{-1}(\{a\})\mid a\in\R\}=\{(x,y)\mid x+y^2=a, a\in\R\}$$
+        to $\R$. Let $(a,b)\subset\R$. Then
+        $$U = g^{-1}\big((a,b)\big)=\{(x,y)\mid x+y^2\in (a,b)\}.$$
+        Then $U$ is the region between the parabolas $x=a-y^2$ and $x=b-y^2$. 
+        Then for any point $(x,y)\in U$ we can find the minimum distance to each parabola and take an $\varepsilon$-neighborhood smaller than that.
+        Therefore $U$ is open and so $g$ is continuous. Let $h:\R\to\R^2$ be given by $h(x)=(x,0)$. 
+        Then $h$ is continuous and $(g\circ h)(x)=g((x,0))=x$ is the identity on $\R$.
+        Therefore $g$ is a quotient map and so $X^*$ is homeomorphic to $\R$.
+
+        \item
+    \end{enumerate}
+\end{sol}
+
+\begin{ex}{22.5}
+    Let $p:X\to Y$ be an open map. Show that if $A$ is open in $X$, then the map $q:A\to p(A)$ obtained by restricting $p$ is an open map.
+\end{ex}
+\begin{proof}
+    Let $U$ be open in $A$. Then $U$ is open in $X$ since $A$ is open in $X$ and so $p(U)$ is open $Y$. Then $p(U)\cap p(A)=p(U)$ is open in $p(A)$ and so $q$ is an open map.
 \end{proof}

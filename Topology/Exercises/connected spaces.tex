@@ -1,0 +1,61 @@
+\subsection{Connected Spaces}
+\begin{ex}{23.1}
+    Let $\Ta$ and $\Ta'$ be two topologies on $X$. If $\Ta\subset\Ta'$, what does connectedness of $X$ in one topology imply about connectedness in the other?
+\end{ex}
+\begin{sol}
+    Suppose $X=U\cup V$ is a separation of $X$ in $\Ta$. 
+    Then $U,V$ are open $\Ta'$ and so $\Ta'$ is not connected. Therefore
+    $$\Ta'\text{ connected}\implies\Ta\text{ connected}.$$
+\end{sol}
+
+\begin{ex}{23.3}
+    Let $\{A_\alpha\}$ be a collection of connected subspaces of $X$. Let $A$ be a connected subspace of $X$.
+    Show that if $A\cap A_\alpha\neq\varnothing$ for all $\alpha$, then $A\cup\left(\bigcup_\alpha A_\alpha\right)$ is connected.
+\end{ex}
+\begin{proof}
+   Each subspace $A\cup A_\alpha$ is connected because $A$ and $A_\alpha$ share a point.
+   Then $\bigcap_\alpha \big(A\cup A_\alpha\big)$ is not empty and so $\bigcup_\alpha\big(A\cup A_\alpha\big)=A\cup\left(\bigcup_\alpha A_\alpha\right)$ is connected.
+\end{proof}
+
+\begin{ex}{23.4}
+    Show that if $X$ is an infinite set, it is connected in the finite complement topology.
+\end{ex}
+\begin{proof}
+    Suppose $X=U\cap V$ is a separation of $X$ in the finite complement topology.
+    Then $U = X\setminus\{x_1,\dots, x_n\}$ and $V =X\setminus\{y_1,\dots, y_m\}$.
+    But 
+    \begin{align*}
+        U\cap V &=\left(X\setminus\{x_1,\dots, x_n\}\right)\cap\left(X\setminus\{y_1,\dots, y_m\}\right)\\
+        &=X\setminus\left(\{x_1,\dots,x_n\}\cup\{y_1,\dots,y_m\}\right)
+    \end{align*}
+    cannot be empty. Hence $X$ is connected in the finite complement topology.
+\end{proof}
+
+\begin{ex}{23.9}
+    Let $A$ be a proper subset of $X$ and $B$ a proper subset of $Y$. 
+    If $X$ and $Y$ are connected, show that
+    $$\left(X\times Y\right)-\left(A\times B\right)$$
+    is connected.
+\end{ex}
+\begin{proof}
+    For every $x\not\in A$, $U_x =\bigcup_{y\in Y} x\times y$ is homeomorphic to $Y$ and so it is connected. 
+    Similarly for every $y\not\in B$, $V_y=\bigcup_{x\in X} x\times y$ is homeomorphic to $X$.
+    Let $a\not\in A$ and $b\not\in B$. 
+    Then $U_a\cup V_b$ is connected since $U_a\cap V_b=(a,b)$ is nonempty.
+    Note that for any $x\not\in A$ and $y\not\in B$, 
+    $$\big(U_x\cup V_y\big)\cap\big(U_a\cup V_b\big)=\{(a,y), (x, b)\}.$$
+    and so $\big(U_x\cup V_y\big)\cup\big(U_a\cup V_b\big)$ is connected as well.
+    Therefore by Exercise 23.3 it follows that 
+    $$\bigcup_{(x,y)\not\in A\times B} U_x\cup V_y = \left(X\times Y\right)-\left(A\times B\right)$$
+    is connected.
+\end{proof}
+
+\begin{ex}{23.11}
+    Let $p:X\to Y$ be a quotient map. Show that if $Y$ is connected and each set $p^{-1}(\{y\})$ is connected
+    then $X$ is connected
+\end{ex}
+\begin{proof}
+    Let $U\cup V$ be a separation of $X$ and take $y\in Y$. Then $p^{-1}(\{y\})$ is connected and so it is contained in either $U$ or $V$ (but not both). 
+    Thus $U$ and $V$ are saturated with respect to $p$. Therefore $p(U)$ and $p(V)$ are disjoint open sets in $Y$ and since $p$ is surjective
+    $Y=p(U)\cup p(V)$, a contradiction.
+\end{proof}
