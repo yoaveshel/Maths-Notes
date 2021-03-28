@@ -1,0 +1,47 @@
+\subsection{Chapter 2 Supplementary Exercises}
+\begin{ex}{1}
+    Let $H$ be a group that is also a topological space satisfying the $T_1$ axiom.
+    Show that $H$ is a topological group if and only if the map $x\times y\mapsto x\cdot y^{-1}$ is continuous.
+\end{ex}
+\begin{proof}
+    ($\Rightarrow$) Suppose $H$ is a topological group.
+    Then $x\mapsto x$ and $y\mapsto y^{-1}$ are continuous maps and so $x\times y\mapsto x\times y^{-1}$ is a continuous map.
+    Hence $x\times y\mapsto x\cdot y^{-1}$ is a composition of continuous maps and so continuous.
+
+    ($\Leftarrow$) Suppose the map $x\times y\mapsto x\cdot y^{-1}$ is continuous. 
+    Hence it is continuous in either variable, i.e. $x\mapsto x\cdot y_0^{-1}$ and $y\mapsto x_0\cdot y^{-1}$ are continuous for any $x_0, y_0\in H$.
+    Taking $x_0,y_0=1\in H$ we get that $y\mapsto y^{-1}$ is continuous and so $x\times y\mapsto x\times y^{-1}\mapsto x\cdot y$ is a composition of continuous maps and so it is continuous.
+    Hence $H$ is a topological group.
+\end{proof}
+
+\begin{ex}{3}
+    Suppose $H$ is a subspace of $G$. Show that if $H$ is a subgroup of $G$, then $H$ and $\overline{H}$ (the closure of $H$ in $G$) are topological groups.
+\end{ex}
+\begin{proof}
+    To show that $\overline{H}$ is a subgroup, we need to show that for any $x,y\in\overline{H}$, $x\cdot y^{-1}\in\overline{H}$.
+    But the map $f:G\times G\to G$ given by $f(x\times y)=x\cdot y^{-1}$ is continuous since $G$ is a topological group and so
+    \begin{align*}
+        f(\overline{H}\times\overline{H})&=f(\overline{H\times H})\\
+        &\subset\overline{f(H\times H)}&&(\text{since $f$ is continuous})\\
+        &\subset\overline{H}
+    \end{align*}
+    where the last inclusion follows from the fact that $H$ is a subgroup and so $f(H\times H)\subset H$. 
+    Therefore $\overline{H}$ is a subgroup of $G$. Cool.
+
+    Since $H$ and $\overline{H}$ are subspaces of $G$, they are both $T_1$ spaces and the restriction of $f$ to $H$ or $\overline{H}$ is a continuous function.
+    Therefore both $H$ and $\overline{H}$ are topological groups.
+\end{proof}
+
+\begin{ex}{4}
+    Let $\alpha\in G$. Show that the maps $f_\alpha, g_\alpha:G\to G$ defined by
+    $$f_\alpha(x)=\alpha\cdot x\quad\text{and}\quad g_\alpha(x)=x\cdot \alpha$$
+    are homeomorphisms of $G$. Conclude the $G$ is a homogeneous space. 
+\end{ex}
+\begin{proof}
+    since $\alpha x=\alpha y\implies x=y$ and $x\alpha=y\alpha\implies x=y$ it follows that $f_\alpha$ and $g_\alpha$ are injective.
+    Similarly, for any $x\in G$ take $\alpha^{-1}x$ (or $x\alpha^{-1}$) to conclude that $f_\alpha$ (or $g_\alpha$) is surjective.
+    The map $x\times y\mapsto x\cdots y$ is continuous since $G$ is a topological group and so it is continuous in each variable separately.
+    Therefore both $f_\alpha$ and $g_\alpha$ are continuous. Since $f_\alpha^{-1}=f_{\alpha^{-1}}$ and $g_\alpha^{-1}=g_{\alpha^{-1}}$ are also continuous it follows that $f_\alpha$ and $g_\alpha$ are homeomorphisms.
+
+    Then for any $x,y\in G$, let $\alpha = yx^{-1}$ and so $f_\alpha(x)=y$. Therefore for any two points in $G$ there is a homeomorphisms sending one to the other and so $G$ is a homogeneous space.
+\end{proof}

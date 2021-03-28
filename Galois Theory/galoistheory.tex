@@ -19,6 +19,7 @@
     linkcolor=black,
     urlcolor=black
 }
+\theoremstyle{plain}
 
 \DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
 \DeclareMathOperator{\Ima}{Im}
@@ -54,7 +55,9 @@
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
 
-\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem*{definition}{Definition}
@@ -68,11 +71,11 @@
     {\vspace{0.5 em}}
 
 \newsavebox{\selvestebox}
-\newenvironment{colbox}
+\newenvironment{colbox}[1]
     {\newcommand\colboxcolor{B6D0DE}%
     \begin{lrbox}{\selvestebox}%
-    \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
-    {\end{minipage}\end{lrbox}%
+    \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}\textbf{#1}}
+    {\vspace{0.5em}\end{minipage}\end{lrbox}%
     \begin{center}
     \colorbox[HTML]{\colboxcolor}{\usebox{\selvestebox}}
     \end{center}}
@@ -88,7 +91,210 @@
     \tableofcontents
     \newpage
     \section{Summary}
-    % write down summary of important definitions/theorems as well as useful techniques to solving exercises
+    \begin{colbox}{21.3}
+        \begin{theorem*}
+            Let $K\subset L\subset M$ be a tower of fields, $X$ a $K$-basis for $L$ and $Y$ an $L$-basis for $M$.
+            Then the set of elements $xy$ with $x\in X$ and $y\in Y$ forms a $K$-basis for $M$ and we have
+            $$[M:K]=[M:L][L:K].$$
+            In particular, $K\subset M$ is finite if and only if $K\subset L$ and $L\subset M$ are finite
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        Let $c\in M$. Then $c$ can be written uniquely as $c=\sum_{y\in Y} b_y\cdot y$ with coefficients $b_y\in L$ that are almost all 0.
+        The elements $b_y\in L$ each have a unique representation as $b_y=\sum_{x\in X}a_{xy}\cdot x$ with coefficients $a_{xy}\in K$ that are almost all 0.
+        Hence
+        $$c=\sum_{y\in Y}\sum_{x\in X}a_{xy}\cdot x\cdot y$$
+        and so $c$ is a finite unique $K$-linear combination of the elements $xy$. Therefore $(x,y)\in X\times Y$ forms a basis for $M$ over $K$.
+
+        Since $\abs{X\times Y}=\abs{X}\cdot\abs{Y}$ it follows that
+        $$[M:K]=[M:L]\cdot [L:K].$$
+        Moreover, it follows that $X\times Y$ is finite if and only if $X$ and $Y$ are finite, since $X$ and $Y$ are non-empty.
+    \end{proof}
+
+    \begin{colbox}{21.5}
+        \begin{theorem*}
+            Let $L/K$ be a field extension and take $\alpha\in L$. Then
+            \begin{enumerate}
+                \item If $\alpha$ is transcendental over k, then $K[\alpha]\simeq K[X]$ and $K(\alpha)\simeq K(x)$.
+                \item If $\alpha$ is algebraic over $K$ then there exists a unique monic irreducible polynomial $f=f_K^\alpha\in K[x]$ that has $\alpha$ has a zero.
+                    In this case there is a field isomorphism
+                    \begin{align*}
+                        K[X]/(f)&\simeq K(\alpha)\\
+                        g\mod (f)&\mapsto g(\alpha)
+                    \end{align*}
+                    and the degree of $K(\alpha)$ over $K$ is the degree of $f$.
+            \end{enumerate}
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        Consider the ring homomorphism $\phi:K[x]\to L$ given by $f\mapsto f(\alpha)$.
+        The image of $\phi$ is equal to $K[\alpha]$, and we have two possibilities.
+
+        If $\alpha$ is transcendental over $K$, then $\phi$ is injective, and we obtain an isomorphism $K[x]\xrightarrow{\sim}K[\alpha]$.
+        The field of fractions $K(\alpha)$ is then isomorphic to $K(x)$.
+
+        If $\alpha$ is algebraic over $K$, then $\ker\phi$ is a non-trivial ideal of $K[x]$.
+        Since $K[x]$ is a PID, there is a unique monic generator $f=f_K^\alpha\in K[x]$ of $\ker\phi$.
+        This is the "smallest" monic polynomial in $K[x]$ that has $\alpha$ as a zero. 
+        The isomorphism theorem then gives an isomorphism $K[x]/(f_k^\alpha)\xrightarrow{\sim}K[\alpha]\subset L$ of integral domains.
+        Hence $(f_K^\alpha)$ is a prime ideal in $K[x]$ and $f_K^\alpha$ is irreducible. 
+        Since a prime ideal $(f_K^\alpha)\neq 0$ is a PID is maximal, we have that $K[x]/(f_k^\alpha)\cong K[\alpha]$ is a field and therefore equal to $K(\alpha)$.
+        Since every polynomial modulo $f_K^\alpha$ has a unique representative $g$; obtained through division with remainder by $f_K^\alpha$. 
+        If $\deg f_K^\alpha=n$ then the residue classes of $\{1,x,x^2,\dots, x^{n-1}\}$ is a basis for $K[x]/(f_K^\alpha)$ over $K$. 
+        Therefore $[K(\alpha):K]=n=\deg f_K^\alpha$.
+    \end{proof}
+
+    \begin{colbox}{21.9}
+        \begin{theorem*}
+            For a tower $M/L/K$ of fields, we have
+            $$ K\subset M\text{ is algebraic}\iff K\subset L\text{ and } L\subset M\text{ are algebraic}.$$
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        If $K\subset M$ is algebraic, then for any $\alpha\in L\subset M$ there exists a polynomial $f\in K[x]$ with $f(\alpha)=0$ so $L/K$ is algebraic.
+        Similarly, for any $\alpha\in M$ there exists a polynomial in $f\in K[x]\subset L[x]$ with $f(\alpha)=0$ so $M/L$ is algebraic as well.
+
+        Suppose that $K\subset L$ and $L\subset M$ are algebraic extensions and let $c\in M$. 
+        Then $c$ has a minimum polynomial $f_L^c=\sum_{i=0}^n b_ix^i\in L[x]$. 
+        Each $b_i\in L$ is algebraic over $K$, so $L_0=K(b_0,\dots, b_n)$ is a finite extension of $K$. 
+        Because $c$ is also algebraic over $L_0$, the extension $L_0(c)/L_0$ is finite. Since
+        $$[L_0(c):K]=[L_0(c):L_0]\cdot [L_0: K]$$
+        the extension $L_0(c)/K$ is also finite and so algebraic. In particular, $c$ is algebraic over $K$ and so $M/K$ is algebraic.
+    \end{proof}
+
+    \begin{colbox}{22.1}
+        \begin{theorem*}
+            Let $F$ be a finite field and $\F_p$ the prime field of $F$. Then $F$ is an extension of $\F_p$ of finite degree $n$ , and $F$ has $p^n$ elements.
+
+            Conversely, for any prime power $q=p^n$, there exists, up to isomorphism, a unique field $\F_q$ with $q$ elements; it is the splitting field of $x^q-x$ over $\F_p$.
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        If $F$ is finite, then $F$ is of finite degree over its prime field $\F_p$.
+        If this degree is equal to $n$, then $F$, as an $n$-dimensional vector space over $\F_p$ has exactly $p^n$ elements. 
+        THe group of units $F^*$ then has order $p-1$ and it follows that the elements of $F^*$ are exactly the $p^n-1$ zeros of the polynomial $x^{p^n-1}-1\in F[x]$.
+        In particular we have 
+        $$\prod_{\alpha\in F}(x-\alpha)=x^{p^n}-x\in\F_p[x].$$
+        It follows that $F$ is a splitting field of $x^{p^n}-x$ over $\F_p$ and since splitting fields are unique (up to isomorphism), it follows there can exists at most one field with $p^n$ elements.
+
+        Conversely, for every prime power $q=p^n>1$, a splitting field of $f(x)=x^q-x\in\F_p[x]$ over $\F_p$ is a field with $q$ elements. 
+        Since $f'=-1$ has no zeros, $f$ has no double roots in an algebraic closure $\overline{\F_p}$ of $\F_p$.
+        The zero set
+        $$\F_q=\{a\in\overline{\F_p}\mid a^{p^n}=\alpha\}$$
+        of $f$ therefore has $q=p^n$ elements. By Fermat's little theorem, we have $\F_p\subset\F_q$.
+        It is clear the $\F_q$ is closed under multiplication and division by non-zero elements. The additivity of taking $p$th power implies
+        $$(\alpha+\beta)^{p^n}=\alpha^{p^n}+\beta^{p^n}=\alpha+\beta\in\F_q$$
+        and so $\F_q$ is closed under addition. It follows that $F_q$ is a subfield of $\overline{\F_p}$ and therefore a splitting field of $f$ over $\F_p$. 
+    \end{proof}
+
+    \begin{colbox}{22.10}
+        \begin{theorem*}
+            Let $\F_q$ and $\F_r$ be subfields of $\overline{\F_p}$ with, respectively, $q=p^i$ and $r=p^j$ elements.
+            The following are equivalent:
+            \begin{enumerate}
+                \item $\F_q$ is a subfield of $\F_r$.
+                \item $r$ is a power of $q$.
+                \item $i$ is divisor of $j$.
+            \end{enumerate}
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        If $\F_r$ is an extension field of $\F_q$ of degree $d$, then we have $r=q^d$ and therefore $j=di$.
+        This proves $1\implies 2\implies 3$. Finally, if $i$ is a divisor of $j$, then for $\alpha\in\overline{\F_p}$ we have the implication $\text{Frob}_p^i(\alpha)=\alpha\implies\text{Frob}_p^j(\alpha)=\alpha$.
+        This is equivalent to $\F_q\subset\F_r$.
+    \end{proof}
+
+    \begin{colbox}{23.1}
+        \begin{theorem*}
+            Let $K\subset L_1=K(\alpha)$ be a simple algebraic field extension, $K\subset L_2$ an arbitrary field extension and $S$ the set of zeros of $f_K^\alpha$ in $L_1$.
+            Then there is a bijection $\text{Hom}_K(L_1,L_2)\xrightarrow{\sim}S$ given by $\sigma\mapsto\sigma(\alpha)$.
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        A homomorphism $\sigma:K(\alpha)\to L_2$ that is the identity on $K$ is fixed by the choice of the elements $\sigma(\alpha)\in L_2$.
+        To the $\sigma(\alpha)$ is a zero of $f=f_K^\alpha$ in $L_2$, we write $f=\sum_{i=0}^n a_ix^i\in K[x]$.
+        Then 
+        $$f(\sigma(\alpha))=\sum_{i=0}^n a_i\sigma(\alpha)^i=\sigma\left(\sum_{i=0}^n a_i\alpha^i\right)=\sigma(f(\alpha))=0$$
+        because $\sigma$ is the identity on $a_i\in K$. This proves $\sigma(\alpha)\in S$. 
+
+        Conversely, for every zero $s\in S$ of $f$, the map $L_1\to L_2$ defined by $\sum_{i}c_i\alpha^i\mapsto c_is^i$ is a $K$-homomorphism $L_1\to L_2$
+    \end{proof}
+
+    \begin{colbox}{23.5}
+        \begin{theorem*}
+            For a finite extension $K\subset L$, the following are equivalent
+            \begin{enumerate}
+                \item The extension $K\subset L$ is separable
+                \item We have $L=K(\alpha_1,\dots,\alpha_t)$ for elements $\alpha_1,\dots,\alpha_t\in L$ that are separable over $K$
+                \item $[L:K]_s=[L:K]$
+            \end{enumerate}
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        $(1\implies 2)$ Since $L$ is a separable extension, every element in $L$ is separable over $K$ by definition.
+        Moreover, since $L$ is finite, it is algebraic, and so we can find $\alpha_1,\dots,\alpha_t\in L$ that do the trick.
+
+        $(2\implies 3)$ We know that for a simple extension $K(\alpha_i)$ it holds that
+        $$\abs{[K(\alpha_i):K]_s}=\abs{\{\alpha\in L\mid f_K^{\alpha_i}(\alpha)=0\}}$$
+        and since $\alpha_i$ is separable $f_K^{\alpha_i}$ has no repeated roots and so
+        $$\abs{[K(\alpha_i):K]_s}=\abs{\{\alpha\in L\mid f_K^{\alpha_i}(\alpha)=0\}}=\deg f_K^{\alpha_i}=[K(\alpha_i):K].$$
+        Let $E=K(\alpha_1,\dots,\alpha_k)$ for some $k\geq 1$ and suppose that
+        $$[E:K]_s=[E:K].$$
+        Then $\alpha_{k+1}$ is separable over $E$ since $f_E^{\alpha_{k+1}}\mid f_K^{\alpha_{k+1}}$ in $\overline{K}[x]$. Therefore
+        $$[E(\alpha_{k+1}):K]_s=[E(\alpha_{k+1}):K]$$
+        which completes the induction.
+
+        $(3\implies 1)$ For every $\alpha\in L$ we have a tower $K\subset K(\alpha)\subset L$. 
+        Since the separable degree is bounded by the degree, it follows from the equality
+        $$[L:K(\alpha)]_s\cdot [K(\alpha):K]_s=[L:K]_s=[L:K]=[L:K(\alpha)]\cdot[K(\alpha):K]$$
+        that $[K(\alpha):K]_s=[K(\alpha):K]$. Therefore $f_K^\alpha$ has exactly $\deg f_K^\alpha$ distinct roots in $\overline{K}$, so $\alpha$ is separable over $K$.
+    \end{proof}
+
+    \begin{colbox}{23.6}
+        \begin{theorem*}
+            Let $f\in K[x]$ be an irreducible polynomial, and suppose that $f$ is inseparable. Then we have $p=\text{char }K>0$ and $f=g(x^p)$ for some $g\in K[x]$.
+            Moreover, not all coefficients of $f$ are $p$th powers in $K$.
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        If $f$ has a double zero $\alpha\in\overline{K}$, then $\alpha$ is also a zero of the derivative of $f'$ of $f$. 
+        Because (up to multiplication by a unit) $f$ is the minimum polynomial of $\alpha$ over $K$, the assumption $f'(\alpha)=0$ implies $f\mid f'$.
+        Since $f'$ has a lower degree than $f$, this is only possible if $f'$ is the zero polynomial in $K[x]$. 
+        
+        For $K$ of characteristic 0, we find that $f$ is constant, which contradicts the assumption that $f$ is irreducible.
+        We therefore have $\text{char }K=p>0$, and by explicitly taking derivatives we see that we obtain $f'=0$ for the polynomials in $K[x]$ of the form
+        $f=\sum_i a_i x^{ip}\in K[x]$. For $g=\sum_i a_i x^i$ we have $f=g(x^p)$.
+
+        If all coefficients of $f$ are $p$th powers in $K$, say $a_i=c_i^p\in K$, then we have 
+        $$f=\sum_i a_ix^{ip}=\sum_i c_i^p x^{ip}=\left(\sum_i c_i x^i\right)^p$$
+        which is a contradiction since $f$ is irreducible. 
+    \end{proof}
+
+    \begin{colbox}{23.14}
+        \begin{theorem*}
+            For a finite extension $K\subset L$ with fundamental set $X(L/K)$, the following are equivalent:
+            \begin{enumerate}
+                \item The extension $K\subset L$ is normal
+                \item The filed $L$ is the splitting field $\Omega_K^f$ of a polynomial $f\in K[x]$.
+                \item For all $\tau,\sigma\in X(L/K)$, we have $\sigma[L]=\tau[L]$.
+            \end{enumerate}
+        \end{theorem*}
+    \end{colbox}
+    \begin{proof}
+        $(1\implies 2)$. Write $L=K(\beta_1,\dots, \beta_t)$. Then because of the normality of $K\subset L$,
+        all the zeros of 
+        $$f=f_K^{\beta_1}\cdot f_K^{\beta_2}\cdots f_K^{\beta_t}\in K[x]$$
+        are in $L$. Since they generate $L$ over $K$, we have $L=\Omega_K^f$.
+        
+        $(2\implies 3)$. Let $L=\Omega_K^f$ and suppose that in $\overline{K}[x]$, the polynomial $f$ decomposes as $f=\prod_{i=1}^n (x-\alpha_i)$. 
+        This gives an inclusion $\sigma:L=K(\alpha_1,\dots, \alpha_n)\subset\overline{K}$. For $\tau\in X(L/K)$ arbitrary, we then have $\prod_{i=1}^n(x-\tau(\alpha_i))=f$
+        because $\tau$ is the identity on the coefficients of $f$. We find the $\tau$ permutes the zeros of $f$, and that given the desired equality $\tau[L]=K(\tau(\alpha_1),\dots,\tau(\alpha_n))=K(\alpha_1,\dots,\alpha_n)=\sigma[L]\subset\overline{K}$.
+
+        $(3\implies 1)$. Choose an element $\sigma:L\to\overline{K}$ in $X(L/K)$ and take $\alpha\in L$ arbitrary. 
+        Suppose that $f_K^\alpha$ decomposes as $f_K^\alpha=\prod_{i=1}^n(x-\alpha_i)\in\overline{K}[x]$. Then we have a $K$-isomorphism $\sigma_i:K(\alpha)\to K(\alpha_i)\subset\overline{K}$.
+        Then each of the isomorphism $\sigma_i$ has an extension to an isomorphism $\sigma_i':\overline{L}\to\overline{K}$ where $\overline{L}$ is an algebraic closure of $L$ (and therefore of $K(\alpha)$).
+        This isomorphism maps $\alpha$ to $\alpha_i\in\sigma_i'[L]$, and by assumption 3, we have $\sigma_i'[L]=\sigma[L]$ for all $\sigma_i'$. It follows that $f_K^\alpha$ decomposes into linear factors over $\sigma[L][x]$ and therefore over $L[x]$.
+    \end{proof}
     \section{Introduction}
     Galois theory is about studying Polynomials with coefficients in a field ($\Q,\R,\Cc$ etc.).
     Let
@@ -188,29 +394,6 @@
 
     
     \section{Field Extensions}
-    
-
-    \begin{colbox}
-        \begin{theorem}
-            Let $K\subset L\subset M$ be a tower of fields, $X$ a $K$-basis for $L$ and $Y$ an $L$-basis for $M$.
-            Then the set of elements $xy$ with $x\in X$ and $y\in Y$ forms a $K$-basis for $M$ and we have
-            $$[M:K]=[M:L][L:K].$$
-            In particular, $K\subset M$ is finite if and only if $K\subset L$ and $L\subset M$ are finite
-        \end{theorem}
-    \end{colbox}
-    
-    \begin{proof}
-        Let $c\in M$. Then $c$ can be written uniquely as $c=\sum_{y\in Y} b_y\cdot y$ with coefficients $b_y\in L$ that are almost all 0.
-        The elements $b_y\in L$ each have a unique representation as $b_y=\sum_{x\in X}a_{xy}\cdot x$ with coefficients $a_{xy}\in K$ that are almost all 0.
-        Hence
-        $$c=\sum_{y\in Y}\sum_{x\in X}a_{xy}\cdot x\cdot y$$
-        and so $c$ is a finite $K$-linear combination of the elements $xy$. Therefore $(x,y)\in X\times Y$ forms a basis for $M$ over $K$.
-
-        Since $\abs{X\times Y}=\abs{X}\cdot\abs{Y}$ it follows that
-        $$[M:K]=[M:L]\cdot [L:K].$$
-        Moreover, it follows that $X\times Y$ is finite if and only if $X$ and $Y$ are finite, since $X$ and $Y$ are non-empty.
-    \end{proof}
-
     \subsection{Prime Fields}
     \begin{definition}
         Let $K$ be a field. Then the \textbf{prime field} in $K$ is the intersection over all subfields of $K$
@@ -222,32 +405,6 @@
     Let $L/K$ be a field extensions. Then we say that $\alpha\in L $ is \textit{algebraic} over $K$ if there exists an $f\in K[x], f\neq 0$, such that $f(\alpha)=0$.
     We say that $\alpha$ is \textit{transcendental} over $K$ if there exists no such $f$.
     The number of algebraic elements over $\Q$ in $\Cc$ is countable, so in fact $\Cc$ is mostly transcendental elements.
-
-    \begin{colbox}
-        \begin{theorem}
-            Let $L/K$ be a field extension and take $\alpha\in L$. Then
-            \begin{enumerate}
-                \item If $\alpha$ is transcendental over k, then $K[\alpha]\simeq K[X]$ and $K(\alpha)\simeq K(x)$.
-                \item If $\alpha$ is algebraic over $K$ then there exists a unique monic irreducible polynomial $f=f_K\alpha\in K[x]$ that has $\alpha$ has a zero.
-                    In this case there is a field isomorphism
-                    \begin{align*}
-                        K[X]/(f)&\simeq K(\alpha)\\
-                        g\mod (f)&\mapsto g(\alpha)
-                    \end{align*}
-                    and the degree of $K(\alpha)$ over $K$ is the degree of $f$.
-            \end{enumerate}
-        \end{theorem}
-    \end{colbox}
-    \begin{proof}
-        Consider the ring homomorphism $\phi:K[x]\to L$ given by $f\mapsto f(\alpha)$.
-        The image of $\phi$ is equal to $K[\alpha]$, and we have two possibilities.
-
-        If $\alpha$ is transcendental over $K$, then $\phi$ is injective, and we obtain an isomorphism $K[x]\xrightarrow{\sim}K[\alpha]$.
-        The field of fractions $K(\alpha)$ is then isomorphic to $K(x)$.
-
-        If $\alpha$ is algebraic over $K$, then $\ker\phi$ is a non-trivial ideal of $K[x]$.
-        Since $K[x]$ is a PID, there is a unique monic generator $f=f_K^\alpha\in K[x]$ of $\ker\phi$.
-    \end{proof}
 
     \begin{definition}
         We say that an extension $L/K$ is \textbf{algebraic} if $\forall \alpha\in L$, $\alpha$ is algebraic over $K$.
